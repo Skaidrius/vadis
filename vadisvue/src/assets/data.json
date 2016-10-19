@@ -1,0 +1,91 @@
+{
+	"table": {
+		"titles": "Title",
+		"options": {
+			"risks": [{
+				"name": "Pick one...",
+				"value": 0
+			}, {
+				"name": "Low",
+				"value": 1
+			}, {
+				"name": "Middle",
+				"value": 2
+			}, {
+				"name": "High",
+				"value": 3
+			}],
+			"importanceValues": [{
+				"name": "Undefined risks",
+				"days": 0,
+				"style": "default"
+			}, {
+				"name": "Little important",
+				"days": 15,
+				"style": "alert-success"
+			}, {
+				"name": "Average important",
+				"days": 25,
+				"style": "alert-warning"
+			}, {
+				"name": "Highly important",
+				"days": 40,
+				"style": "alert-danger"
+			}]
+		},
+		"header": {
+			"criterias": {
+				"name": "Criterias",
+				"subElements": [{
+					"name": "First"
+				}, {
+					"name": "Second"
+				}]
+			},
+			"importance": {
+				"name": "Importance",
+				"subElements": [{
+					"name": "Sum",
+					"value": ""
+				}, {
+					"name": "Level",
+					"value": ""
+				}]
+			},
+			"demand": {
+				"name": "Demand",
+				"subElements": [{
+					"name": "Days"
+				}]
+			}
+		}
+	},
+	"tableData": [{
+		"title": "Noname",
+		"risks": [{
+			"title": "First",
+			"value": 3
+		}, {
+			"title": "Second",
+			"value": 1
+		}]
+	}, {
+		"title": "NonameDA",
+		"risks": [{
+			"title": "First",
+			"value": 2
+		}, {
+			"title": "Second",
+			"value": 3
+		}]
+	}, {
+		"title": "NoRameRa",
+		"risks": [{
+			"title": "First",
+			"value": 3
+		}, {
+			"title": "Second",
+			"value": 1
+		}]
+	}]
+}
