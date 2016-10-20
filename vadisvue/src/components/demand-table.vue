@@ -54,8 +54,8 @@
         <span v-else>{{ table.header.demand.name }}</span> <!-- READ MODE -->
       </td>
 
-      <td v-if='editMode' rowspan='2'>                                            <!-- EDIT MODE -->
-        <div class="form-control">-</div>
+      <td rowspan='2'>                                            <!-- EDIT MODE -->
+        <div class="form-control">X</div>
       </td>
 
     </tr>
@@ -116,7 +116,7 @@
     <tr v-if='!editMode'>
       <td></td>
       <td><input v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- TBODY / SEARCH-->
-      <td colspan = '6'></td>
+      <td :colspan='getCriteriaslength + 5'></td>
     </tr>
     <!-- TBODY ROW -->
     <tr v-for='(el, index) in filteredElements'>
@@ -127,10 +127,10 @@
       </td>
       <!-- CRITERIAS -->
       <td v-for='risk in el.risks'>
-        <select v-model='risk.value' class='form-control col-xs=10' :value='getImpDescript(index)'> <!-- EDIT MODE -->
+        <select v-if='editMode' v-model='risk.value' class='form-control col-xs=10' :value='getImpDescr(index)'> <!-- EDIT MODE -->
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
-        <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE 
       </td>
       <!-- IMPORTANCE-->
       <td> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
@@ -142,14 +142,16 @@
       <td v-if='editMode'>
         <button class='btn btn-danger' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
       </td>
+      <td v-else>
+        <button class='btn btn-default' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
+      </td>
     </tr>
     <tr>
       <td></td>
       <td><br>
         <div>Add new entry</div>
       </td>
-      <td v-if='editMode':colspan='getCriteriaslength + 5'></td>
-      <td v-else :colspan='getCriteriaslength + 4'></td>
+      <td :colspan='getCriteriaslength + 5'></td>
     </tr>
     <tr>
       <th>
@@ -163,8 +165,7 @@
           <option  v-for='elem in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}</p></option>
         </select>
       </td>
-      <td v-if='editMode' colspan='5'></td>
-      <td v-else colspan='4'></td>
+      <td colspan='5'></td>
     </tr>
   </tbody>
   
@@ -176,9 +177,8 @@
         <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ demandCalc.title }}</span> 
       </th>
       <td>{{ daysDemand }}</td>
-      <td v-if='editMode' colspan = '3'></td>
-      <td v-else colspan = '2'></td>
-      
+      <td colspan = '3'></td>
+
     </tr>
     <tr>
       <td :colspan='getCriteriaslength + 3' class='text-right'>
@@ -186,8 +186,7 @@
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.method }}</span>
       </td>
       <td>{{ demandCalculated.toFixed(2) }}</td>
-      <td v-if='editMode' colspan = '3'></td>
-      <td v-else colspan = '2'></td>
+      <td colspan = '3'></td>
     </tr>
     <tr>
       <th :colspan='getCriteriaslength + 3' class='text-right'>
@@ -195,13 +194,11 @@
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.description }}</span>
       </th>
       <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
-      <th v-if='editMode' class='text-left' colspan='3'>
-        <span>
+      <th class='text-left' colspan='3'>
+        <span v-if='editMode' >
           <input class='form-control text-left' placeholder="IA's" v-model='demandCalc.iAuditors'>
         </span>
-      </th>
-      <th v-else colspan='2'>
-        <span> {{ demandCalc.iAuditors }}  </span>
+        <span v-else> {{ demandCalc.iAuditors }}  </span>
       </th>
     </tr>
   </tfoot>
@@ -291,7 +288,7 @@ export default {
     getRiskName: function(el){
       return this.table.options.risks[el].name;
     },
-    getImpDescript: function(idx){ //calculates importance description
+    getImpDescr: function(idx){ //calculates importance description
       const thisValue = this.getImpSum(idx); 
       const minRange = this.getRangeMin(idx);
       const maxRange = this.getRangeMax(idx);
