@@ -1,0 +1,36 @@
+{
+	"tableData": [{
+		"title": "Noname",
+		"risks": [{
+			"title": "First",
+			"rate": 3,
+			"value": 3
+		}, {
+			"title": "Second",
+			"rate": 2,
+			"value": 1
+		}]
+	}, {
+		"title": "NonameDA",
+		"risks": [{
+			"title": "First",
+			"rate": 3,
+			"value": 2
+		}, {
+			"title": "Second",
+			"rate": 2,
+			"value": 3
+		}]
+	}, {
+		"title": "NoRameRa",
+		"risks": [{
+			"title": "First",
+			"rate": 3,
+			"value": 3
+		}, {
+			"title": "Second",
+			"rate": 2,
+			"value": 1
+		}]
+	}]
+}

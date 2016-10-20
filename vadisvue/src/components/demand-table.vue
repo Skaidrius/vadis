@@ -80,7 +80,7 @@
                   <input v-model='table.options.riskRates.title' length='6' class='form-control text-center col-xs-6' placeholder='Rate'>
                 </div>
                 <span class="col-xs-5">
-                  <select v-model='crit.rate' @change='rerate(index, crit.rate)'class="form-control">
+                  <select v-model='crit.rate' @change='reRate(index, crit.rate)'class="form-control">
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
                 </span>
@@ -127,7 +127,7 @@
       </td>
       <!-- CRITERIAS -->
       <td v-for='risk in el.risks'>
-        <select v-model='risk.value' class='form-control col-xs=10' :value='getImpCalc(index)'> <!-- EDIT MODE -->
+        <select v-model='risk.value' class='form-control col-xs=10' :value='getImpDescript(index)'> <!-- EDIT MODE -->
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
@@ -218,6 +218,7 @@
 
 <script>
 const apiData = require('../assets/data.json');
+const userData = require('../assets/userdata.json');
 
 export default {
   data(){
@@ -227,7 +228,7 @@ export default {
       userInput: '',
       sorted: true,
       table: apiData.table,
-      tableData: apiData.tableData,
+      tableData: userData.tableData,
       demandCalc: {
         title: 'Total number of days',
         method: 'Divide by 3 (years) and 175 (work days)',
@@ -290,24 +291,24 @@ export default {
     getRiskName: function(el){
       return this.table.options.risks[el].name;
     },
-    getImpCalc: function(idx){ //gets importance title 
-    
-    // let getRealLength = this.tableData[idx].risks.filter(function(x){return x>0;}).length;
-      let aveImportance = this.getImpSum(idx); 
-      let range = this.getRangeMax(idx)/3;
-        // let aveImportance = this.getImpSum(idx) / this.tableData[idx].risks.length;
-        let temp = 0;
-        const values = this.table.options.importanceValues;
-        if (aveImportance >= range * 2) {
-          temp = values[3];
-        } else if (aveImportance >= range ) {
-          temp = values[2];
-        } else if (aveImportance > 0) {
-          temp = values[1];
-        } else temp = values[0];
-        this.tableData[idx].impValue = temp;
+    getImpDescript: function(idx){ //calculates importance description
+      const thisValue = this.getImpSum(idx); 
+      const minRange = this.getRangeMin(idx);
+      const maxRange = this.getRangeMax(idx);
+      const range = maxRange - minRange;
+
+      let temp = 0;
+      const values = this.table.options.importanceValues;  
+      if (thisValue >= range * .6667 + minRange) {      //if >= 2/3 of difference + minRange => high 
+        temp = values[3];
+      } else if (thisValue >= range * .3337 + minRange) {//if >= 1/3 of difference + minRange => middle
+        temp = values[2];
+      } else if (thisValue > 0) {                         // low
+        temp = values[1];
+      } else temp = values[0];                            // 0 - just for calculation
+      this.tableData[idx].impValue = temp;
     },
-    rerate: function(index, newVal){
+    reRate: function(index, newVal){
       for (let a of this.tableData){
         a.risks[index].rate = newVal;
       }
