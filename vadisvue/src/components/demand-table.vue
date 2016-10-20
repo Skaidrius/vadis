@@ -20,41 +20,41 @@
       <td rowspan='2'></td>
       
           <!--  H1 ACTIVITY TITLE-->
-      <th rowspan='2' class='col-xs-3'> 
-        <div v-if='editMode' class="input-group">   <!-- EDIT MODE -->
-          <input v-model='table.titles' rows='6' class='form-control fixed' placeholder="Title"> <!-- EDIT TITLES -->
+      <th rowspan='2' class='col-xs-2'> 
+        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+          <input v-model='table.titles' rows='6' class='form-control  text-center' placeholder="Title"> <!-- EDIT TITLES -->
         </div>
-        <span v-else @click='sortByTitle()'>        <!-- READ MODE -->
+        <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
           <a>{{ table.titles }}</a>
         </span> <!-- SORT TITLES -->
       </th>
 
           <!--  H1 CRITERIAS  -->
-      <td :colspan='getCriteriaslength' class='text-center col-xs-6' > 
-        <div v-if='editMode' class="input-group">   <!-- EDIT MODE -->
-          <input v-model='table.header.criterias.name' class='form-control' placeholder="Criterias">
+      <td :colspan='getCriteriaslength' class='text-center col-xs-7' > 
+        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+          <input v-model='table.header.criterias.name' class='form-control  text-center' placeholder="Criterias">
           <span class="input-group-btn">
             <button class='form-control btn btn-success' @click='addNewCriteria()'>+</button>
           </span>
         </div>
-        <span v-else> <!-- READ MODE -->
+        <span v-else>                                                             <!-- READ MODE -->
           {{ table.header.criterias.name }}
         </span>
       </td>
 
           <!--  H1 IMPORTANCE  -->
       <td  :colspan='table.header.importance.subElements.length' class='col-xs-2'> 
-        <input v-if='editMode' v-model='table.header.importance.name' class='form-control' placeholder='Importance'> <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.importance.name' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         <span v-else>{{ table.header.importance.name }}</span>  <!-- READ MODE -->
       </td>
 
           <!--  H1 DEMAND  --> 
       <td :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
-        <input v-if='editMode' v-model='table.header.demand.name' class='form-control' placeholder='Demand'> <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.demand.name' class='form-control  text-center' placeholder='Demand'> <!-- EDIT MODE -->
         <span v-else>{{ table.header.demand.name }}</span> <!-- READ MODE -->
       </td>
 
-      <td v-if='editMode' rowspan='2'> <!-- EDIT MODE -->
+      <td v-if='editMode' rowspan='2'>                                            <!-- EDIT MODE -->
         <div class="form-control">-</div>
       </td>
 
@@ -63,7 +63,7 @@
       <!--  HEADER 2ND LINE  -->
         <!--  H2 CRITERIAS  -->
       <td v-for='(crit, index) in table.header.criterias.subElements' class='form-inline'>
-        <div v-if='editMode' class="input-group">             <!-- EDIT MODE -->
+        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <button class='form-control btn btn-danger' @click='removeCriteria(crit)'>x</button>
           <textarea v-model='crit.name' rows='2' class='form-control' placeholder='Enter new value'></textarea>
         </div>
@@ -71,19 +71,19 @@
       </td> 
         <!--  H2 IMPORTANCE  -->
       <td v-for='imp in table.header.importance.subElements'>
-        <div v-if='editMode' class="input-group">              <!-- EDIT MODE -->
-          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea>
+        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RATIO | RANGE | SUM | LEVEL -->
         </div>
-        <span v-else rows='3' @click='sortByDemand()'><!-- READ MODE -->
+        <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ imp.name }}</a>
         </span> 
       </td>
         <!--  H2 DEMAND  -->
       <td v-for='dem in table.header.demand.subElements'>
-        <div v-if='editMode' class="input-group">             <!-- EDIT MODE -->
+        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <textarea v-model='dem.name' rows='3' class='form-control' placeholder='Enter new value'></textarea>
         </div>
-        <span v-else rows='3' @click='sortByDemand()'> <!-- READ MODE -->
+        <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ dem.name }}</a>
         </span>
       </td>
@@ -91,30 +91,35 @@
   </thead>
 
   <tbody>
-    <tr>
+    <tr v-if='!editMode'>
       <td></td>
-      <td><input v-if='!editMode' v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- SEARCH-->
-      <td :colspan='getCriteriaslength+3'></td>
+      <td><input v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- TBODY / SEARCH-->
+      <td v-for= 'el in tableData[0].risks'>Rate: X</td>                                      <!-- TBODY / RATES-->
+      <td colspan = '4'></td>
     </tr>
+    <!-- TBODY ROW -->
     <tr v-for='(el, index) in filteredElements'>
-      <td>{{ index+1 }}.</td>
-      <th>
-        <textarea v-if='editMode' v-model='el.title' rows='3' class='form-control' placeholder="New Entry"></textarea>
-        <div v-else class='text-center'>{{ el.title }}</div>
-      </th>
-      <td v-for='risk in el.risks'>
-        <select v-model='risk.value' class='form-control' :value='getCalcs(index)'>            <!-- EDIT MODE -->
-          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option>
-        </select>
-        <!--<div v-else>{{ getRiskName(risk.value) }}</div> <!-- READ MODE -->
+      <td>{{ index+1 }}.</td>                                                                <!-- TBODY / INDEX-->
+      <td>
+        <textarea v-if='editMode' v-model='el.title' rows='3' class='form-control text-center' placeholder="New Entry"></textarea>
+        <div v-else><strong>{{ el.title }}</strong></div>                                     <!-- TBODY / ENTRY TITLE-->
       </td>
-
-      <td> {{ getImpSum(index) }}</td>
-      <td :class='el.demand.style'>{{ el.demand.name }}</td>
-      <td>{{ el.demand.days }}</td>
+      <!-- CRITERIAS -->
+      <td v-for='risk in el.risks'>
+        <select v-model='risk.value' class='form-control' :value='getCalcs(index)'> <!-- EDIT MODE -->
+          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
+        </select>
+        <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
+      </td>
+      <!-- IMPORTANCE-->
+      <td> Y - Z </td>                                                        <!-- TBODY / IMPORTANCE / RANGE-->
+      <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
+      <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
+      <!-- DEMAND-->
+      <td>{{ el.impValue.days }}</td>                                                         <!-- TBODY / DEMAND DAYS-->
       
       <td v-if='editMode'>
-        <button class='btn btn-danger' @click='removeRow(index)'>X</button>
+        <button class='btn btn-danger' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
       </td>
     </tr>
     <tr>
@@ -122,7 +127,8 @@
       <td><br>
         <div>Add new entry</div>
       </td>
-      <td :colspan='getCriteriaslength+3'></td>
+      <td v-if='editMode':colspan='getCriteriaslength + 5'></td>
+      <td v-else :colspan='getCriteriaslength + 4'></td>
     </tr>
     <tr>
       <th>
@@ -136,39 +142,46 @@
           <option  v-for='elem in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}</p></option>
         </select>
       </td>
-      <td colspan='3'></td>
+      <td v-if='editMode' colspan='5'></td>
+      <td v-else colspan='4'></td>
     </tr>
   </tbody>
   
+            <!-- TFOOT MODE -->
   <tfoot class='table table-stripped'>
-
     <tr>
-      <th :colspan='getCriteriaslength +3' class='text-right'>
+      <th :colspan='getCriteriaslength + 3' class='text-right'>
         <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='demandCalc.title'></span>
         <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ demandCalc.title }}</span> 
       </th>
       <td>{{ daysDemand }}</td>
-      <td class='text-left'></td>
+      <td v-if='editMode' colspan = '3'></td>
+      <td v-else colspan = '2'></td>
+      
     </tr>
     <tr>
-      <td :colspan='getCriteriaslength +3' class='text-right'>
+      <td :colspan='getCriteriaslength + 3' class='text-right'>
         <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='demandCalc.method'></span>
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.method }}</span>
       </td>
       <td>{{ demandCalculated.toFixed(2) }}</td>
-      <td class='text-left'></td>
+      <td v-if='editMode' colspan = '3'></td>
+      <td v-else colspan = '2'></td>
     </tr>
     <tr>
-      <th :colspan='getCriteriaslength +3' class='text-right'>
+      <th :colspan='getCriteriaslength + 3' class='text-right'>
         <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='demandCalc.description'></span>
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.description }}</span>
       </th>
       <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
-      <th class='text-center'>
-        <span v-if='editMode'>
-          <input class='form-control text-right' placeholder="IA's" v-model='demandCalc.iAuditors'>
-        </span>{{ demandCalc.iAuditors }}</span>
-      </td>
+      <th v-if='editMode' class='text-left' colspan='3'>
+        <span>
+          <input class='form-control text-left' placeholder="IA's" v-model='demandCalc.iAuditors'>
+        </span>
+      </th>
+      <th v-else colspan='2'>
+        <span> {{ demandCalc.iAuditors }}  </span>
+      </th>
     </tr>
   </tfoot>
 
@@ -188,7 +201,7 @@ const apiData = require('../assets/data.json');
 export default {
   data(){
     return {
-      newRow: { title: '', risks: [], demand: {} },
+      newRow: { title: '', risks: [], importance: {}, demand: {} },
       editMode: false,
       userInput: '',
       sorted: true,
@@ -216,7 +229,7 @@ export default {
     },
     daysDemand: function(){ 
       return this.tableData.reduce(function(a, b){
-        return a + b.demand.days;
+        return a + b.impValue.days;
       }, 0);
     },
   },
@@ -262,7 +275,7 @@ export default {
       } else if (aveImportance > 0) {
         temp = values[1];
       } else temp = values[0];
-      this.tableData[idx].demand = temp;
+      this.tableData[idx].impValue = temp;
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(){ 
@@ -292,6 +305,7 @@ export default {
         let newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
         let elements = this.table.header.criterias.subElements;
+        let newImportance = this.newRow.importance;
         let getRisks = function(){
           let arr = [];
           for (let [index, value] of newRisks.entries()){
@@ -302,7 +316,7 @@ export default {
         // let newDemand = this.table.options.importanceValues[0]; //sets value to 0
         // console.log(newRisks);
         // console.log({ title: newTitle, risks: getRisks(), demand: newDemand});
-        this.tableData.push({ title: newTitle, risks: getRisks() });
+        this.tableData.push({ title: newTitle, risks: getRisks(), importance: newImportance });
         this.newRow.title = '';
         this.newRow.risks = [];
       }
@@ -368,11 +382,6 @@ tfoot tr {
   text-align-last: center;
 }
 
-.table select > option > p {
-  padding: 5px !important;
-  color: red;
-}
-
 .input-group {
   width: 100%;
 }
@@ -391,10 +400,6 @@ textarea {
   text-align: center;
   vertical-align: middle;
   resize: none;
-}
-
-textarea {
-  display: flex;
 }
 
 </style>

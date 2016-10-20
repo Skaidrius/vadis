@@ -15,6 +15,7 @@
 				"name": "High",
 				"value": 3
 			}],
+			"riskRatio": ["1, 2, 3"],
 			"importanceValues": [{
 				"name": "Undefined risks",
 				"days": 0,
@@ -44,12 +45,12 @@
 			},
 			"importance": {
 				"name": "Importance",
-				"subElements": [{
-					"name": "Sum",
-					"value": ""
+				"subElements": [{ 
+					"name": "Range"
+				},{
+					"name": "Total"
 				}, {
-					"name": "Level",
-					"value": ""
+					"name": "Level"
 				}]
 			},
 			"demand": {
