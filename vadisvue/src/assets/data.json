@@ -50,9 +50,7 @@
 			},
 			"importance": {
 				"name": "Importance",
-				"subElements": [{ 
-					"name": "Range"
-				},{
+				"subElements": [{
 					"name": "Total"
 				}, {
 					"name": "Level"

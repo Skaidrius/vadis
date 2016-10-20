@@ -43,20 +43,18 @@
       </td>
 
           <!--  H1 IMPORTANCE  -->
-      <td  :colspan='table.header.importance.subElements.length' class='col-xs-3'> 
+      <td  colspan='3' class='col-xs-3'> 
         <input v-if='editMode' v-model='table.header.importance.name' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
-        <span v-else>{{ table.header.importance.name }}</span>  <!-- READ MODE -->
+        <span v-else>{{ table.header.importance.name }}</span>                                                            <!-- READ MODE -->
       </td>
 
           <!--  H1 DEMAND  --> 
       <td :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
-        <input v-if='editMode' v-model='table.header.demand.name' class='form-control  text-center' placeholder='Demand'> <!-- EDIT MODE -->
-        <span v-else>{{ table.header.demand.name }}</span> <!-- READ MODE -->
+        <input v-if='editMode' v-model='table.header.demand.name' class='form-control  text-center' placeholder='Demand'>  <!-- EDIT MODE -->
+        <span v-else>{{ table.header.demand.name }}</span>                                                                 <!-- READ MODE -->
       </td>
-
-      <td rowspan='2'>                                            <!-- EDIT MODE -->
-        <div class="form-control">X</div>
-      </td>
+      
+      <td rowspan='2'></td>
 
     </tr>
     <tr>
@@ -92,6 +90,10 @@
 
       </td> 
         <!--  H2 IMPORTANCE  -->
+      <td>
+          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='range'></span>
+          <span v-else> {{ range }}</span> 
+      </td>
       <td v-for='imp in table.header.importance.subElements'>
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
@@ -127,13 +129,13 @@
       </td>
       <!-- CRITERIAS -->
       <td v-for='risk in el.risks'>
-        <select v-if='editMode' v-model='risk.value' class='form-control col-xs=10' :value='getImpDescr(index)'> <!-- EDIT MODE -->
+        <select v-if='editMode' v-model='risk.value' class='form-control col-xs=10' > <!-- EDIT MODE -->
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         <div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE 
       </td>
       <!-- IMPORTANCE-->
-      <td> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
+      <td :value='getImpDescr(index)'> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
       <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
       <!-- DEMAND-->
@@ -223,6 +225,7 @@ export default {
       newRow: { title: '', risks: [], importance: {}, demand: {} },
       editMode: false,
       userInput: '',
+      range: 'Range',
       sorted: true,
       table: apiData.table,
       tableData: userData.tableData,
@@ -369,7 +372,7 @@ export default {
     },
     sortByDemand: function(){
       this.sorted *=-1;
-      return this.tableData.sort((a, b) => a.demand.days > b.demand.days ? this.sorted : this.sorted*-1 );
+      return this.tableData.sort((a, b) => a.impValue.days > b.impValue.days ? this.sorted : this.sorted*-1 );
     }
   }
 };
