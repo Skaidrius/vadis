@@ -128,7 +128,7 @@
       </td>
       <!-- CRITERIAS -->
       <td v-for='risk in el.risks'>
-        <select v-model='risk.value' class='form-control col-xs=10' :value='getCalcs(index)'> <!-- EDIT MODE -->
+        <select v-model='risk.value' class='form-control col-xs=10' :value='getImpCalc(index)'> <!-- EDIT MODE -->
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
@@ -277,37 +277,36 @@ export default {
         return a + (risk.value*risk.rate);
       }, 0);
     },
-    getRangeMin:function(idx){
+    getRangeMin: function(idx){
       return this.tableData[idx].risks.reduce(function(a, b){
         return a + b.rate;
       }, 0);
     },
-    getRangeMax:function(idx){
+    getRangeMax: function(idx){
+      let length = this.table.options.riskRates.values.length;
       return this.tableData[idx].risks.reduce(function(a, b){
-        return a + b.rate*3;
+        return a + b.rate * length;
       }, 0);
     },
     getRiskName: function(el){
       return this.table.options.risks[el].name;
     },
-    getRealLength: function(idx){
-      return this.tableData[idx].risks.filter(function(x){return typeof x.value == 'number' && x.value != 0 ;}).length;
-    },
-    getCalcs: function(idx){ //gets importance title 
+    getImpCalc: function(idx){ //gets importance title 
     
     // let getRealLength = this.tableData[idx].risks.filter(function(x){return x>0;}).length;
-    let aveImportance = this.getImpSum(idx) / this.getRealLength(idx);
-      // let aveImportance = this.getImpSum(idx) / this.tableData[idx].risks.length;
-      let temp = 0;
-      const values = this.table.options.importanceValues;
-      if (aveImportance > 2.33334) {
-        temp = values[3];
-      } else if (aveImportance > 1.66667) {
-        temp = values[2];
-      } else if (aveImportance > 0) {
-        temp = values[1];
-      } else temp = values[0];
-      this.tableData[idx].impValue = temp;
+      let aveImportance = this.getImpSum(idx); 
+      let range = this.getRangeMax(idx)/3;
+        // let aveImportance = this.getImpSum(idx) / this.tableData[idx].risks.length;
+        let temp = 0;
+        const values = this.table.options.importanceValues;
+        if (aveImportance >= range * 2) {
+          temp = values[3];
+        } else if (aveImportance >= range ) {
+          temp = values[2];
+        } else if (aveImportance > 0) {
+          temp = values[1];
+        } else temp = values[0];
+        this.tableData[idx].impValue = temp;
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(){ 
