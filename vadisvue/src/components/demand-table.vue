@@ -246,6 +246,9 @@ export default {
     getCriteriaslength: function(){
       return this.table.header.criterias.subElements.length;
     },
+    calculatedRanges:function(){
+      
+    },
     demandCalculated: function(){ 
       return this.daysDemand / 175 / 3;
     },
@@ -274,7 +277,7 @@ export default {
   //   },
     getImpSum: function(idx) { // sums up all importance values
       return this.tableData[idx].risks.reduce(function(a, risk){
-        return a + risk.value;
+        return a + (risk.value*risk.rate);
       }, 0);
     },
     getRiskName: function(el){
@@ -303,7 +306,7 @@ export default {
     addNewCriteria: function(){ 
       this.table.header.criterias.subElements.push({ name: 'some New' });
       for (var a of this.tableData){
-        a.risks.push({ title: 'some New', value: 0 });
+        a.risks.push({ title: 'some New', rate: 1, value: 0 });
       }
     },
     removeCriteria: function(el){
@@ -327,18 +330,17 @@ export default {
         let newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
         let elements = this.table.header.criterias.subElements;
-        let newImportance = this.newRow.importance;
         let getRisks = function(){
           let arr = [];
           for (let [index, value] of newRisks.entries()){
-            arr.push( {title: elements[index].name, value: value } );
+            arr.push( {title: elements[index].name, rate: elements[index].rate, value: value } );
           }
         return arr;
         };
         // let newDemand = this.table.options.importanceValues[0]; //sets value to 0
         // console.log(newRisks);
         // console.log({ title: newTitle, risks: getRisks(), demand: newDemand});
-        this.tableData.push({ title: newTitle, risks: getRisks(), importance: newImportance });
+        this.tableData.push({ title: newTitle, risks: getRisks()});
         this.newRow.title = '';
         this.newRow.risks = [];
       }
