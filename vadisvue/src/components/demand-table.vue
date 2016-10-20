@@ -134,7 +134,7 @@
         <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
       </td>
       <!-- IMPORTANCE-->
-      <td> Y - Z </td>                                                        <!-- TBODY / IMPORTANCE / RANGE-->
+      <td> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
       <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
       <!-- DEMAND-->
@@ -210,7 +210,7 @@
 
   </table>
 
-<!--<pre>{{ $data.tableData }}</pre>-->
+<pre>{{ $data.tableData }}</pre>
 </div>
 
   
@@ -246,9 +246,6 @@ export default {
     getCriteriaslength: function(){
       return this.table.header.criterias.subElements.length;
     },
-    calculatedRanges:function(){
-      
-    },
     demandCalculated: function(){ 
       return this.daysDemand / 175 / 3;
     },
@@ -278,6 +275,16 @@ export default {
     getImpSum: function(idx) { // sums up all importance values
       return this.tableData[idx].risks.reduce(function(a, risk){
         return a + (risk.value*risk.rate);
+      }, 0);
+    },
+    getRangeMin:function(idx){
+      return this.tableData[idx].risks.reduce(function(a, b){
+        return a + b.rate;
+      }, 0);
+    },
+    getRangeMax:function(idx){
+      return this.tableData[idx].risks.reduce(function(a, b){
+        return a + b.rate*3;
       }, 0);
     },
     getRiskName: function(el){
