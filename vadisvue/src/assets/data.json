@@ -15,7 +15,10 @@
 				"name": "High",
 				"value": 3
 			}],
-			"riskRatio": ["1, 2, 3"],
+			"riskRates": {
+				"title": "Ratio",
+				"values": [1, 2, 3]
+			},
 			"importanceValues": [{
 				"name": "Undefined risks",
 				"days": 0,
@@ -38,9 +41,11 @@
 			"criterias": {
 				"name": "Criterias",
 				"subElements": [{
-					"name": "First"
+					"name": "First",
+					"rate": 3
 				}, {
-					"name": "Second"
+					"name": "Second",
+					"rate" : 2
 				}]
 			},
 			"importance": {

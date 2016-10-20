@@ -30,9 +30,9 @@
       </th>
 
           <!--  H1 CRITERIAS  -->
-      <td :colspan='getCriteriaslength' class='text-center col-xs-7' > 
+      <td :colspan='getCriteriaslength' class='text-center col-xs-6' > 
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.header.criterias.name' class='form-control  text-center' placeholder="Criterias">
+          <input v-model='table.header.criterias.name' class='form-control text-center' placeholder="Criterias">
           <span class="input-group-btn">
             <button class='form-control btn btn-success' @click='addNewCriteria()'>+</button>
           </span>
@@ -43,7 +43,7 @@
       </td>
 
           <!--  H1 IMPORTANCE  -->
-      <td  :colspan='table.header.importance.subElements.length' class='col-xs-2'> 
+      <td  :colspan='table.header.importance.subElements.length' class='col-xs-3'> 
         <input v-if='editMode' v-model='table.header.importance.name' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         <span v-else>{{ table.header.importance.name }}</span>  <!-- READ MODE -->
       </td>
@@ -62,17 +62,40 @@
     <tr>
       <!--  HEADER 2ND LINE  -->
         <!--  H2 CRITERIAS  -->
-      <td v-for='(crit, index) in table.header.criterias.subElements' class='form-inline'>
-        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <button class='form-control btn btn-danger' @click='removeCriteria(crit)'>x</button>
-          <textarea v-model='crit.name' rows='2' class='form-control' placeholder='Enter new value'></textarea>
-        </div>
-        <span v-else rows='2' @click='sortByCrit(index)'><a>{{ crit.name }}</a></span> <!-- READ MODE -->
+      <td v-for='(crit, index) in table.header.criterias.subElements'>
+        
+        <table class='table text-center insertedTable '>   <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
+          <tr>
+            <td class='col-xs-7'>
+              <span v-if='editMode' class="input-group">                                 <!-- EDIT MODE --> 
+                <button class='form-control btn btn-danger' @click='removeCriteria(crit)'>x</button>
+                <textarea v-model='crit.name' rows='2' class='form-control' placeholder='Enter new value'></textarea>
+              </span>
+              <span v-else @click='sortByCrit(index)'><a>{{ crit.name }}</a></span> <!-- READ MODE -->
+            </td>
+            <td class='col-xs-5'>
+              <!--<div v-if='editMode'class='input-group'>-->
+              <span v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+                <div class='col-sm-7'>
+                  <input v-model='table.options.riskRates.title' length='6' class='form-control text-center col-xs-6' placeholder='Rate'>
+                </div>
+                <span class="col-xs-5">
+                  <select v-model='crit.rate' class="form-control">
+                    <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
+                  </select>
+                </span>
+              <!--</div>-->
+              </span>
+              <span v-else>{{table.options.riskRates.title}}: {{ crit.rate }}</span> <!-- READ MODE -->
+            </td>
+          </tr>
+        </table>
+
       </td> 
         <!--  H2 IMPORTANCE  -->
       <td v-for='imp in table.header.importance.subElements'>
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RATIO | RANGE | SUM | LEVEL -->
+          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
         </div>
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ imp.name }}</a>
@@ -94,8 +117,7 @@
     <tr v-if='!editMode'>
       <td></td>
       <td><input v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- TBODY / SEARCH-->
-      <td v-for= 'el in tableData[0].risks'>Rate: X</td>                                      <!-- TBODY / RATES-->
-      <td colspan = '4'></td>
+      <td colspan = '6'></td>
     </tr>
     <!-- TBODY ROW -->
     <tr v-for='(el, index) in filteredElements'>
@@ -106,7 +128,7 @@
       </td>
       <!-- CRITERIAS -->
       <td v-for='risk in el.risks'>
-        <select v-model='risk.value' class='form-control' :value='getCalcs(index)'> <!-- EDIT MODE -->
+        <select v-model='risk.value' class='form-control col-xs=10' :value='getCalcs(index)'> <!-- EDIT MODE -->
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         <!--<div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
@@ -386,13 +408,27 @@ tfoot tr {
   width: 100%;
 }
 
-.table select {
+.table select, 
+.table input {
   padding: 0;
   text-align: center;
 }
 
 .table select > option {
   text-align: center;
+}
+
+.insertedTable {
+  padding: 0;
+  margin: 0;
+}
+
+.insertedTable .col-sm-7,
+.insertedTable .col-sm-5,
+.insertedTable .col-xs-7,
+.insertedTable .col-xs-5,
+.insertedTable .col-xs-4{
+  padding: 2px;
 }
 
 textarea {
