@@ -69,22 +69,21 @@
             <td class='col-xs-7'>
               <span v-if='editMode' class="input-group">                                 <!-- EDIT MODE --> 
                 <button class='form-control btn btn-danger' @click='removeCriteria(crit)'>x</button>
-                <textarea v-model='crit.name' rows='2' class='form-control' placeholder='Enter new value'></textarea>
+                <textarea v-model='crit.name' rows='2' @keyup='renameCriteria(index, crit.name)' class='form-control' placeholder='Enter new value'></textarea>
               </span>
               <span v-else @click='sortByCrit(index)'><a>{{ crit.name }}</a></span> <!-- READ MODE -->
             </td>
+            
             <td class='col-xs-5'>
-              <!--<div v-if='editMode'class='input-group'>-->
               <span v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
                 <div class='col-sm-7'>
                   <input v-model='table.options.riskRates.title' length='6' class='form-control text-center col-xs-6' placeholder='Rate'>
                 </div>
                 <span class="col-xs-5">
-                  <select v-model='crit.rate' class="form-control">
+                  <select v-model='crit.rate' @change='rerate(index, crit.rate)'class="form-control">
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
                 </span>
-              <!--</div>-->
               </span>
               <span v-else>{{table.options.riskRates.title}}: {{ crit.rate }}</span> <!-- READ MODE -->
             </td>
@@ -307,6 +306,17 @@ export default {
           temp = values[1];
         } else temp = values[0];
         this.tableData[idx].impValue = temp;
+    },
+    rerate: function(index, newVal){
+      for (let a of this.tableData){
+        a.risks[index].rate = newVal;
+      }
+    },
+    renameCriteria: function(index, newVal){
+      for (let a of this.tableData){
+        // console.log('index:' + index + '; title:' + newVal);
+        a.risks[index].title = newVal;
+      }
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(){ 
