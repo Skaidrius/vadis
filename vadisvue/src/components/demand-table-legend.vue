@@ -50,8 +50,7 @@
         <td>{{ index+1 }}.</td>
         
         <th  class='text-center'>
-          
-          
+
           <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
             <td>
@@ -70,20 +69,11 @@
           <span v-else class='text-center'>{{ crit.name }}<span class='badge pull-right alert-primary'>{{crit.rate}}</span></span>
         </th>
 
-        <td class='alert-success'>
-          <input v-if='editMode' v-model='crit.values.low' class='form-control' :value='crit.values.low'>
-          <span v-else>{{ crit.values.low }}</span>
+        <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style'>
+          <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value'>
+          <span v-else>{{ risk.value }}</span>
         </td>
-        
-        <td class='alert-warning'>
-          <input v-if='editMode' v-model='crit.values.middle' class='form-control' :value='crit.values.middle'>
-          <span v-else>{{ crit.values.middle }}</span>
-        </td>
-        <td class='alert-danger'>
-          <input v-if='editMode' v-model='crit.values.high' class='form-control' :value='crit.values.high'>
-          <span v-else>{{ crit.values.high }}</span>
-        </td>
-      
+
       </tr>
     </tbody>
   </table>

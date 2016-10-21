@@ -185,7 +185,7 @@
       </td>
       <td v-for='(el, index) in tableData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option  v-for='elem in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}</p></option>
+          <option  v-for='elem in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}  - {{ table.header.criterias.subElements[index].values }}</p></option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
       <td colspan='5'></td>
@@ -376,7 +376,7 @@ export default {
       }
     },
     // ADD/REMOVE ROWS
-    removeRow: function(index){
+    removeRow: function(index){                        
       if (window.confirm('Are you sure you want to delete this entry?')) {
         this.tableData.splice(index, 1);
       }
@@ -510,5 +510,6 @@ textarea {
    view mode / edit mode        //done
    
    AJAX get/write               PENDING...
+   removeRow drops error trying remove last element
 
  -->

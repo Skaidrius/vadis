@@ -55,19 +55,29 @@
 				"subElements": [{
 					"name": "First",
 					"rate": 3,
-					"values": {
-						"low": "lorem",
-						"middle": "ipsum",
-						"high": "doler"
-					}
+					"values": [{
+						"name": "low",
+						"value": "lorem"
+					}, {
+						"name": "middle",
+						"value": "ipsum"
+					}, {
+						"name": "high",
+						"value": "doler"
+					}]
 				}, {
 					"name": "Second",
-					"rate" : 2,
-					"values": {
-						"low": "morem",
-						"middle": "slipsum",
-						"high": "doner"
-					}
+					"rate": 2,
+					"values": [{
+						"name": "low",
+						"value": "morem"
+					}, {
+						"name": "middle",
+						"value": "slipsum"
+					}, {
+						"name": "middle",
+						"value": "doner"
+					}]
 				}]
 			},
 			"importance": {
