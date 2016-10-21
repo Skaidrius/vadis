@@ -185,7 +185,7 @@
       </td>
       <td v-for='(el, index) in tableData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option  v-for='elem in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}  - {{ table.header.criterias.subElements[index].values }}</p></option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
+          <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}  - {{ table.header.criterias.subElements[index].values[elemIndex-1] || 0 }}</p></option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
       <td colspan='5'></td>
