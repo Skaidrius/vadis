@@ -4,16 +4,20 @@
 		"options": {
 			"risks": [{
 				"name": "Pick one...",
-				"value": 0
+				"value": 0,
+				"style": "default"
 			}, {
 				"name": "Low",
-				"value": 1
+				"value": 1,
+				"style": "alert-success"
 			}, {
 				"name": "Middle",
-				"value": 2
+				"value": 2,
+				"style": "alert-warning"
 			}, {
 				"name": "High",
-				"value": 3
+				"value": 3,
+				"style": "alert-danger"
 			}],
 			"riskRates": {
 				"title": "Ratio",
@@ -39,7 +43,7 @@
 		},
 		"header": {
 			"criterias": {
-				"name": "Criterias",
+				"name": "Criterias (Ratio)",
 				"subElements": [{
 					"name": "First",
 					"rate": 3
