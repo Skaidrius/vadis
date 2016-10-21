@@ -2,7 +2,9 @@ import Vue from 'vue';
 // import App from './App.vue';
 // import Demand from './components/ias-demand.vue';
 import RiskSelection from './components/risk-selection.vue';
-import Demand from './components/demand-table.vue';
+import Demand from './components/demand.vue';
+import DemandTable from './components/demand-table.vue';
+import DemandTableLegend from './components/demand-table-legend.vue';
 
 const App = Vue.extend(require('./App.vue'));
 
@@ -18,7 +20,12 @@ const router = new VueRouter({
   routes: [
     // { path: '/ias-demand', component: Demand },
     { path: '/risk-selection', component: RiskSelection },
-    { path: '/demand', component: Demand },
+    { path: '/demand', component: Demand,
+      children: [
+        { path: '', component: DemandTable },
+        { path: 'demand-table', component: DemandTable },
+        { path: 'demand-table-legend', component: DemandTableLegend }
+      ]},
     { path: '*', redirect: '/demand' },
   ],
 });

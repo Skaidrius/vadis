@@ -3,9 +3,10 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <i class="glyphicon glyphicon-time"></i>
+          <i class="glyphicon glyphicon-zoom-in"></i>
           Vadis
         </a>
+        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Admin</a>&nbsp;</p>
         <ul class="nav navbar-nav">
           <!--/<li><router-link to="/ias-demand">IAS demand</router-link></li>-->
           <li><router-link to="/risk-selection">Risk selection</router-link></li>
@@ -23,3 +24,4 @@
     </div>
   </div>
 </template>
+

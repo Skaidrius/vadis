@@ -44,12 +44,30 @@
 		"header": {
 			"criterias": {
 				"name": "Criterias (Ratio)",
+				"items": {
+					"title": "Values",
+					"values": {
+						"low": "Low",
+						"middle": "Middle",
+						"high": "High"
+					}
+				},
 				"subElements": [{
 					"name": "First",
-					"rate": 3
+					"rate": 3,
+					"values": {
+						"low": "lorem",
+						"middle": "ipsum",
+						"high": "doler"
+					}
 				}, {
 					"name": "Second",
-					"rate" : 2
+					"rate" : 2,
+					"values": {
+						"low": "morem",
+						"middle": "slipsum",
+						"high": "doner"
+					}
 				}]
 			},
 			"importance": {

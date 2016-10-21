@@ -1,19 +1,23 @@
 <template>
-  <div>
-    
-  <h3>Demand of Internal Audit Staff 
-  <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
-  <small v-else class='btn-success pull-right'>normal mode</small>
-  </h3>
   
-  <br />
-  <div class='form-inline'>
-    
+  <div>
+  
+  <h4>IAS demand table legends
+    <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
+    <small v-else class='btn-success pull-right'>normal mode</small>
+  </h4>
+  
+
+  <div class='form-inline text-right'>
     <button v-if='editMode' @click='editMode = false' class='form-control'>Back to read mode</button>
-    
+  
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
-    
   </div><br/>
+  
+    <div class="my-tabs">
+      <router-link to="/demand/demand-table"><button>Table</button></router-link>
+      <router-link to="/demand/demand-table-legend"><button>Legend</button></router-link>
+    </div>
   
   <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
@@ -91,7 +95,7 @@
             </td>
           </tr>
         </table>
-        <span v-else @click='sortByCrit(index)'><a>{{ crit.name }}</a> ({{ crit.rate }})</span> <!-- READ MODE -->
+        <span v-else @click='sortByCrit(index)'><a>{{ crit.name }}</a><span class='badge pull-right alert-success'>{{ crit.rate }}</span></span> <!-- READ MODE -->
 
       </td> 
         <!--  H2 IMPORTANCE  -->
@@ -277,7 +281,7 @@ export default {
       }, 0);
     },
   },
-  // // FOR AJAX
+  // // FOR AJAX  - NOT WORKING YET
   // created: function () {
   //     this.fetchData();
   // },
@@ -347,7 +351,12 @@ export default {
     addNewCriteria: function(){ 
       this.table.header.criterias.subElements.push({ 
         name: 'some New', 
-        rate: 1 
+        rate: 1,
+        values: {
+						low: 'Enter value',
+						middle: 'Enter value',
+						high: 'Enter value'
+					}
       });
       for (var a of this.tableData){
         a.risks.push({ 
