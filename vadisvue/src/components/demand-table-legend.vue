@@ -71,7 +71,7 @@
 
         <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style'>
           <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value'>
-          <span v-else>{{ risk.value }}</span>
+          <span v-else>{{ risk.description }}</span>
         </td>
 
       </tr>

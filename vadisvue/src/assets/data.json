@@ -57,26 +57,26 @@
 					"rate": 3,
 					"values": [{
 						"name": "low",
-						"value": "lorem"
+						"description": "lorem"
 					}, {
 						"name": "middle",
-						"value": "ipsum"
+						"description": "ipsum"
 					}, {
 						"name": "high",
-						"value": "doler"
+						"description": "doler"
 					}]
 				}, {
 					"name": "Second",
 					"rate": 2,
 					"values": [{
 						"name": "low",
-						"value": "morem"
+						"description": "morem"
 					}, {
 						"name": "middle",
-						"value": "slipsum"
+						"description": "slipsum"
 					}, {
 						"name": "middle",
-						"value": "doner"
+						"description": "doner"
 					}]
 				}]
 			},
