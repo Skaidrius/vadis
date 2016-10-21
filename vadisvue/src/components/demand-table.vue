@@ -78,7 +78,7 @@
                   <input v-model='table.options.riskRates.title' length='6' class='form-control text-center col-xs-6' placeholder='Rate'>
                 </div>
                 <span class="col-xs-5">
-                  <select v-model='crit.rate' @change='reRate(index, crit.rate)'class="form-control">
+                  <select v-model='crit.rate' @change='reRate(index, crit.rate)' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
                 </span>
@@ -205,15 +205,12 @@
     </tr>
   </tfoot>
 
-
   </table>
 
 <pre>{{ $data.tableData }}</pre>
 </div>
 
-  
 </template>
-
 
 <script>
 const apiData = require('../assets/data.json');
@@ -291,7 +288,7 @@ export default {
     getRiskName: function(el){
       return this.table.options.risks[el].name;
     },
-    getImpDescr: function(idx){ //calculates importance description
+      getImpDescr: function(idx){                     //sets importance description
       const thisValue = this.getImpSum(idx); 
       const minRange = this.getRangeMin(idx);
       const maxRange = this.getRangeMax(idx);
@@ -299,11 +296,11 @@ export default {
 
       let temp = 0;
       const values = this.table.options.importanceValues;  
-      if (thisValue >= range * .6667 + minRange) {      //if >= 2/3 of difference + minRange => high 
+      if (thisValue >= range * .6667 + minRange) {      //if >= 2/3 of difference + minRange        => high 
         temp = values[3];
-      } else if (thisValue >= range * .3337 + minRange) {//if >= 1/3 of difference + minRange => middle
+      } else if (thisValue >= range * .3337 + minRange) {//if >= 1/3 of difference + minRange       => middle
         temp = values[2];
-      } else if (thisValue > 0) {                         // low
+      } else if (thisValue > 0) {                         // > 0 && < 1/3 of difference + min range => low
         temp = values[1];
       } else temp = values[0];                            // 0 - just for calculation
       this.tableData[idx].impValue = temp;
@@ -315,15 +312,21 @@ export default {
     },
     renameCriteria: function(index, newVal){
       for (let a of this.tableData){
-        // console.log('index:' + index + '; title:' + newVal);
         a.risks[index].title = newVal;
       }
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(){ 
-      this.table.header.criterias.subElements.push({ name: 'some New' });
+      this.table.header.criterias.subElements.push({ 
+        name: 'some New', 
+        rate: 1 
+      });
       for (var a of this.tableData){
-        a.risks.push({ title: 'some New', rate: 1, value: 0 });
+        a.risks.push({ 
+          title: 'some New', 
+          rate: 1, 
+          value: 1 
+        });
       }
     },
     removeCriteria: function(el){
@@ -338,7 +341,7 @@ export default {
     // ADD/REMOVE ROWS
     removeRow: function(index){
       if (window.confirm('Are you sure you want to delete this entry?')) {
-        this.tableData.splice(index,1);
+        this.tableData.splice(index, 1);
       }
     },
     addNewRow: function(){
@@ -350,14 +353,21 @@ export default {
         let getRisks = function(){
           let arr = [];
           for (let [index, value] of newRisks.entries()){
-            arr.push( {title: elements[index].name, rate: elements[index].rate, value: value } );
+            arr.push({
+              title: elements[index].name, 
+              rate: elements[index].rate, 
+              value: value 
+            });
           }
         return arr;
         };
         // let newDemand = this.table.options.importanceValues[0]; //sets value to 0
         // console.log(newRisks);
         // console.log({ title: newTitle, risks: getRisks(), demand: newDemand});
-        this.tableData.push({ title: newTitle, risks: getRisks()});
+        this.tableData.push({ 
+          title: newTitle, 
+          risks: getRisks()
+        });
         this.newRow.title = '';
         this.newRow.risks = [];
       }
@@ -376,8 +386,6 @@ export default {
     }
   }
 };
-
-
 
 </script>
 
@@ -417,7 +425,6 @@ tfoot tr {
   background: #7bd;
   color: #333;
 }
-
 
 .table select {
   text-align-last: center;
@@ -461,10 +468,12 @@ textarea {
 
  <!--   To do - 
  
-   add/remove criterias // done
-   add/remove entries // done
-   search field https://codepen.io/pespantelis/pen/ojwgPB //done
-   sort data by table header  //done
-   view mode / edit mode
+   add/remove criterias         // done
+   add/remove entries           // done
+   search entries               //done
+   sort data by table header    //done
+   view mode / edit mode        //done
+   
+   AJAX get/write               PENDING...
 
  -->
