@@ -14,10 +14,10 @@
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
   </div><br/>
   
-    <div class="my-tabs">
-      <router-link to="/demand/demand-table"><button>Table</button></router-link>
-      <router-link to="/demand/demand-table-legend"><button>Legend</button></router-link>
-    </div>
+    <ul class="my-tabs nav nav-tabs">
+      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>Table</li></router-link>
+      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
+    </ul>
   
   <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
@@ -185,7 +185,9 @@
       </td>
       <td v-for='(el, index) in tableData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'><p>{{ elem.name }}  - {{ table.header.criterias.subElements[index].values[elemIndex-1] || 0 }}</p></option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
+          <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
+            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex-1] || '' }}</div>
+            </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
       <td colspan='5'></td>
@@ -352,17 +354,13 @@ export default {
       this.table.header.criterias.subElements.push({ 
         name: 'some New', 
         rate: 1,
-        values: {
-						low: 'Enter value',
-						middle: 'Enter value',
-						high: 'Enter value'
-					}
+        values: [ 'Enter value', 'Enter value', 'Enter value' ]
       });
       for (var a of this.tableData){
         a.risks.push({ 
           title: 'some New', 
           rate: 1, 
-          value: 1 
+          value: 1
         });
       }
     },
@@ -439,6 +437,8 @@ export default {
      text-align:center
 }
 
+/* table header */
+
 .table thead {
   padding: 10px;
 } 
@@ -457,6 +457,8 @@ thead tr a:hover {
   color: #0c0;
   text-decoration: none;
 }
+
+/* table footer */
 
 tfoot tr {
   background: #7bd;
@@ -501,15 +503,3 @@ textarea {
 
 </style>
 
- <!--   To do - 
- 
-   add/remove criterias         // done
-   add/remove entries           // done
-   search entries               //done
-   sort data by table header    //done
-   view mode / edit mode        //done
-   
-   AJAX get/write               PENDING...
-   removeRow drops error trying remove last element
-
- -->

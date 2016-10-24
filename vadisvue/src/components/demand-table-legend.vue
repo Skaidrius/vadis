@@ -12,10 +12,10 @@
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
   </div><br/>
   
-  <div class="my-tabs">
-    <router-link to="/demand/demand-table"><button>Table</button></router-link>
-    <router-link to="/demand/demand-table-legend"><button>Legend</button></router-link>
-  </div>
+  <ul class="my-tabs nav nav-tabs">
+    <router-link to="/demand/demand-table"><li class='col-xs-2'>Table</li></router-link>
+    <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
+  </ul>
   
   <table class='table table-hover table-striped table-bordered table-condensed text-centerr'>
     <thead>
@@ -71,7 +71,7 @@
 
         <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style'>
           <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value'>
-          <span v-else>{{ risk.description }}</span>
+          <span v-else>{{ risk }}</span>
         </td>
 
       </tr>

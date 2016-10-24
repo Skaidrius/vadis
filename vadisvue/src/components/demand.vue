@@ -32,7 +32,7 @@
         margin: 0;
         padding: 0;
     }
-    .my-tabs button {
+    .my-tabs li{
         display: inline-block;
         background: white;
         border: 1px white solid;
@@ -41,9 +41,9 @@
         padding: 20px;
         text-align: center;
     }
-  .my-tabs button:hover,
-  .my-tabs button:active,
-  .my-tabs button:focus
+  .my-tabs li:hover,
+  .my-tabs li:active,
+  .my-tabs li:focus
  {
     background: #ddd;
     border: 1px #ccc solid;
@@ -52,3 +52,17 @@
   } 
     
 </style>
+
+ <!--   To do - 
+ 
+   add/remove criterias         // done
+   add/remove entries           // done
+   search entries               //done
+   sort data by table header    //done
+   view mode / edit mode        //done
+   removeRow drops error trying remove last element //done
+   modal creating criterias with description
+   
+   AJAX get/write               PENDING...
+
+ -->
