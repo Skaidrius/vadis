@@ -354,7 +354,7 @@ export default {
       this.table.header.criterias.subElements.push({ 
         name: 'some New', 
         rate: 1,
-        values: [ 'Enter value', 'Enter value', 'Enter value' ]
+        values: [ '', '', '' ]
       });
       for (var a of this.tableData){
         a.risks.push({ 
