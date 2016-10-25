@@ -3,10 +3,6 @@
 		"titles": "Title",
 		"options": {
 			"risks": [{
-				"name": "Pick one...",
-				"value": 0,
-				"style": "alert-info"
-			}, {
 				"name": "Low",
 				"value": 1,
 				"style": "alert-success"
@@ -43,7 +39,9 @@
 		},
 		"header": {
 			"criterias": {
-				"name": "Criterias (Ratio)",
+				"titles": { "criterias" : "Criterias", 
+							"rate": "Ratio"
+				},
 				"items": {
 					"title": "Values",
 					"values": {
@@ -53,7 +51,7 @@
 					}
 				},
 				"subElements": [{
-					"name": "Workers",
+					"title": "Workers",
 					"rate": 3,
 					"values": [{
 						"value":"less than (or) 100 workers"
@@ -64,7 +62,7 @@
 					}],
 					"style": "alert-danger"
 				}, {
-					"name": "Budget",
+					"title": "Budget",
 					"rate": 2,
 					"values": [{
 						"value":"less than (or) 100 000"

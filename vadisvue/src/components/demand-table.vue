@@ -42,38 +42,57 @@
       <td :colspan='getCriteriaslength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.header.criterias.name' class='form-control text-center' placeholder="Criterias / Ratio">
+          <div class='col-xs-9'>
+            <input v-model='table.header.criterias.titles.criterias' class='form-control text-center' placeholder="Criterias">
+          </div>
+          <div class="col-xs-3">
+            <input v-model='table.header.criterias.titles.rate' class='form-control text-center' placeholder="Rate">
+          </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
               <modal v-if="showModal" @close="showModal = false">
   <!-- use custom content here to overwrite           -->
-              <h3 slot="header">New criteria</h3>
-              <h4 slot="body"><input class='form-control text-center' placeholder="Input name"></h4>
-              <h5 slot="body">
-                <div class="form-group">
-                  <label for="rates">Rate</label>
-                  <select id='rates' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                    <option data-hidden='true'>Pick one...</option>
-                    <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
-                  </select>
-                </div>
-              </h5>
-              <h4>
-                <div slot='body' class="form-group">
-                  <input class='form-control text-center' placeholder="Low risk value">
-                  <input class='form-control text-center' placeholder="Middle risk value">
-                  <input class='form-control text-center' placeholder="High risk value">
-                </div>
-              </h4>
-  
+                  <h3 slot="header">
+                    New criteria
+                  </h3>
+                  <h4 slot='body'>
+                    <div class="form-horizontal">
+                      <div class='form-group'>
+                        <label class="col-xs-2 control-label">Name:</label>
+                        <div class="col-xs-10">
+                          <input v-model='newCritTitle' class='form-control text-center' placeholder="Input name">
+                        </div>
+                      </div>
+                      <div class='form-group'>
+                        <label class="col-xs-2 control-label">Rate:</label>
+                        <div class="col-xs-10">
+                          <select v-model='newCritRate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
+                            <option data-hidden='true' disabled>Pick one...</option>
+                            <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class='form-group form-group-last'>
+                        <label class="col-xs-2 control-label"><br> Risk <br> values:</label>
+                        <div class="col-xs-10">
+                          <input v-model='newCritLow' class='form-control text-center' placeholder="Low risk value">
+                          <input v-model='newCritMiddle' class='form-control text-center' placeholder="Middle risk value">
+                          <input v-model='newCritHigh' class='form-control text-center' placeholder="High risk value">
+                        </div>
+                      </div>
+                    </div>
+                  </h4>
+                  <h4 slot='footer'>
+                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCritTitle, newCritRate, [newCritLow, newCritMiddle, newCritHigh]); $emit("close")'>Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="$emit('close')">Cancel</button>
+                  </h4>
             </modal>
             
-            <!--<button class='form-control btn btn-success' @click='addNewCriteria()'>+</button>-->
           </span>
         </div>
         
         <span v-else>                                                             <!-- READ MODE -->
-          {{ table.header.criterias.name }}
+          {{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{table.header.criterias.titles.rate}}</span>
         </span>
       </td>
 
@@ -103,12 +122,12 @@
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
             <td colspan='2'>
-              <button class='form-control btn btn-danger' @click='removeCriteria(crit)'>x</button>
+              <button class='form-control btn btn-danger' @click='removeCriteria(crit, index)'>x</button>
             </td>
           </tr>
           <tr>
             <td>
-              <input v-model='crit.name' rows='2' @keyup='renameCriteria(index, crit.name)' class='form-control'>
+              <input v-model='crit.title' rows='2' @keyup='renameCriteria(index, crit.title)' class='form-control'>
             </td>
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
@@ -120,7 +139,7 @@
             </td>
           </tr>
         </table>
-        <span v-else @click='sortByCrit(index)'><a>{{ crit.name }}</a><span class='badge pull-right alert-success'>{{ crit.rate }}</span></span> <!-- READ MODE -->
+        <span v-else @click='sortByCrit(index)'><a>{{ crit.title }}</a><span class='badge pull-right alert-success'>{{ crit.rate }}</span></span> <!-- READ MODE -->
 
       </td> 
         <!--  H2 IMPORTANCE  -->
@@ -170,14 +189,14 @@
       </td>
       
       <!-- CRITERIAS -->
-      <td v-for='risk in el.risks' :class='getRiskStyle(risk.value)'>
+      <td v-for='(item, indextwo) in el.risks' :class='getRiskStyle(item.risk.value) || "alert-default"'>
         
-        <select v-if='editMode' v-model='risk.value' class='form-control col-xs=10' > <!-- EDIT MODE -->
-          <option data-hidden='true'>Pick one...</option>
+        <select v-if='editMode' v-model='item.risk.value' class='form-control col-xs=10' @change='changeDescription(index, indextwo, item.risk.value)'> <!-- EDIT MODE -->
+          <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
-        <div v-else>{{ getRiskName(risk.value) }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(item.risk.value) }}</div>                         <!-- READ MODE -->
       </td>
       
       <!-- IMPORTANCE-->
@@ -204,14 +223,14 @@
     </tr>
     <tr>
       <th>
-        <button class='form-control' @click='addNewRow()'>Add</button> <!-- @click="addNewRow()" -->
+        <button class='form-control' @click='addNewRow()'>Add</button>
       </th>
       <td>
         <input class='form-control' placeholder='New entry' v-model='newRow.title'>
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option data-hidden='true'>Pick one...</option>
+          <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
             <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex-1] || 0 }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
@@ -265,7 +284,7 @@
 
   </table>
 
-<!--<pre>{{ $data.userData }}</pre> -->    <!--FOR TESTING AND VIEWING JSON ONLY -->   
+<pre>{{ $data.userData }}</pre>     <!--FOR TESTING AND VIEWING JSON ONLY -->
 </div>
 
 </template>
@@ -273,29 +292,34 @@
 <script>
 const apiData = require('../assets/demand-table-data.json');
 const userData = require('../assets/demand-user-data.json');
-import Modal from './modal-component.vue';
+import Modal from './demand-crit-modal-component.vue';
 
 export default {
   data(){
     return {
-      newRow: { title: '', risks: [], importance: {}, demand: {} },
+      newRow: { title: '', risks: [] },
       editMode: false,
       showModal: false,
       userInput: '',
       range: 'Range',
       sorted: true,
       table: apiData.table,
-      userData: userData.userData,
+      userData: userData.elements,
       demandCalc: {
         title: 'Total number of days',
         method: 'Divide by 3 (years) and 175 (work days)',
         description: 'IAS demand - CAE and',
         iAuditors: 'internal auditor (-s)'
-      }
+      },
+      newCritTitle: '',
+      newCritRate: '',
+      newCritLow: '',
+      newCritMiddle: '',
+      newCritHigh:''
     };
   },
   components: {
-    'modal': Modal
+    modal: Modal
   },
   computed: {
     filteredElements: function () {
@@ -332,9 +356,12 @@ export default {
   //     };
   //     xhr.send();
   //   },
+    changeDescription: function(idx, idxtwo, val){
+      this.userData[idx].risks[idxtwo].risk.description = this.table.header.criterias.subElements[idxtwo].values[val-1].value;
+    },
     getImpSum: function(idx) { // sums up all importance values
-      return this.userData[idx].risks.reduce(function(a, risk){
-        return a + (risk.value*risk.rate);
+      return this.userData[idx].risks.reduce(function(a, item){
+        return a + (item.rate*item.risk.value);
       }, 0);
     },
     getRangeMin: function(idx){
@@ -349,10 +376,10 @@ export default {
       }, 0);
     },
     getRiskStyle: function(el){
-      return this.table.options.risks[el].style;
+      return this.table.options.risks[el-1].style;
     },
     getRiskName: function(el){
-      return this.table.options.risks[el].name;
+      return this.table.options.risks[el-1].name;
     },
     getImpDescr: function(idx){                     //sets importance description
       const thisValue = this.getImpSum(idx); 
@@ -382,26 +409,44 @@ export default {
       }
     },
     // ADD/REMOVE CRITERIAS
-    addNewCriteria: function(){ 
-      this.table.header.criterias.subElements.push({ 
-        name: 'some New', 
-        rate: 1,
-        values: [ '', '', '' ]
-      });
-      for (var a of this.userData){
-        a.risks.push({ 
-          title: 'some New', 
-          rate: 1, 
-          value: 1
+    addNewCriteria: function(title, rate, descriptions){ 
+      if (window.confirm('Are you sure you add this Criteria?')) {
+        this.table.header.criterias.subElements.push({ 
+          name: title, 
+          rate: rate || 1,
+          values: [{ 
+            value: descriptions[0]
+          }, {
+            value: descriptions[1] 
+          },{ 
+            value: descriptions[2] 
+          }]
         });
+        for (var a of this.userData){
+          a.risks.push({ 
+            title: title, 
+            rate: rate || 1, 
+            risk: { 
+              value: 1, 
+              description: descriptions[0] } 
+          });
+        }
+        this.newCritTitle = '',
+        this.newCritRate = 1,
+        this.newCritLow = '',
+        this.newCritMiddle = '',
+        this.newCritHigh = '',
+        this.showModal = false;
       }
     },
-    removeCriteria: function(el){
+    removeCriteria: function(el, idx){
       let elements = this.table.header.criterias.subElements;
       if (window.confirm('Are you sure you want to delete this criteria?')) {
-        elements.splice(elements.indexOf(el), 1);
+        elements.splice(idx, 1);
+        // elements.splice(elements.indexOf(el), 1);
         for (var a of this.userData){
-          a.risks.splice(a.risks[el], 1);
+          a.risks.splice(idx, 1);
+          // a.risks.splice(a.risks(el), 1);
         }
       }
     },
@@ -413,7 +458,6 @@ export default {
     },
     addNewRow: function(){
       if (window.confirm('Are you sure to write new entry?')) {
-      
         let newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
         let elements = this.table.header.criterias.subElements;
@@ -421,9 +465,12 @@ export default {
           let arr = [];
           for (let [index, value] of newRisks.entries()){
             arr.push({
-              title: elements[index].name, 
+              title: elements[index].title, 
               rate: elements[index].rate, 
-              value: value 
+              risk: { 
+                value: value,
+                description: elements[index].values[value-1].value
+              }
             });
           }
         return arr;

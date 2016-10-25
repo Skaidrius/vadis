@@ -22,8 +22,15 @@
       <tr>
         <th :rowspan='2' class='col-xs-1'></th>
         <th :rowspan='2' class='col-xs-2'>
-          <input v-if='editMode' v-model='table.header.criterias.name' class='form-control' :value='table.header.criterias.name'>
-          <span v-else>{{ table.header.criterias.name }}</span>
+          <div v-if='editMode' >
+            <div class="col-xs-10">
+              <input v-model='table.header.criterias.titles.criterias' class='form-control' :value='table.header.criterias.titles.criterias'>
+            </div>
+            <div class="col-xs-2">
+              <inputv-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
+            </div>
+          </div>
+          <span v-else>{{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate }}</span></span>
         </th>
         <td colspan='3' class='col-xs-9 text-center'>
           <input v-if='editMode' v-model='table.header.criterias.items.title' class='form-control' :value='table.header.criterias.items.title'>
@@ -54,7 +61,7 @@
           <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
             <td>
-              <input v-if='editMode' v-model='crit.name' class='form-control' :value='crit.name'>
+              <input v-if='editMode' v-model='crit.title' class='form-control' :value='crit.title'>
             </td>
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
@@ -66,10 +73,10 @@
           </tr>
           </table>
 
-          <span v-else class='text-center'>{{ crit.name }}<span class='badge pull-right alert-primary'>{{crit.rate}}</span></span>
+          <span v-else class='text-center'>{{ crit.title }}<span class='badge pull-right alert-success'>{{crit.rate}}</span></span>
         </th>
 
-        <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style || alert-info'>
+        <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex].style || alert-info'>
           <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value' placeholder='Enter a new description'>
           <span v-else>{{ risk.value }}</span>
         </td>
@@ -93,7 +100,7 @@ export default {
       values: "Values",
       editMode: false,
       table: apiData.table,
-      tableData: userData.tableData
+      tableData: userData.elements
     };
   },
   methods: {
