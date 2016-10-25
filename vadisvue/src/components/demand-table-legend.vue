@@ -23,11 +23,11 @@
         <th :rowspan='2' class='col-xs-1'></th>
         <th :rowspan='2' class='col-xs-2'>
           <div v-if='editMode' >
-            <div class="col-xs-10">
+            <div class="col-xs-8">
               <input v-model='table.header.criterias.titles.criterias' class='form-control' :value='table.header.criterias.titles.criterias'>
             </div>
-            <div class="col-xs-2">
-              <inputv-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
+            <div class="col-xs-4">
+              <input v-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
             </div>
           </div>
           <span v-else>{{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate }}</span></span>

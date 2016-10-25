@@ -468,8 +468,8 @@ export default {
               title: elements[index].title, 
               rate: elements[index].rate, 
               risk: { 
-                value: value,
-                description: elements[index].values[value-1].value
+                value: value || this.table.options.risks[0].value,
+                description: elements[index].values[value-1].value || ''
               }
             });
           }
