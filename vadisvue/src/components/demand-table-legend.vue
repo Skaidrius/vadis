@@ -69,9 +69,9 @@
           <span v-else class='text-center'>{{ crit.name }}<span class='badge pull-right alert-primary'>{{crit.rate}}</span></span>
         </th>
 
-        <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style'>
-          <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value'>
-          <span v-else>{{ risk }}</span>
+        <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex+1].style || alert-info'>
+          <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value' placeholder='Enter a new description'>
+          <span v-else>{{ risk.value }}</span>
         </td>
 
       </tr>
@@ -83,8 +83,8 @@
 </template>
 
 <script>
-const apiData = require('../assets/data.json');
-const userData = require('../assets/userdata.json');
+const apiData = require('../assets/demand-table-data.json');
+const userData = require('../assets/demand-user-data.json');
 
 export default {
   

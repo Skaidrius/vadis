@@ -30,7 +30,7 @@
       <th rowspan='2' class='col-xs-2'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.titles' rows='6' class='form-control  text-center' placeholder="Title"> <!-- EDIT TITLES -->
+          <input v-model='table.titles' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
         </div>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
@@ -44,7 +44,31 @@
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <input v-model='table.header.criterias.name' class='form-control text-center' placeholder="Criterias / Ratio">
           <span class="input-group-btn">
-            <button class='form-control btn btn-success' @click='addNewCriteria()'>+</button>
+            <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
+              <modal v-if="showModal" @close="showModal = false">
+  <!-- use custom content here to overwrite           -->
+              <h3 slot="header">New criteria</h3>
+              <h4 slot="body"><input class='form-control text-center' placeholder="Input name"></h4>
+              <h5 slot="body">
+                <div class="form-group">
+                  <label for="rates">Rate</label>
+                  <select id='rates' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
+                    <option data-hidden='true'>Pick one...</option>
+                    <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
+                  </select>
+                </div>
+              </h5>
+              <h4>
+                <div slot='body' class="form-group">
+                  <input class='form-control text-center' placeholder="Low risk value">
+                  <input class='form-control text-center' placeholder="Middle risk value">
+                  <input class='form-control text-center' placeholder="High risk value">
+                </div>
+              </h4>
+  
+            </modal>
+            
+            <!--<button class='form-control btn btn-success' @click='addNewCriteria()'>+</button>-->
           </span>
         </div>
         
@@ -89,6 +113,7 @@
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
                   <select v-model='crit.rate' @change='reRate(index, crit.rate)' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
+                    <option data-hidden='true'>Pick one...</option>
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
               </span>
@@ -148,6 +173,7 @@
       <td v-for='risk in el.risks' :class='getRiskStyle(risk.value)'>
         
         <select v-if='editMode' v-model='risk.value' class='form-control col-xs=10' > <!-- EDIT MODE -->
+          <option data-hidden='true'>Pick one...</option>
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
@@ -183,10 +209,11 @@
       <td>
         <input class='form-control' placeholder='New entry' v-model='newRow.title'>
       </td>
-      <td v-for='(el, index) in tableData[0].risks'>
+      <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
+          <option data-hidden='true'>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex-1] || '' }}</div>
+            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex-1] || 0 }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
@@ -238,25 +265,27 @@
 
   </table>
 
-<!--<pre>{{ $data.tableData }}</pre> -->    <!--FOR TESTING AND VIEWING JSON ONLY -->   
+<!--<pre>{{ $data.userData }}</pre> -->    <!--FOR TESTING AND VIEWING JSON ONLY -->   
 </div>
 
 </template>
 
 <script>
-const apiData = require('../assets/data.json');
-const userData = require('../assets/userdata.json');
+const apiData = require('../assets/demand-table-data.json');
+const userData = require('../assets/demand-user-data.json');
+import Modal from './modal-component.vue';
 
 export default {
   data(){
     return {
       newRow: { title: '', risks: [], importance: {}, demand: {} },
       editMode: false,
+      showModal: false,
       userInput: '',
       range: 'Range',
       sorted: true,
       table: apiData.table,
-      tableData: userData.tableData,
+      userData: userData.userData,
       demandCalc: {
         title: 'Total number of days',
         method: 'Divide by 3 (years) and 175 (work days)',
@@ -265,9 +294,12 @@ export default {
       }
     };
   },
+  components: {
+    'modal': Modal
+  },
   computed: {
     filteredElements: function () {
-        return this.tableData
+        return this.userData
           .filter(el => el.title.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
         );
     },
@@ -278,7 +310,7 @@ export default {
       return this.daysDemand / 175 / 3;
     },
     daysDemand: function(){ 
-      return this.tableData.reduce(function(a, b){
+      return this.userData.reduce(function(a, b){
         return a + b.impValue.days;
       }, 0);
     },
@@ -301,18 +333,18 @@ export default {
   //     xhr.send();
   //   },
     getImpSum: function(idx) { // sums up all importance values
-      return this.tableData[idx].risks.reduce(function(a, risk){
+      return this.userData[idx].risks.reduce(function(a, risk){
         return a + (risk.value*risk.rate);
       }, 0);
     },
     getRangeMin: function(idx){
-      return this.tableData[idx].risks.reduce(function(a, b){
+      return this.userData[idx].risks.reduce(function(a, b){
         return a + b.rate;
       }, 0);
     },
     getRangeMax: function(idx){
       let length = this.table.options.riskRates.values.length;
-      return this.tableData[idx].risks.reduce(function(a, b){
+      return this.userData[idx].risks.reduce(function(a, b){
         return a + b.rate * length;
       }, 0);
     },
@@ -337,15 +369,15 @@ export default {
       } else if (thisValue > 0) {                         // > 0 && < 1/3 of difference + min range => low
         temp = values[1];
       } else temp = values[0];                            // 0 - just for calculation
-      this.tableData[idx].impValue = temp;
+      this.userData[idx].impValue = temp;
     },
     reRate: function(index, newVal){
-      for (let a of this.tableData){
+      for (let a of this.userData){
         a.risks[index].rate = newVal;
       }
     },
     renameCriteria: function(index, newVal){
-      for (let a of this.tableData){
+      for (let a of this.userData){
         a.risks[index].title = newVal;
       }
     },
@@ -356,7 +388,7 @@ export default {
         rate: 1,
         values: [ '', '', '' ]
       });
-      for (var a of this.tableData){
+      for (var a of this.userData){
         a.risks.push({ 
           title: 'some New', 
           rate: 1, 
@@ -368,7 +400,7 @@ export default {
       let elements = this.table.header.criterias.subElements;
       if (window.confirm('Are you sure you want to delete this criteria?')) {
         elements.splice(elements.indexOf(el), 1);
-        for (var a of this.tableData){
+        for (var a of this.userData){
           a.risks.splice(a.risks[el], 1);
         }
       }
@@ -376,7 +408,7 @@ export default {
     // ADD/REMOVE ROWS
     removeRow: function(index){                        
       if (window.confirm('Are you sure you want to delete this entry?')) {
-        this.tableData.splice(index, 1);
+        this.userData.splice(index, 1);
       }
     },
     addNewRow: function(){
@@ -399,7 +431,7 @@ export default {
         // let newDemand = this.table.options.importanceValues[0]; //sets value to 0
         // console.log(newRisks);
         // console.log({ title: newTitle, risks: getRisks(), demand: newDemand});
-        this.tableData.push({ 
+        this.userData.push({ 
           title: newTitle, 
           risks: getRisks()
         });
@@ -409,15 +441,15 @@ export default {
     },
     sortByTitle: function(){
       this.sorted *=-1;
-      return this.tableData.sort((a, b) => a.title > b.title ? this.sorted : this.sorted*-1 );
+      return this.userData.sort((a, b) => a.title > b.title ? this.sorted : this.sorted*-1 );
     },
     sortByCrit: function(index){
       this.sorted *=-1;
-      return this.tableData.sort((a, b) => a.risks[index].value > b.risks[index].value ? this.sorted : this.sorted*-1 );
+      return this.userData.sort((a, b) => a.risks[index].value > b.risks[index].value ? this.sorted : this.sorted*-1 );
     },
     sortByDemand: function(){
       this.sorted *=-1;
-      return this.tableData.sort((a, b) => a.impValue.days > b.impValue.days ? this.sorted : this.sorted*-1 );
+      return this.userData.sort((a, b) => a.impValue.days > b.impValue.days ? this.sorted : this.sorted*-1 );
     }
   }
 };
