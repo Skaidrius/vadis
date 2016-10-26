@@ -232,7 +232,7 @@
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
           <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex-1] || 0 }}</div>
+            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
@@ -418,7 +418,7 @@ export default {
             value: descriptions[2] 
           }]
         });
-        for (var a of this.userData){
+        for (var a of this.userData.entries()){
           a.risks.push({ 
             title: title, 
             rate: rate || 1, 
@@ -454,26 +454,27 @@ export default {
     },
     addNewRow: function(){
       if (window.confirm('Are you sure to write new entry?')) {
-        let newTitle = this.newRow.title;
+        const newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
         let elements = this.table.header.criterias.subElements;
+        const table = this.table;
         let getRisks = function(){
-          let arr = [];
-          for (let [index, value] of newRisks.entries()){
+        let arr = [];
+          for (let [key, value] of Object.entries(elements)){
+            let newValue = newRisks[key] ? newRisks[key] : table.options.risks[0].value;
+            let newDescr = elements[key].values[newValue-1].value;
             arr.push({
-              title: elements[index].title, 
-              rate: elements[index].rate, 
+              title: elements[key].title, 
+              rate: elements[key].rate, 
               risk: { 
-                value: value || this.table.options.risks[0].value,
-                description: elements[index].values[value-1].value || ''
+                'value':  newValue,
+                'description': newDescr
               }
             });
           }
         return arr;
         };
-        // let newDemand = this.table.options.importanceValues[0]; //sets value to 0
-        // console.log(newRisks);
-        // console.log({ title: newTitle, risks: getRisks(), demand: newDemand});
+        getRisks();
         this.userData.push({ 
           title: newTitle, 
           risks: getRisks()
