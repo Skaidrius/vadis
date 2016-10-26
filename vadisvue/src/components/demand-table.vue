@@ -408,23 +408,23 @@ export default {
     addNewCriteria: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Criteria?')) {
         this.table.header.criterias.subElements.push({ 
-          title: title, 
-          rate: rate || 1,
-          values: [{ 
-            value: descriptions[0]
+          "title": title, 
+          "rate": rate || 1,
+          "values": [{ 
+            "value": descriptions[0]
           }, {
-            value: descriptions[1] 
+            "value": descriptions[1] 
           },{ 
-            value: descriptions[2] 
+            "value": descriptions[2] 
           }]
         });
         for (var a of this.userData.entries()){
-          a.risks.push({ 
-            title: title, 
-            rate: rate || 1, 
-            risk: { 
-              value: 1, 
-              description: descriptions[0] } 
+          a[1].risks.push({ 
+            "title": title, 
+            "rate": rate || 1, 
+            "risk": { 
+              "value": 1, 
+              "description": descriptions[0] } 
           });
         }
         this.newCrit.title = '',
