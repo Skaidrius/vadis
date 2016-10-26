@@ -21,22 +21,29 @@
     <thead>
       <tr>
         <th :rowspan='2' class='col-xs-1'></th>
+        
         <th :rowspan='2' class='col-xs-2'>
-          <div v-if='editMode' >
-            <div class="col-xs-8">
-              <input v-model='table.header.criterias.titles.criterias' class='form-control' :value='table.header.criterias.titles.criterias'>
-            </div>
-            <div class="col-xs-4">
-              <input v-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
-            </div>
-          </div>
+        
+          <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
+            <tr>
+              <th>
+                <input v-model='table.header.criterias.titles.criterias' class='form-control' :value='table.header.criterias.titles.criterias'>
+              </th>
+              <th>
+                <input v-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
+              </th>
+            </tr>
+          </table>
           <span v-else>{{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate }}</span></span>
         </th>
+        
         <td colspan='3' class='col-xs-9 text-center'>
           <input v-if='editMode' v-model='table.header.criterias.items.title' class='form-control' :value='table.header.criterias.items.title'>
           <span v-else>{{ table.header.criterias.items.title }}</span>
         </td>
+        
       </tr>
+      
       <tr class='text-center'>
         <th>
           <input v-if='editMode' v-model='table.header.criterias.items.values.low' class='form-control' :value='table.header.criterias.items.values.low'>
