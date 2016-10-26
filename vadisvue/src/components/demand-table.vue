@@ -189,14 +189,14 @@
       </td>
       
       <!-- CRITERIAS -->
-      <td v-for='(item, indextwo) in el.risks' :class='getRiskStyle(item.risk.value) || "alert-default"'>
+      <td v-for='(item, indextwo) in el.risks' :class='getRiskStyle(item.level) || "alert-default"'>
         
-        <select v-if='editMode' v-model='item.risk.value' class='form-control col-xs=10' @change='changeDescription(index, indextwo, item.risk.value)'> <!-- EDIT MODE -->
+        <select v-if='editMode' v-model='item.level' class='form-control col-xs=10' > <!-- EDIT MODE --> <!-- @change='createDescription(index, indextwo, item.level)' <---maybe use w/o this, but in json it is good information-->
           <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
-        <div v-else>{{ getRiskName(item.risk.value) }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(item.level) }}</div>                         <!-- READ MODE -->
       </td>
       
       <!-- IMPORTANCE-->
@@ -284,7 +284,8 @@
 
   </table>
 
-<!--<pre>{{ $data.userData }}</pre>     <!--FOR TESTING AND VIEWING JSON ONLY -->
+<!--<pre>{{ $data.userData }}</pre>  -->
+<!--FOR TESTING AND VIEWING OF JSON ONLY -->
 </div>
 
 </template>
@@ -297,21 +298,21 @@ import Modal from './demand-crit-modal-component.vue';
 export default {
   data(){
     return {
-      newRow: { title: '', risks: [] },
+      table: apiData.table,
+      userData: userData.elements,
       editMode: false,
       showModal: false,
+      newRow: { title: '', risks: [] },
+      newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       range: 'Range',
       sorted: true,
-      table: apiData.table,
-      userData: userData.elements,
       demandCalc: {
         title: 'Total number of days',
         method: 'Divide by 3 (years) and 175 (work days)',
         description: 'IAS demand - CAE and',
         iAuditors: 'internal auditor (-s)'
-      },
-      newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } }
+      }
     };
   },
   components: {
@@ -352,12 +353,12 @@ export default {
   //     };
   //     xhr.send();
   //   },
-    changeDescription: function(idx, idxtwo, val){
-      this.userData[idx].risks[idxtwo].risk.description = this.table.header.criterias.subElements[idxtwo].values[val-1].value;
+    createDescription: function(idx, idxtwo, val){
+      this.userData[idx].risks[idxtwo].description = this.table.header.criterias.subElements[idxtwo].values[val-1].value;
     },
     getImpSum: function(idx) { // sums up all importance values
       return this.userData[idx].risks.reduce(function(a, item){
-        return a + (item.rate*item.risk.value);
+        return a + (item.rate*item.level);
       }, 0);
     },
     getRangeMin: function(idx){
@@ -422,9 +423,7 @@ export default {
           a[1].risks.push({ 
             "title": title, 
             "rate": rate || 1, 
-            "risk": { 
-              "value": 1, 
-              "description": descriptions[0] } 
+            "level": 1 
           });
         }
         this.newCrit.title = '',
@@ -462,14 +461,15 @@ export default {
         let arr = [];
           for (let [key, value] of Object.entries(elements)){
             let newValue = newRisks[key] ? newRisks[key] : table.options.risks[0].value;
-            let newDescr = elements[key].values[newValue-1].value;
+            // let newDescr = elements[key].values[newValue-1].value;
             arr.push({
               title: elements[key].title, 
               rate: elements[key].rate, 
-              risk: { 
-                'value':  newValue,
-                'description': newDescr
-              }
+              level: newValue
+              // risk: { 
+              //   'value':  newValue,
+              //   'description': newDescr
+              // }
             });
           }
         return arr;
@@ -489,7 +489,7 @@ export default {
     },
     sortByCrit: function(index){
       this.sorted *=-1;
-      return this.userData.sort((a, b) => a.risks[index].value > b.risks[index].value ? this.sorted : this.sorted*-1 );
+      return this.userData.sort((a, b) => a.risks[index].level > b.risks[index].level ? this.sorted : this.sorted*-1 );
     },
     sortByDemand: function(){
       this.sorted *=-1;
