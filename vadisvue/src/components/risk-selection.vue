@@ -1,10 +1,33 @@
 <template>
-  <div class="jumbotron">
-    <h1>Risk Selection</h1>
-    <p>
-      <strong>
-        Get started.
-      </strong>
-    </p>  
+  <div class="parent">
+    
+      <h3>Risk selection</h3>
+      
+      <br />
+
+  
+      <router-view class="child"></router-view>
+
   </div>
+ 
+
 </template>
+
+<script>
+
+    export default {
+      data(){
+        return {
+          editMode: false,
+        };
+      },
+    };
+
+</script>
+
+
+<style>
+
+
+
+</style>

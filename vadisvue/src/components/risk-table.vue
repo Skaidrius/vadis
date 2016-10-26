@@ -2,7 +2,7 @@
   
   <div>
   
-  <h4>IAS demand table
+  <h4>Risk selection table
     <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
     <small v-else class='btn-success pull-right'>normal mode</small>
   </h4>
@@ -15,11 +15,11 @@
   </div><br/>
   
     <ul class="my-tabs nav nav-tabs">
-      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>Table</li></router-link>
-      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
+      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>Risk Table</li></router-link>
+      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Selected Risks</li></router-link>
     </ul>
   
-  <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
+  <table id='riskTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
   <thead>  
     <tr>
@@ -104,13 +104,6 @@
         <span v-else>{{ table.header.importance.name }}</span>                                                            <!-- READ MODE -->
       </td>
 
-          <!--  H1 DEMAND  --> 
-      <td :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
-      
-        <input v-if='editMode' v-model='table.header.demand.name' class='form-control  text-center' placeholder='Demand'>  <!-- EDIT MODE -->
-        
-        <span v-else>{{ table.header.demand.name }}</span>                                                                 <!-- READ MODE -->
-      </td>
       <td rowspan='2'></td>
 
     </tr>
@@ -159,17 +152,7 @@
           <a>{{ imp.name }}</a>
         </span> 
       </td>
-        <!--  H2 DEMAND  -->
-      <td v-for='dem in table.header.demand.subElements'>
-        
-        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='dem.name' rows='3' class='form-control' placeholder='Enter new value'></textarea>
-        </div>
-        
-        <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
-          <a>{{ dem.name }}</a>
-        </span>
-      </td>
+
     </tr>
   </thead>
 
@@ -203,9 +186,7 @@
       <td :value='getImpDescr(index)'> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
       <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
-      <!-- DEMAND-->
-      <td>{{ el.impValue.days }}</td>                                                         <!-- TBODY / DEMAND DAYS-->
-      
+
       <td v-if='editMode'>
         <button class='btn btn-danger' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
       </td>
@@ -242,44 +223,6 @@
   
             <!-- TFOOT MODE -->
   <tfoot class='table table-stripped'>
-    <tr>
-      <th :colspan='getCriteriaslength + 3' class='text-right'>
-        
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='demandCalc.title'></span>
-        
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ demandCalc.title }}</span> 
-      </th>
-      <td>{{ daysDemand }}</td>
-      <td colspan = '3'></td>
-
-    </tr>
-    <tr>
-      <td :colspan='getCriteriaslength + 3' class='text-right'>
-        
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='demandCalc.method'></span>
-        
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.method }}</span>
-      </td>
-      <td>{{ demandCalculated.toFixed(2) }}</td>
-      <td colspan = '3'></td>
-    </tr>
-    <tr>
-      <th :colspan='getCriteriaslength + 3' class='text-right'>
-        
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='demandCalc.description'></span>
-        
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.description }}</span>
-      </th>
-      <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
-      <th class='text-left' colspan='3'>
-        
-        <span v-if='editMode' >
-          <input class='form-control text-left' placeholder="IA's" v-model='demandCalc.iAuditors'>
-        </span>
-        
-        <span v-else> {{ demandCalc.iAuditors }}  </span>
-      </th>
-    </tr>
   </tfoot>
 
   </table>
@@ -291,8 +234,8 @@
 </template>
 
 <script>
-const apiData = require('../assets/demand-table-data.json');
-const userData = require('../assets/demand-user-data.json');
+const apiData = require('../assets/risk-table-data.json');
+const userData = require('../assets/risk-user-data.json');
 import Modal from './demand-crit-modal-component.vue';
 
 export default {
@@ -306,13 +249,7 @@ export default {
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       range: 'Range',
-      sorted: true,
-      demandCalc: {
-        title: 'Total number of days',
-        method: 'Divide by 3 (years) and 175 (work days)',
-        description: 'IAS demand - CAE and',
-        iAuditors: 'internal auditor (-s)'
-      }
+      sorted: true
     };
   },
   components: {
@@ -326,15 +263,7 @@ export default {
     },
     getCriteriaslength: function(){
       return this.table.header.criterias.subElements.length;
-    },
-    demandCalculated: function(){ 
-      return this.daysDemand / 175 / 3;
-    },
-    daysDemand: function(){ 
-      return this.userData.reduce(function(a, b){
-        return a + b.impValue.days;
-      }, 0);
-    },
+    }
   },
   // // FOR AJAX  - NOT WORKING YET
   // created: function () {
@@ -495,8 +424,8 @@ export default {
 
 <style>
 
-#demandTable thead tr {
-  background: #27a;
+#riskTable thead tr {
+  background: #175;
   color: #fff;
 }
 

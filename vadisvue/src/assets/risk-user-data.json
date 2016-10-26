@@ -1,0 +1,63 @@
+{
+	"elements": [{
+		"title": "Noname",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"level": 3
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"level": 2
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"level": 1
+		}]
+	}, {
+		"title": "Corado",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"level": 2
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"level": 2
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"level": 3
+		}]
+	}, {
+		"title": "Magery",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"level": 1
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"level": 2
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"level": 2
+		}]
+	}, {
+		"title": "Zodada",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"level": 2
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"level": 3
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"level": 1
+		}]
+	}]
+}

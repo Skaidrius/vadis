@@ -1,7 +1,7 @@
 <template>
   <div>
 
-  <h4>IAS demand table legends
+  <h4>Selected risks
     <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
     <small v-else class='btn-success pull-right'>normal mode</small>
   </h4>
@@ -12,12 +12,12 @@
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
   </div><br/>
   
-  <ul class="my-tabs nav nav-tabs">
-    <router-link to="/demand/demand-table"><li class='col-xs-2'>Table</li></router-link>
-    <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
-  </ul>
+    <ul class="my-tabs nav nav-tabs">
+      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>Risk Table</li></router-link>
+      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Selected Risks</li></router-link>
+    </ul>
   
-  <table id="demandTableLegends"class='table table-hover table-striped table-bordered table-condensed text-centerr'>
+  <table id="riskTableSelections" class='table table-hover table-striped table-bordered table-condensed text-centerr'>
     <thead>
       <tr>
         <th :rowspan='2' class='col-xs-1'></th>
@@ -97,8 +97,8 @@
 </template>
 
 <script>
-const apiData = require('../assets/demand-table-data.json');
-const userData = require('../assets/demand-user-data.json');
+const apiData = require('../assets/risk-table-data.json');
+const userData = require('../assets/risk-user-data.json');
 
 export default {
   
@@ -123,10 +123,10 @@ export default {
 </script>
 
 <style>
-
-#demandTableLegends thead tr {
-  background: #2aa;
+  
+#riskTableSelections thead tr {
+  background: #1a5;
   color: #fff;
 }
-
+  
 </style>
