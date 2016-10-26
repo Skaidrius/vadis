@@ -60,13 +60,13 @@
                       <div class='form-group'>
                         <label class="col-xs-2 control-label">Name:</label>
                         <div class="col-xs-10">
-                          <input v-model='newCritTitle' class='form-control text-center' placeholder="Input name">
+                          <input v-model='newCrit.title' class='form-control text-center' placeholder="Input name">
                         </div>
                       </div>
                       <div class='form-group'>
                         <label class="col-xs-2 control-label">Rate:</label>
                         <div class="col-xs-10">
-                          <select v-model='newCritRate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
+                          <select v-model='newCrit.rate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
                             <option data-hidden='true' disabled>Pick one...</option>
                             <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                           </select>
@@ -75,15 +75,15 @@
                       <div class='form-group form-group-last'>
                         <label class="col-xs-2 control-label"><br> Risk <br> values:</label>
                         <div class="col-xs-10">
-                          <input v-model='newCritLow' class='form-control text-center' placeholder="Low risk value">
-                          <input v-model='newCritMiddle' class='form-control text-center' placeholder="Middle risk value">
-                          <input v-model='newCritHigh' class='form-control text-center' placeholder="High risk value">
+                          <input v-model='newCrit.values.low' class='form-control text-center' placeholder="Low risk value">
+                          <input v-model='newCrit.values.middle' class='form-control text-center' placeholder="Middle risk value">
+                          <input v-model='newCrit.values.high' class='form-control text-center' placeholder="High risk value">
                         </div>
                       </div>
                     </div>
                   </h4>
                   <h4 slot='footer'>
-                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCritTitle, newCritRate, [newCritLow, newCritMiddle, newCritHigh]); $emit("close")'>Save changes</button>
+                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCrit.title, newCrit.rate, [newCrit.values.low, newCrit.values.middle, newCrit.values.high]); $emit("close")'>Save changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="$emit('close')">Cancel</button>
                   </h4>
             </modal>
@@ -311,11 +311,7 @@ export default {
         description: 'IAS demand - CAE and',
         iAuditors: 'internal auditor (-s)'
       },
-      newCritTitle: '',
-      newCritRate: '',
-      newCritLow: '',
-      newCritMiddle: '',
-      newCritHigh:''
+      newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } }
     };
   },
   components: {
@@ -412,7 +408,7 @@ export default {
     addNewCriteria: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Criteria?')) {
         this.table.header.criterias.subElements.push({ 
-          name: title, 
+          title: title, 
           rate: rate || 1,
           values: [{ 
             value: descriptions[0]
@@ -431,11 +427,11 @@ export default {
               description: descriptions[0] } 
           });
         }
-        this.newCritTitle = '',
-        this.newCritRate = 1,
-        this.newCritLow = '',
-        this.newCritMiddle = '',
-        this.newCritHigh = '',
+        this.newCrit.title = '',
+        this.newCrit.rate = 1,
+        this.newCrit.values.low = '',
+        this.newCrit.values.middle = '',
+        this.newCrit.values.high = '',
         this.showModal = false;
       }
     },
