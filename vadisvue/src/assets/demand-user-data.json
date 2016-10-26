@@ -15,6 +15,144 @@
 				"value": 1,
 				"description": "less than (or) 100 000"
 			}
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"risk": {
+				"value": 1,
+				"description": "1000 and more workers"
+			}
+		}]
+		}, {
+		"title": "Forama",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "Budget",
+			"rate": 2,
+			"risk": {
+				"value": 2,
+				"description": "less than (or) 100 000"
+			}
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"risk": {
+				"value": 1,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"risk": {
+				"value": 3,
+				"description": "1000 and more workers"
+			}
+		}]
+		}, {
+		"title": "Corado",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "Budget",
+			"rate": 2,
+			"risk": {
+				"value": 3,
+				"description": "less than (or) 100 000"
+			}
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"risk": {
+				"value": 3,
+				"description": "1000 and more workers"
+			}
+		}]
+		}, {
+		"title": "Magery",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"risk": {
+				"value": 1,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "Budget",
+			"rate": 2,
+			"risk": {
+				"value": 2,
+				"description": "less than (or) 100 000"
+			}
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}]
+		}, {
+		"title": "Zodada",
+		"risks": [{
+			"title": "Workers",
+			"rate": 3,
+			"risk": {
+				"value": 2,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "Budget",
+			"rate": 2,
+			"risk": {
+				"value": 3,
+				"description": "less than (or) 100 000"
+			}
+		}, {
+			"title": "Garage",
+			"rate": 3,
+			"risk": {
+				"value": 3,
+				"description": "1000 and more workers"
+			}
+		}, {
+			"title": "information technologies",
+			"rate": 1,
+			"risk": {
+				"value": 1,
+				"description": "1000 and more workers"
+			}
 		}]
 	}]
 }

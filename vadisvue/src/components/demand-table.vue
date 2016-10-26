@@ -284,7 +284,7 @@
 
   </table>
 
-<pre>{{ $data.userData }}</pre>     <!--FOR TESTING AND VIEWING JSON ONLY -->
+<!--<pre>{{ $data.userData }}</pre>     <!--FOR TESTING AND VIEWING JSON ONLY -->
 </div>
 
 </template>
