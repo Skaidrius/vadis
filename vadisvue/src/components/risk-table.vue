@@ -19,7 +19,7 @@
       <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Selected Risks</li></router-link>
     </ul>
   
-  <table id='riskTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
+  <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
   <thead>  
     <tr>
@@ -53,7 +53,7 @@
               <modal v-if="showModal" @close="showModal = false">
   <!-- use custom content here to overwrite           -->
                   <h3 slot="header">
-                    New criteria
+                    New Risk factor
                   </h3>
                   <h4 slot='body'>
                     <div class="form-horizontal">
@@ -424,7 +424,7 @@ export default {
 
 <style>
 
-#riskTable thead tr {
+#risksTable thead tr {
   background: #175;
   color: #fff;
 }

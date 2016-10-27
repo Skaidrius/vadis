@@ -26,34 +26,7 @@
   </div>
 </template>
 
-
- <!--   To do - 
- 
-  Risk selection
-   add/remove criterias         // done
-   add/remove entries           // done
-   search entries               //done
-   sort data by table header    //done
-   view mode / edit mode        //done
-   removeRow drops error trying remove last element //done
-   modal creating criterias with description
-   
-   AJAX get/write               PENDING...
-
- Demand
-   add/remove criterias         // done
-   add/remove entries           // done
-   search entries               //done
-   sort data by table header    //done
-   view mode / edit mode        //done
-   removeRow drops error trying remove last element //done
-   modal creating criterias with description
-   
-   AJAX get/write               PENDING...
-
- -->
- 
- <style>
+<style>
 
 .table-condensed>thead>tr>th,
 .table-condensed>thead>tr>td {
