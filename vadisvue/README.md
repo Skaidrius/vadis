@@ -5,11 +5,12 @@
 ## Internal audit planning and risk selection system
 #### ATM It lets:
 1. Choose/write new *Audit scope elements*
-2. Perform **Risk analysis** based on *Risk factor rate* and *value*
-3. Perform **IA staff demand calculation** based on *individual risk analysis* and assuming that 
+2. *Search* any entry and *filter* all rows
+3. Perform **Risk analysis** based on *Risk factor rate* and *value*
+4. Perform **IA staff demand calculation** based on *individual risk analysis* and assuming that 
 whole internal control _system should be checked at least once per 3 years_.
-4. *Risk factors/Demand risk analysis* criterias and audit scope entries could be _added/modified/removed_
-5. *Read mode* and *Edit (edit whole table entries, languages etc...)* modes
+5. *Risk factors/Demand risk analysis* criterias and audit scope entries could be _added/modified/removed_
+6. *Read mode* and *Edit (edit whole table entries, languages etc...)* modes
 
 
 #### used techniques and technologies: 
