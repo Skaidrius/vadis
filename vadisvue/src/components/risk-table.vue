@@ -43,10 +43,10 @@
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
-            <input v-model='table.header.criterias.titles.criterias' class='form-control text-center' placeholder="Criterias">
+            <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control text-center' placeholder="Criterias">
           </div>
           <div class="col-xs-3">
-            <input v-model='table.header.criterias.titles.rate' class='form-control text-center' placeholder="Rate">
+            <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control text-center' placeholder="Rate">
           </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
@@ -92,16 +92,16 @@
         </div>
         
         <span v-else>                                                             <!-- READ MODE -->
-          {{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{table.header.criterias.titles.rate}}</span>
+          {{ table.header.criterias.titles.criterias[currentLocale] }} <span class='badge pull-right alert-success'>{{table.header.criterias.titles.rate[currentLocale]}}</span>
         </span>
       </td>
 
           <!--  H1 IMPORTANCE  -->
       <td  colspan='3' class='col-xs-2'> 
       
-        <input v-if='editMode' v-model='table.header.importance.name' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.importance.name[currentLocale]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         
-        <span v-else>{{ table.header.importance.name }}</span>                                                            <!-- READ MODE -->
+        <span v-else>{{ table.header.importance.name[currentLocale] }}</span>                                                            <!-- READ MODE -->
       </td>
 
       <td rowspan='2'></td>
@@ -145,11 +145,11 @@
       <td v-for='imp in table.header.importance.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
+          <textarea v-model='imp.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
         </div>
         
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
-          <a>{{ imp.name }}</a>
+          <a>{{ imp.name[currentLocale] }}</a>
         </span> 
       </td>
 
@@ -185,7 +185,7 @@
       <!-- IMPORTANCE-->
       <td :value='getImpDescr(index)'> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
-      <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
+      <td :class='el.impValue.style'>{{ el.impValue.name[currentLocale] }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
 
       <td v-if='editMode'>
         <button class='btn btn-danger' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
@@ -343,7 +343,7 @@ export default {
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Criteria?')) {
-        this.table.header.criterias.subElements.push({ 
+        this.userTable.push({ 
           "title": title, 
           "rate": rate || 1,
           "values": [{ 
@@ -370,7 +370,7 @@ export default {
       }
     },
     removeCriteria: function(el, idx){
-      let elements = this.table.header.criterias.subElements;
+      let elements = this.userTable;
       if (window.confirm('Are you sure you want to delete this criteria?')) {
         elements.splice(idx, 1);
         for (var a of this.userData){
@@ -388,7 +388,7 @@ export default {
       if (window.confirm('Are you sure to write new entry?')) {
         const newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
-        let elements = this.table.header.criterias.subElements;
+        let elements = this.userTable;
         const table = this.table;
         let getRisks = function(){
         let arr = [];

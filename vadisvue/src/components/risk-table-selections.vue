@@ -27,35 +27,35 @@
           <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
             <tr>
               <th>
-                <input v-model='table.header.criterias.titles.criterias' class='form-control' :value='table.header.criterias.titles.criterias'>
+                <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control' :value='table.header.criterias.titles.criterias[currentLocale]'>
               </th>
               <th>
-                <input v-model='table.header.criterias.titles.rate' class='form-control' :value='table.header.criterias.titles.rate'>
+                <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control' :value='table.header.criterias.titles.rate[currentLocale]'>
               </th>
             </tr>
           </table>
-          <span v-else>{{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate }}</span></span>
+          <span v-else>{{ table.header.criterias.titles.criterias[currentLocale] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[currentLocale] }}</span></span>
         </th>
         
         <td colspan='3' class='col-xs-9 text-center'>
-          <input v-if='editMode' v-model='table.header.criterias.items.title' class='form-control' :value='table.header.criterias.items.title'>
-          <span v-else>{{ table.header.criterias.items.title }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.title[currentLocale]' class='form-control' :value='table.header.criterias.items.title[currentLocale]'>
+          <span v-else>{{ table.header.criterias.items.title[currentLocale] }}</span>
         </td>
         
       </tr>
       
       <tr class='text-center'>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.low' class='form-control' :value='table.header.criterias.items.values.low'>
-          <span v-else>{{ table.header.criterias.items.values.low }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.low[currentLocale]' class='form-control' :value='table.header.criterias.items.values.low[currentLocale]'>
+          <span v-else>{{ table.header.criterias.items.values.low[currentLocale] }}</span>
         </th>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.middle' class='form-control' :value='table.header.criterias.items.values.middle'>
-          <span v-else>{{ table.header.criterias.items.values.middle }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.middle[currentLocale]' class='form-control' :value='table.header.criterias.items.values.middle[currentLocale]'>
+          <span v-else>{{ table.header.criterias.items.values.middle[currentLocale] }}</span>
         </th>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.high' class='form-control' :value='table.header.criterias.items.values.high'>
-          <span v-else>{{ table.header.criterias.items.values.high }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.high[currentLocale]' class='form-control' :value='table.header.criterias.items.values.high[currentLocale]'>
+          <span v-else>{{ table.header.criterias.items.values.high[currentLocale] }}</span>
         </th>
       </tr>
     </thead>

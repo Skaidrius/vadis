@@ -27,49 +27,70 @@
 				"values": [1, 2, 3]
 			},
 			"importanceValues": [{
-				"name": "Undefined risks",
+				"name": {
+					"en": "Undefined risks"
+				},
 				"days": 0,
 				"style": "default"
 			}, {
-				"name": "Little important",
+				"name": { 
+					"en": "Little important"
+				},
 				"days": 15,
 				"style": "alert-success"
 			}, {
-				"name": "Average important",
+				"name": {
+					"en": "Average important"
+				},
 				"days": 25,
 				"style": "alert-warning"
 			}, {
-				"name": "Highly important",
+				"name": {
+					"en": "Highly important"
+				},
 				"days": 40,
 				"style": "alert-danger"
 			}]
 		},
 		"header": {
 			"criterias": {
-				"titles": { "criterias" : "Risk factors", 
-							"rate": "Ratio"
+				"titles": { 
+					"criterias": {
+						"en": "Risk factors"
+					}, 
+					"rate": { 
+						"en":"Ratio"
+					}
 				},
 				"items": {
-					"title": "Values",
+					"title": {
+						"en": "Values"
+					},
 					"values": {
-						"low": "Low",
-						"middle": "Middle",
-						"high": "High"
+						"low": {
+							"en": "Low"
+						},
+						"middle": {
+							"en": "Middle"
+						},
+						"high": {
+							"en": "High"
+						}
 					}
 				}
 			},
 			"importance": {
-				"name": "Importance",
+				"name": {
+					"en": "Importance"
+				},
 				"subElements": [{
-					"name": "Total"
+					"name": {
+						"en": "Total"
+					}
 				}, {
-					"name": "Level"
-				}]
-			},
-			"demand": {
-				"name": "Demand",
-				"subElements": [{
-					"name": "Days"
+					"name": {
+						"en": "Level"
+					}
 				}]
 			}
 		}
