@@ -143,16 +143,11 @@
 
       </td> 
         <!--  H2 IMPORTANCE  -->
-      <td>
-        
-          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='locales[currentLocale].range'></span>
-          
-          <span v-else> {{ locales[currentLocale].range }}</span> 
-      </td>
+
       <td v-for='imp in table.header.importance.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='imp.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
+          <textarea v-model='imp.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | TOTA | LEVEL -->
         </div>
         
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
@@ -177,7 +172,7 @@
     
     <tr v-if='!editMode'>
       <td></td>
-      <td><input v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- TBODY / SEARCH-->
+      <td><input v-model="userInput" class="form-control col-xs-4" :placeholder="table.functions.search[currentLocale]"></td> <!-- TBODY / SEARCH-->
       <td :colspan='getCriteriaslength + 5'></td>
     </tr>
     <!-- TBODY ROW -->
@@ -217,20 +212,20 @@
     <tr>
       <td></td>
       <td><br>
-        <div>Add new entry</div>
+        <div>{{ table.functions.addEntry[currentLocale] }}</div>
       </td>
       <td :colspan='getCriteriaslength + 5'></td>
     </tr>
     <tr>
       <th>
-        <button class='form-control' @click='addNewRow()'>Add</button>
+        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[currentLocale] }}</button>
       </th>
       <td>
-        <input class='form-control' placeholder='New entry' v-model='newRow.title'>
+        <input class='form-control' :placeholder='table.functions.newEntry[currentLocale]' v-model='newRow.title'>
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option data-hidden='true' disabled>Pick one...</option>
+          <option data-hidden='true' disabled>{{ table.functions.pickOne[currentLocale] }}...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
             <div class="row">{{ elem.name[currentLocale]}} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
@@ -245,9 +240,9 @@
     <tr>
       <th :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='locales[currentLocale].demandCalc.title'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='table.header.demandCalc.title[currentLocale]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ locales[currentLocale].demandCalc.title }}</span> 
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ table.header.demandCalc.title[currentLocale] }}</span> 
       </th>
       <td>{{ daysDemand }}</td>
       <td colspan = '3'></td>
@@ -256,9 +251,9 @@
     <tr>
       <td :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='locales[currentLocale].demandCalc.method'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='table.header.demandCalc.method[currentLocale]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.method }}</span>
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ table.header.demandCalc.method[currentLocale] }}</span>
       </td>
       <td>{{ demandCalculated.toFixed(2) }}</td>
       <td colspan = '3'></td>
@@ -266,18 +261,18 @@
     <tr>
       <th :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='locales[currentLocale].demandCalc.description'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='table.header.demandCalc.description[currentLocale]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.description }}</span>
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ table.header.demandCalc.description[currentLocale] }}</span>
       </th>
       <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
       <th class='text-left' colspan='3'>
         
         <span v-if='editMode' >
-          <input class='form-control text-left' placeholder="IA's" v-model='locales[currentLocale].demandCalc.iAuditors'>
+          <input class='form-control text-left' placeholder="IA's" v-model='table.header.demandCalc.iAuditors[currentLocale]'>
         </span>
         
-        <span v-else> {{ locales[currentLocale].demandCalc.iAuditors }}  </span>
+        <span v-else> {{ table.header.demandCalc.iAuditors[currentLocale] }}  </span>
       </th>
     </tr>
   </tfoot>
@@ -307,18 +302,7 @@ export default {
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       sorted: true,
-      currentLocale: 'en',
-      locales: {
-        en: {
-          range: 'Range',
-          demandCalc: {
-            title: 'Total number of days',
-            method: 'Divide by 3 (years) and 175 (work days)',
-            description: 'IAS demand - CAE and',
-            iAuditors: 'internal auditor (-s)'
-          }
-        }
-      }
+      currentLocale: 'lt',
     };
   },
   components: {

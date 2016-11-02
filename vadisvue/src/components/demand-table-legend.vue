@@ -104,7 +104,7 @@ export default {
   
   data(){
     return {
-      currentLocale: 'en',
+      currentLocale: 'lt',
       locales: {
         en: {
 

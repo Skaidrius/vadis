@@ -1,24 +1,28 @@
 {
 	"table": {
 		"title": { 
-			"en": "Title"
+			"en": "Title",
+			"lt": "Pavadinimas"
 		},
 		"options": {
 			"risks": [{
 				"name": {
-					"en": "Low"
+					"en": "Low",
+					"lt": "Žema"
 				},
 				"value": 1,
 				"style": "alert-success"
 			}, {
 				"name": {
-					"en": "Middle"
+					"en": "Middle",
+					"lt": "Vidutinė"
 				},
 				"value": 2,
 				"style": "alert-warning"
 			}, {
 				"name": {
-					"en": "High"
+					"en": "High",
+					"lt": "Aukšta"
 				},
 				"value": 3,
 				"style": "alert-danger"
@@ -28,25 +32,29 @@
 			},
 			"importanceValues": [{
 				"name": {
-					"en": "Undefined risks"
+					"en": "Undefined risks",
+					"lt": "Nenustatyta"
 				},
 				"days": 0,
 				"style": "default"
 			}, {
 				"name": { 
-					"en": "Little important"
+					"en": "Little important",
+					"lt": "Mažai svarbi"
 				},
 				"days": 15,
 				"style": "alert-success"
 			}, {
 				"name": { 
-					"en": "Average important"
+					"en": "Average important",
+					"lt": "Vidutiniškai svarbi"
 				},
 				"days": 25,
 				"style": "alert-warning"
 			}, {
 				"name": {
-					"en": "Highly important"
+					"en": "Highly important",
+					"lt": "Labai svarbi"
 				},
 				"days": 40,
 				"style": "alert-danger"
@@ -56,53 +64,110 @@
 			"criterias": {
 				"titles": { 
 					"criterias": {
-						"en": "Criterias"
+						"en": "Criterias",
+						"lt": "Kriterijai"
 					}, 
 					"rate": {
-						"en": "Ratio"
+						"en": "Ratio",
+						"lt": "Lygis"
 					}
 				},
 				"items": {
 					"title": {
-						"en": "Values"
+						"en": "Values",
+						"lt": "Vertės"
 					},
 					"values": {
 						"low": {
-							"en": "Low"
+							"en": "Low",
+							"lt": "Žema"
 						},
 						"middle": {
-							"en": "Middle"
+							"en": "Middle",
+							"lt": "Vidutinė"
 						},
 						"high": {
-							"en": "High"
+							"en": "High",
+							"lt": "Aukšta"
 						}
 					}
 				}
 			},
 			"importance": {
 				"name": {
-					"en": "Importance"
+					"en": "Importance",
+					"lt": "Svarba"
 				},
 				"subElements": [{
 					"name": {
-						"en": "Total"
+						"en": "Range",
+						"lt": "Ribos"
 					}
 				}, {
 					"name": {
-						"en": "Level"
+						"en": "Total",
+						"lt": "Viso"
+					}
+				}, {
+					"name": {
+						"en": "Level",
+						"lt": "Lygis"
 					}
 				}]
 			},
 			"demand": {
 				"name": {
-					"en": "Demand"
+					"en": "Demand",
+					"lt": "Poreikis"
 				},
 				"subElements": [{
 					"name": {
-						"en": "Days"
+						"en": "Days",
+						"lt": "Dienos"
 					}
 				}]
-			}
-		}
+			},
+			"demandCalc": {
+            	"title": {
+            		"en": "Total number of days",
+            		"lt": "Bendras dienų skaičius"
+            	},
+            	"method": {
+            		"en": "Divide by 3 (years) and 175 (work days)",
+            		"lt": "Daliname iš 3 (metai) ir 175 (d.d)"
+            	},
+            	"description": {
+            		"en": "IAS demand - CAE and",
+            		"lt": "VAT poreikis: VAT vadovas ir"
+            	}, 
+            	"iAuditors": {
+            		"en": "internal auditor (-s)",
+            		"lt": "vidaus auditoriai"
+            	}
+          }
+		},
+        "functions": {
+          		"search": {
+          			"en": "Search",
+          			"lt": "Ieškoti"
+          		},
+          		"addEntry": {
+          			"en": "Add New Entry",
+          			"lt": "Pridėti įrašą"
+            	},
+          		"addButton": {
+          			"en": "Add",
+          			"lt": "Pridėti"
+            	},
+          		"newEntry": {
+          			"en": "New entry",
+          			"lt": "Naujas įrašas"
+            	},
+          		"pickOne": {
+          			"en": "Pick one",
+          			"lt": "Pasirinkite"
+            	}
+        }
+		
 	}
 }
