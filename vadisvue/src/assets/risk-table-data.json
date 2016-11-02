@@ -1,22 +1,29 @@
 {
 	"table": {
-		"titles": "Audit scope",
+		"titles": {
+			"en": "Audit scope"
+		},
 		"options": {
 			"risks": [{
-				"name": "Low",
+				"name": {
+					"en": "Low"
+				},
 				"value": 1,
 				"style": "alert-success"
 			}, {
-				"name": "Middle",
+				"name": {
+					"en": "Middle"
+				},
 				"value": 2,
 				"style": "alert-warning"
 			}, {
-				"name": "High",
+				"name": {
+					"en":"High"
+				},
 				"value": 3,
 				"style": "alert-danger"
 			}],
 			"riskRates": {
-				"title": "Ratio",
 				"values": [1, 2, 3]
 			},
 			"importanceValues": [{
@@ -49,41 +56,7 @@
 						"middle": "Middle",
 						"high": "High"
 					}
-				},
-				"subElements": [{
-					"title": "Workers",
-					"rate": 3,
-					"values": [{
-						"value":"less than (or) 100 workers"
-					},{
-						"value": "101 - 999 workers"
-					},{
-						"value": "1000 and more workers"
-					}],
-					"style": "alert-danger"
-				}, {
-					"title": "Garage",
-					"rate": 3,
-					"values": [{
-						"value":"less than 10 cars"
-					},{
-						"value":"10 - 19 cars"
-					},{
-						"value":"20 or more cars"
-					}], 
-					"style": "alert-warning"
-				}, {
-					"title": "Information technologies",
-					"rate": 1,
-					"values": [{
-						"value":"mostly computerized"
-					},{
-						"value":"uses a lot of IT"
-					},{
-						"value":"manual work"
-					}], 
-					"style": "alert-warning"
-				}]
+				}
 			},
 			"importance": {
 				"name": "Importance",

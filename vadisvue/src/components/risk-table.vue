@@ -30,11 +30,11 @@
       <th rowspan='2' class='col-xs-2'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.titles' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
+          <input v-model='table.titles[currentLocale]' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
         </div>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
-          <a>{{ table.titles }}</a>
+          <a>{{ table.titles[currentLocale] }}</a>
         </span> <!-- SORT TITLES -->
       </th>
 
@@ -110,7 +110,7 @@
     <tr>
       <!--  HEADER 2ND LINE  -->
         <!--  H2 CRITERIAS  -->
-      <td v-for='(crit, index) in table.header.criterias.subElements'>
+      <td v-for='(crit, index) in userTable'>
         
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
@@ -176,10 +176,10 @@
         
         <select v-if='editMode' v-model='item.level' class='form-control col-xs=10' > <!-- EDIT MODE --> <!-- @change='createDescription(index, indextwo, item.level)' <---maybe use w/o this, but in json it is good information-->
           <option data-hidden='true' disabled>Pick one...</option>
-          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
+          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name[currentLocale] }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
-        <div v-else>{{ getRiskName(item.level) }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(item.level)[currentLocale] }}</div>                         <!-- READ MODE -->
       </td>
       
       <!-- IMPORTANCE-->
@@ -213,7 +213,7 @@
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
           <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex].value }}</div>
+            <div class="row">{{ elem.name[currentLocale] }} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
@@ -242,6 +242,7 @@ export default {
   data(){
     return {
       table: apiData.table,
+      userTable: userData.tableElements,
       userData: userData.elements,
       editMode: false,
       showModal: false,
@@ -267,7 +268,7 @@ export default {
         );
     },
     getCriteriaslength: function(){
-      return this.table.header.criterias.subElements.length;
+      return this.userTable.length;
     }
   },
   // // FOR AJAX  - NOT WORKING YET

@@ -60,7 +60,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for='(crit, index) in table.header.criterias.subElements'>
+      <tr v-for='(crit, index) in userTable'>
         <td>{{ index+1 }}.</td>
         
         <th  class='text-center'>
@@ -112,7 +112,8 @@ export default {
       },
       editMode: false,
       table: apiData.table,
-      tableData: userData.elements
+      userTable: userData.tableElements,
+      tableData: userData.elements,
     };
   },
   methods: {

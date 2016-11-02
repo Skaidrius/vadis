@@ -117,7 +117,7 @@
     <tr>
       <!--  HEADER 2ND LINE  -->
         <!--  H2 CRITERIAS  -->
-      <td v-for='(crit, index) in table.header.criterias.subElements'>
+      <td v-for='(crit, index) in userTable'>
         
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
@@ -232,7 +232,7 @@
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
           <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name }} &nbsp; {{ table.header.criterias.subElements[index].values[elemIndex].value }}</div>
+            <div class="row">{{ elem.name }} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
@@ -245,7 +245,7 @@
     <tr>
       <th :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='demandCalc.title'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='locales[currentLocale].demandCalc.title'></span>
         
         <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ locales[currentLocale].demandCalc.title }}</span> 
       </th>
@@ -256,7 +256,7 @@
     <tr>
       <td :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='demandCalc.method'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='locales[currentLocale].demandCalc.method'></span>
         
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.method }}</span>
       </td>
@@ -266,7 +266,7 @@
     <tr>
       <th :colspan='getCriteriaslength + 3' class='text-right'>
         
-        <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='demandCalc.description'></span>
+        <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='locales[currentLocale].demandCalc.description'></span>
         
         <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.description }}</span>
       </th>
@@ -274,7 +274,7 @@
       <th class='text-left' colspan='3'>
         
         <span v-if='editMode' >
-          <input class='form-control text-left' placeholder="IA's" v-model='demandCalc.iAuditors'>
+          <input class='form-control text-left' placeholder="IA's" v-model='locales[currentLocale].demandCalc.iAuditors'>
         </span>
         
         <span v-else> {{ locales[currentLocale].demandCalc.iAuditors }}  </span>
@@ -300,6 +300,7 @@ export default {
     return {
       table: apiData.table,
       userData: userData.elements,
+      userTable: userData.tableElements,
       editMode: false,
       showModal: false,
       newRow: { title: '', risks: [] },
@@ -330,7 +331,7 @@ export default {
         );
     },
     getCriteriaslength: function(){
-      return this.table.header.criterias.subElements.length;
+      return this.userTable.length;
     },
     demandCalculated: function(){ 
       return this.daysDemand / 175 / 3;
@@ -359,7 +360,7 @@ export default {
   //     xhr.send();
   //   },
     createDescription: function(idx, idxtwo, val){
-      this.userData[idx].risks[idxtwo].description = this.table.header.criterias.subElements[idxtwo].values[val-1].value;
+      this.userData[idx].risks[idxtwo].description = this.userTable[idxtwo].values[val-1].value;
     },
     getImpSum: function(idx) { // sums up all importance values
       return this.userData[idx].risks.reduce(function(a, item){
@@ -413,7 +414,7 @@ export default {
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Criteria?')) {
-        this.table.header.criterias.subElements.push({ 
+        this.userTable.push({ 
           "title": title, 
           "rate": rate || 1,
           "values": [{ 
@@ -440,7 +441,7 @@ export default {
       }
     },
     removeCriteria: function(el, idx){
-      let elements = this.table.header.criterias.subElements;
+      let elements = this.userTable;
       if (window.confirm('Are you sure you want to delete this criteria?')) {
         elements.splice(idx, 1);
         for (var a of this.userData){
@@ -458,7 +459,7 @@ export default {
       if (window.confirm('Are you sure to write new entry?')) {
         const newTitle = this.newRow.title;
         let newRisks = this.newRow.risks;
-        let elements = this.table.header.criterias.subElements;
+        let elements = this.userTable;
         const table = this.table;
         let getRisks = function(){
         let arr = [];

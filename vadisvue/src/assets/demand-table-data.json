@@ -49,52 +49,7 @@
 						"middle": "Middle",
 						"high": "High"
 					}
-				},
-				"subElements": [{
-					"title": "Workers",
-					"rate": 3,
-					"values": [{
-						"value":"less than (or) 100 workers"
-					},{
-						"value": "101 - 999 workers"
-					},{
-						"value": "1000 and more workers"
-					}],
-					"style": "alert-danger"
-				}, {
-					"title": "Budget",
-					"rate": 1,
-					"values": [{
-						"value":"less than (or) 100 000"
-					},{
-						"value":"100 001 - 9 999 999"
-					},{
-						"value":"10 000 000 or more"
-					}], 
-					"style": "alert-warning"
-				}, {
-					"title": "Garage",
-					"rate": 3,
-					"values": [{
-						"value":"less than 10 cars"
-					},{
-						"value":"10 - 19 cars"
-					},{
-						"value":"20 or more cars"
-					}], 
-					"style": "alert-warning"
-				}, {
-					"title": "Information technologies",
-					"rate": 1,
-					"values": [{
-						"value":"mostly computerized"
-					},{
-						"value":"uses a lot of IT"
-					},{
-						"value":"manual work"
-					}], 
-					"style": "alert-warning"
-				}]
+				}
 			},
 			"importance": {
 				"name": "Importance",
