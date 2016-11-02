@@ -14,7 +14,7 @@
   
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>Risk Table</li></router-link>
-      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Selected Risks</li></router-link>
+      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Risk factors</li></router-link>
     </ul>
   
   <table id="riskTableSelections" class='table table-hover table-striped table-bordered table-condensed text-centerr'>
@@ -104,7 +104,12 @@ export default {
   
   data(){
     return {
-      values: "Values",
+      currentLocale: 'en',
+      locales : [{
+        en: {
+          
+        }
+      }],
       editMode: false,
       table: apiData.table,
       tableData: userData.elements

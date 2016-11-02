@@ -104,7 +104,12 @@ export default {
   
   data(){
     return {
-      values: "Values",
+      currentLocale: 'en',
+      locales: [{
+        en: {
+
+        }
+      }],
       editMode: false,
       table: apiData.table,
       tableData: userData.elements

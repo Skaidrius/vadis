@@ -145,9 +145,9 @@
         <!--  H2 IMPORTANCE  -->
       <td>
         
-          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='range'></span>
+          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='locales[currentLocale].range'></span>
           
-          <span v-else> {{ range }}</span> 
+          <span v-else> {{ locales[currentLocale].range }}</span> 
       </td>
       <td v-for='imp in table.header.importance.subElements'>
         
@@ -247,7 +247,7 @@
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='demandCalc.title'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ demandCalc.title }}</span> 
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ locales[currentLocale].demandCalc.title }}</span> 
       </th>
       <td>{{ daysDemand }}</td>
       <td colspan = '3'></td>
@@ -258,7 +258,7 @@
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='demandCalc.method'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.method }}</span>
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.method }}</span>
       </td>
       <td>{{ demandCalculated.toFixed(2) }}</td>
       <td colspan = '3'></td>
@@ -268,7 +268,7 @@
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='demandCalc.description'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ demandCalc.description }}</span>
+        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ locales[currentLocale].demandCalc.description }}</span>
       </th>
       <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
       <th class='text-left' colspan='3'>
@@ -277,7 +277,7 @@
           <input class='form-control text-left' placeholder="IA's" v-model='demandCalc.iAuditors'>
         </span>
         
-        <span v-else> {{ demandCalc.iAuditors }}  </span>
+        <span v-else> {{ locales[currentLocale].demandCalc.iAuditors }}  </span>
       </th>
     </tr>
   </tfoot>
@@ -305,13 +305,18 @@ export default {
       newRow: { title: '', risks: [] },
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
-      range: 'Range',
       sorted: true,
-      demandCalc: {
-        title: 'Total number of days',
-        method: 'Divide by 3 (years) and 175 (work days)',
-        description: 'IAS demand - CAE and',
-        iAuditors: 'internal auditor (-s)'
+      currentLocale: 'en',
+      locales: {
+        en: {
+          range: 'Range',
+          demandCalc: {
+            title: 'Total number of days',
+            method: 'Divide by 3 (years) and 175 (work days)',
+            description: 'IAS demand - CAE and',
+            iAuditors: 'internal auditor (-s)'
+          }
+        }
       }
     };
   },

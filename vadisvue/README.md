@@ -25,6 +25,7 @@ whole internal control _system should be checked at least once per 3 years_.
                 vue-resource
                 vue-router,
             Webpack 
+            Babel
     Backend: 
         node.js,
         Express

@@ -138,9 +138,9 @@
         <!--  H2 IMPORTANCE  -->
       <td>
         
-          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='range'></span>
+          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='locales[currentLocale].range'></span>
           
-          <span v-else> {{ range }}</span> 
+          <span v-else> {{ locales[currentLocale].range }}</span> 
       </td>
       <td v-for='imp in table.header.importance.subElements'>
         
@@ -245,6 +245,12 @@ export default {
       userData: userData.elements,
       editMode: false,
       showModal: false,
+      currentLocale: 'en',
+      locales: [{
+        en: {
+          range: 'Range'
+        }
+      }],
       newRow: { title: '', risks: [] },
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
