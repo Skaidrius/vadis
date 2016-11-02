@@ -1,68 +1,106 @@
 {
 	"table": {
-		"titles": "Title",
+		"title": { 
+			"en": "Title"
+		},
 		"options": {
 			"risks": [{
-				"name": "Low",
+				"name": {
+					"en": "Low"
+				},
 				"value": 1,
 				"style": "alert-success"
 			}, {
-				"name": "Middle",
+				"name": {
+					"en": "Middle"
+				},
 				"value": 2,
 				"style": "alert-warning"
 			}, {
-				"name": "High",
+				"name": {
+					"en": "High"
+				},
 				"value": 3,
 				"style": "alert-danger"
 			}],
 			"riskRates": {
-				"title": "Ratio",
 				"values": [1, 2, 3]
 			},
 			"importanceValues": [{
-				"name": "Undefined risks",
+				"name": {
+					"en": "Undefined risks"
+				},
 				"days": 0,
 				"style": "default"
 			}, {
-				"name": "Little important",
+				"name": { 
+					"en": "Little important"
+				},
 				"days": 15,
 				"style": "alert-success"
 			}, {
-				"name": "Average important",
+				"name": { 
+					"en": "Average important"
+				},
 				"days": 25,
 				"style": "alert-warning"
 			}, {
-				"name": "Highly important",
+				"name": {
+					"en": "Highly important"
+				},
 				"days": 40,
 				"style": "alert-danger"
 			}]
 		},
 		"header": {
 			"criterias": {
-				"titles": { "criterias" : "Criterias", 
-							"rate": "Ratio"
+				"titles": { 
+					"criterias": {
+						"en": "Criterias"
+					}, 
+					"rate": {
+						"en": "Ratio"
+					}
 				},
 				"items": {
-					"title": "Values",
+					"title": {
+						"en": "Values"
+					},
 					"values": {
-						"low": "Low",
-						"middle": "Middle",
-						"high": "High"
+						"low": {
+							"en": "Low"
+						},
+						"middle": {
+							"en": "Middle"
+						},
+						"high": {
+							"en": "High"
+						}
 					}
 				}
 			},
 			"importance": {
-				"name": "Importance",
+				"name": {
+					"en": "Importance"
+				},
 				"subElements": [{
-					"name": "Total"
+					"name": {
+						"en": "Total"
+					}
 				}, {
-					"name": "Level"
+					"name": {
+						"en": "Level"
+					}
 				}]
 			},
 			"demand": {
-				"name": "Demand",
+				"name": {
+					"en": "Demand"
+				},
 				"subElements": [{
-					"name": "Days"
+					"name": {
+						"en": "Days"
+					}
 				}]
 			}
 		}

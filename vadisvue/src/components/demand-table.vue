@@ -30,11 +30,11 @@
       <th rowspan='2' class='col-xs-2'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.titles' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
+          <input v-model='table.title[currentLocale]' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
         </div>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
-          <a>{{ table.titles }}</a>
+          <a>{{ table.title[currentLocale] }}</a>
         </span> <!-- SORT TITLES -->
       </th>
 
@@ -43,10 +43,10 @@
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
-            <input v-model='table.header.criterias.titles.criterias' class='form-control text-center' placeholder="Criterias">
+            <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control text-center' placeholder="Criterias">
           </div>
           <div class="col-xs-3">
-            <input v-model='table.header.criterias.titles.rate' class='form-control text-center' placeholder="Rate">
+            <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control text-center' placeholder="Rate">
           </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
@@ -92,24 +92,24 @@
         </div>
         
         <span v-else>                                                             <!-- READ MODE -->
-          {{ table.header.criterias.titles.criterias }} <span class='badge pull-right alert-success'>{{table.header.criterias.titles.rate}}</span>
+          {{ table.header.criterias.titles.criterias[currentLocale] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[currentLocale] }}</span>
         </span>
       </td>
 
           <!--  H1 IMPORTANCE  -->
       <td  colspan='3' class='col-xs-2'> 
       
-        <input v-if='editMode' v-model='table.header.importance.name' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.importance.name[currentLocale]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         
-        <span v-else>{{ table.header.importance.name }}</span>                                                            <!-- READ MODE -->
+        <span v-else>{{ table.header.importance.name[currentLocale] }}</span>                                                            <!-- READ MODE -->
       </td>
 
           <!--  H1 DEMAND  --> 
       <td :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
       
-        <input v-if='editMode' v-model='table.header.demand.name' class='form-control  text-center' placeholder='Demand'>  <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.demand.name[currentLocale]' class='form-control  text-center' placeholder='Demand'>  <!-- EDIT MODE -->
         
-        <span v-else>{{ table.header.demand.name }}</span>                                                                 <!-- READ MODE -->
+        <span v-else>{{ table.header.demand.name[currentLocale] }}</span>                                                                 <!-- READ MODE -->
       </td>
       <td rowspan='2'></td>
 
@@ -152,22 +152,22 @@
       <td v-for='imp in table.header.importance.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='imp.name' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
+          <textarea v-model='imp.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
         </div>
         
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
-          <a>{{ imp.name }}</a>
+          <a>{{ imp.name[currentLocale] }}</a>
         </span> 
       </td>
         <!--  H2 DEMAND  -->
       <td v-for='dem in table.header.demand.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='dem.name' rows='3' class='form-control' placeholder='Enter new value'></textarea>
+          <textarea v-model='dem.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea>
         </div>
         
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
-          <a>{{ dem.name }}</a>
+          <a>{{ dem.name[currentLocale] }}</a>
         </span>
       </td>
     </tr>
@@ -193,16 +193,16 @@
         
         <select v-if='editMode' v-model='item.level' class='form-control col-xs=10' > <!-- EDIT MODE --> <!-- @change='createDescription(index, indextwo, item.level)' <---maybe use w/o this, but in json it is good information-->
           <option data-hidden='true' disabled>Pick one...</option>
-          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name }}</option> <!-- TBODY / CRITERIAS-->
+          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name[currentLocale] }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
-        <div v-else>{{ getRiskName(item.level) }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(item.level)[currentLocale] }}</div>                         <!-- READ MODE -->
       </td>
       
       <!-- IMPORTANCE-->
       <td :value='getImpDescr(index)'> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
-      <td :class='el.impValue.style'>{{ el.impValue.name }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
+      <td :class='el.impValue.style'>{{ el.impValue.name[currentLocale] }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
       <!-- DEMAND-->
       <td>{{ el.impValue.days }}</td>                                                         <!-- TBODY / DEMAND DAYS-->
       
@@ -232,7 +232,7 @@
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
           <option data-hidden='true' disabled>Pick one...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name }} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
+            <div class="row">{{ elem.name[currentLocale]}} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
