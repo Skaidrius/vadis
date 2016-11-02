@@ -52,6 +52,7 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] modal creating criterias with description
 
 #### ToDOs:   
+- [ ] localisation
 - [ ] AJAX 
 - [ ] get/write user data                
 
