@@ -105,11 +105,11 @@ export default {
   data(){
     return {
       currentLocale: 'en',
-      locales : [{
+      locales : {
         en: {
           
         }
-      }],
+      },
       editMode: false,
       table: apiData.table,
       tableData: userData.elements

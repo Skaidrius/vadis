@@ -246,15 +246,14 @@ export default {
       editMode: false,
       showModal: false,
       currentLocale: 'en',
-      locales: [{
+      locales: {
         en: {
           range: 'Range'
         }
-      }],
+      },
       newRow: { title: '', risks: [] },
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
-      range: 'Range',
       sorted: true
     };
   },
