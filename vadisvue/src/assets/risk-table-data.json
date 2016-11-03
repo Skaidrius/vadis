@@ -1,24 +1,64 @@
 {
+	"header": {
+		"title": {
+			"en": "Risk selection",
+			"lt": "Rizikingų sričių atranka"
+		},
+		"mode": {
+			"regular": {
+				"en": "regular mode",
+				"lt": "įprasta aplinka"
+			},
+			"edit": {
+				"en": "edit mode",
+				"lt": "redagavimo aplinka"
+			}
+		},
+		"changeModeTo": {
+			"regular": {
+				"en": "Click to enter regular mode",
+				"lt": "Grįžti į įprastą aplinką"
+			},
+			"edit": {
+				"en": "Click to enter edit mode",
+				"lt": "Pasirinkite redagavimo aplinką"
+			}
+		}
+	},
+	"tableNav": {
+		"table": {
+			"en": "Table",
+			"lt": "Lentelė"
+		},
+		"legend": {
+			"en": "Legend",
+			"lt": "Reikšmės"
+		}
+	},
 	"table": {
-		"titles": {
-			"en": "Audit scope"
+		"title": { 
+			"en": "Title",
+			"lt": "Pavadinimas"
 		},
 		"options": {
 			"risks": [{
 				"name": {
-					"en": "Low"
+					"en": "Low",
+					"lt": "Žema"
 				},
 				"value": 1,
 				"style": "alert-success"
 			}, {
 				"name": {
-					"en": "Middle"
+					"en": "Middle",
+					"lt": "Vidutinė"
 				},
 				"value": 2,
 				"style": "alert-warning"
 			}, {
 				"name": {
-					"en":"High"
+					"en":"High",
+					"lt": "Aukšta"
 				},
 				"value": 3,
 				"style": "alert-danger"
@@ -28,71 +68,156 @@
 			},
 			"importanceValues": [{
 				"name": {
-					"en": "Undefined risks"
+					"en": "Undefined risks",
+					"lt": "Nenustatyta"
 				},
 				"days": 0,
 				"style": "default"
 			}, {
 				"name": { 
-					"en": "Little important"
+					"en": "Little important",
+					"lt": "Mažai svarbi"
 				},
 				"days": 15,
 				"style": "alert-success"
 			}, {
 				"name": {
-					"en": "Average important"
+					"en": "Average important",
+					"lt": "Vidutiniškai svarbi"
 				},
 				"days": 25,
 				"style": "alert-warning"
 			}, {
 				"name": {
-					"en": "Highly important"
+					"en": "Highly important",
+					"lt": "Labai svarbi"
 				},
 				"days": 40,
 				"style": "alert-danger"
 			}]
 		},
 		"header": {
-			"criterias": {
-				"titles": { 
-					"criterias": {
-						"en": "Risk factors"
+			"risks": {
+				"title": { 
+					"risks": {
+						"en": "Risk factors",
+						"lt": "Rizikos faktorius"
 					}, 
 					"rate": { 
-						"en":"Ratio"
+						"en":"Rate",
+						"lt": "Lygis"
+					},
+					"range": { 
+						"en":"Range",
+						"lt": "Ribos"
 					}
 				},
 				"items": {
 					"title": {
-						"en": "Values"
+						"en": "Values",
+						"lt": "Reikšmės"
 					},
 					"values": {
 						"low": {
-							"en": "Low"
+							"en": "Low",
+							"lt": "Žema"
 						},
 						"middle": {
-							"en": "Middle"
+							"en": "Middle",
+							"lt": "Vidutinė"
 						},
 						"high": {
-							"en": "High"
+							"en": "High",
+							"lt": "Aukšta"
 						}
 					}
 				}
 			},
 			"importance": {
 				"name": {
-					"en": "Importance"
+					"en": "Importance",
+					"lt": "Svarba"
 				},
 				"subElements": [{
 					"name": {
-						"en": "Total"
+						"en": "Total",
+						"lt": "Viso"
 					}
 				}, {
 					"name": {
-						"en": "Level"
+						"en": "Level",
+						"lt": "Lygis"
 					}
 				}]
 			}
-		}
+		},
+		"functions": {
+          		"search": {
+          			"en": "Search",
+          			"lt": "Ieškoti"
+          		},
+          		"addEntry": {
+          			"en": "Add New Entry",
+          			"lt": "Pridėti įrašą"
+            	},
+          		"addButton": {
+          			"en": "Add",
+          			"lt": "Pridėti"
+            	},
+          		"newEntry": {
+          			"en": "New entry",
+          			"lt": "Naujas įrašas"
+            	},
+          		"pickOne": {
+          			"en": "Pick one",
+          			"lt": "Pasirinkite"
+            	}
+        },
+        "modal": {
+        	"newRisk": {
+        		"en": "New Risk",
+        		"lt": "Nauja Rizika"
+        	},
+        	"riskTitle": {
+        		"en": "Title",
+        		"lt": "Pavad."
+        	},
+        	"riskRate": {
+        		"en": "Rate",
+        		"lt": "Lygis"
+        	},
+        	"riskValues": {
+        		"en": "Risk",
+        		"lt": "Rizika"
+        	},  
+        	"enterTitle": {
+        		"en": "Enter Title",
+        		"lt": "Pavadinimas"
+        	},
+        	"pickOne": {
+        		"en": "Pick on",
+        		"lt": "Pasirinkite"
+        	},
+        	"lowRiskValue": {
+        		"en": "Low risk value",
+        		"lt": "Įveskite mažos rizikos reikšmę"
+        	},
+        	"middleRiskValue": {
+        		"en": "Middle risk value",
+        		"lt": "Įveskite vidutinės rizikos reikšmę"
+        	},
+        	"highRiskValue": {
+        		"en": "High risk value",
+        		"lt": "Įveskite didelės rizikos reikšmę"
+        	},
+        	"saveChanges": {
+        		"en": "Save changes",
+        		"lt": "Išsaugoti"
+        	},
+        	"cancel": {
+        		"en": "Cancel",
+        		"lt": "Atšaukti"
+        	}
+        }
 	}
 }

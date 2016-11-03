@@ -2,89 +2,93 @@
   
   <div>
   
-  <h4>Risk selection table
-    <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
-    <small v-else class='btn-success pull-right'>normal mode</small>
+  <h4>{{ header.title[i18n]  }}
+    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[i18n] }}</small>
+    <small v-else class='btn-success pull-right'>{{ header.mode.regular[i18n] }}</small>
   </h4>
   
 
   <div class='form-inline text-right'>
-    <button v-if='editMode' @click='editMode = false' class='form-control'>Back to read mode</button>
+    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[i18n] }}</button>
   
-    <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
+    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[i18n] }}</button>
+  </div><br/>
+  
+  <div class='form-inline text-right'>
+    <button v-if='i18n == "en"' @click='changeLocaleTo("lt")' class='form-control'>Lt</button>
+  
+    <button v-else @click='changeLocaleTo("en")' class='form-control'>En</button>
   </div><br/>
   
     <ul class="my-tabs nav nav-tabs">
-      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>Risk Table</li></router-link>
-      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>Selected Risks</li></router-link>
+      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
+      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
     </ul>
   
   <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
   <thead>  
     <tr>
-      <!--  HEADER 1ST LINE (H1) -->
+        <!--HEADER 1ST LINE (H1) -->
       <td rowspan='2'></td>
       
-          <!--  H1 ACTIVITY TITLE-->
+            <!--H1 ACTIVITY TITLE-->
       <th rowspan='2' class='col-xs-2'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.titles[currentLocale]' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
+          <input v-model='table.title[i18n]' rows='6' class='form-control text-center' :placeholder="table.title[i18n]"> <!-- EDIT TITLES -->
         </div>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
-          <a>{{ table.titles[currentLocale] }}</a>
+          <a>{{ table.title[i18n] }}</a>
         </span> <!-- SORT TITLES -->
       </th>
 
-          <!--  H1 CRITERIAS  -->
-      <td :colspan='getCriteriaslength' class='text-center col-xs-7' > 
+            <!--H1 RISK FACTORS  -->
+      <td :colspan='getRiskslength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
-            <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control text-center' placeholder="Criterias">
+            <input v-model='table.header.risks.title.risks[i18n]' class='form-control text-center' :placeholder="table.header.risks.title.risks[i18n]">
           </div>
           <div class="col-xs-3">
-            <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control text-center' placeholder="Rate">
+            <input v-model='table.header.risks.title.rate[i18n]' class='form-control text-center' :placeholder="table.header.risks.title.rate[i18n]">
           </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
               <modal v-if="showModal" @close="showModal = false">
-  <!-- use custom content here to overwrite           -->
-                  <h3 slot="header">
-                    New Risk factor
-                  </h3>
+   <!--use custom content here to overwrite           -->
+                  <h3 slot="header">{{ table.modal.newRisk[i18n]}}</h3>
                   <h4 slot='body'>
                     <div class="form-horizontal">
                       <div class='form-group'>
-                        <label class="col-xs-2 control-label">Name:</label>
+                        <label class="col-xs-2 control-label">{{ table.modal.riskTitle[i18n] }}</label>
                         <div class="col-xs-10">
-                          <input v-model='newCrit.title' class='form-control text-center' placeholder="Input name">
+                          <input v-model='newRisk.title' class='form-control text-center' :placeholder="table.modal.enterTitle[i18n]">
                         </div>
                       </div>
                       <div class='form-group'>
-                        <label class="col-xs-2 control-label">Rate:</label>
+                        <label class="col-xs-2 control-label">{{ table.modal.riskRate[i18n] }}</label>
                         <div class="col-xs-10">
-                          <select v-model='newCrit.rate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                            <option data-hidden='true' disabled>Pick one...</option>
+                          <select v-model='newRisk.rate' class="form-control"> <!-- need to change it to show rate when adding new risk factor   -->
+                            <option data-hidden='true' disabled>{{ table.modal.pickOne[i18n] }}</option>
                             <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                           </select>
                         </div>
                       </div>
                       <div class='form-group form-group-last'>
-                        <label class="col-xs-2 control-label"><br> Risk <br> values:</label>
+                        <label class="col-xs-2 control-label">{{  table.modal.riskValues[i18n] }}</label>
                         <div class="col-xs-10">
-                          <input v-model='newCrit.values.low' class='form-control text-center' placeholder="Low risk value">
-                          <input v-model='newCrit.values.middle' class='form-control text-center' placeholder="Middle risk value">
-                          <input v-model='newCrit.values.high' class='form-control text-center' placeholder="High risk value">
+                          <input v-model='newRisk.values.low' class='form-control text-center' :placeholder="table.modal.lowRiskValue[i18n]">
+                          <input v-model='newRisk.values.middle' class='form-control text-center' :placeholder="table.modal.middleRiskValue[i18n]">
+                          <input v-model='newRisk.values.high' class='form-control text-center' :placeholder="table.modal.highRiskValue[i18n]">
                         </div>
                       </div>
                     </div>
                   </h4>
                   <h4 slot='footer'>
-                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCrit.title, newCrit.rate, [newCrit.values.low, newCrit.values.middle, newCrit.values.high]); $emit("close")'>Save changes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="$emit('close')">Cancel</button>
+                    <button type="button" class="btn btn-primary" @click='addnewRiskeria(newRisk.title, newRisk.rate, [newRisk.values.low, newRisk.values.middle, newRisk.values.high]); $emit("close")'>{{ table.modal.saveChanges[i18n] }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="showModal = false">{{ table.modal.cancel[i18n] }}</button>
                   </h4>
             </modal>
             
@@ -92,39 +96,39 @@
         </div>
         
         <span v-else>                                                             <!-- READ MODE -->
-          {{ table.header.criterias.titles.criterias[currentLocale] }} <span class='badge pull-right alert-success'>{{table.header.criterias.titles.rate[currentLocale]}}</span>
+          {{ table.header.risks.title.risks[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.risks.title.rate[i18n] }}</span>
         </span>
       </td>
 
-          <!--  H1 IMPORTANCE  -->
+            <!--H1 IMPORTANCE  -->
       <td  colspan='3' class='col-xs-2'> 
       
-        <input v-if='editMode' v-model='table.header.importance.name[currentLocale]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
+        <input v-if='editMode' v-model='table.header.importance.name[i18n]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         
-        <span v-else>{{ table.header.importance.name[currentLocale] }}</span>                                                            <!-- READ MODE -->
+        <span v-else>{{ table.header.importance.name[i18n] }}</span>                                                            <!-- READ MODE -->
       </td>
 
       <td rowspan='2'></td>
 
     </tr>
     <tr>
-      <!--  HEADER 2ND LINE  -->
-        <!--  H2 CRITERIAS  -->
-      <td v-for='(crit, index) in userTable'>
+        <!--HEADER 2ND LINE  -->
+          <!--H2 RISK FACTORS  -->
+      <td v-for='(risk, index) in userTable'>
         
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
             <td colspan='2'>
-              <button class='form-control btn btn-danger' @click='removeCriteria(crit, index)'>x</button>
+              <button class='form-control btn btn-danger' @click='removeRisk(risk, index)'>x</button>
             </td>
           </tr>
           <tr>
             <td>
-              <input v-model='crit.title' rows='2' @keyup='renameCriteria(index, crit.title)' class='form-control'>
+              <input v-model='risk.title' rows='2' @keyup='renameRisk(index, risk.title)' class='form-control'>
             </td>
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
-                  <select v-model='crit.rate' @change='reRate(index, crit.rate)' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
+                  <select v-model='risk.rate' @change='reRate(index, risk.rate)' class="form-control"> <!-- need to change it to show rate when adding new risk factor   -->
                     <option data-hidden='true'>Pick one...</option>
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
@@ -132,24 +136,23 @@
             </td>
           </tr>
         </table>
-        <span v-else @click='sortByCrit(index)'><a>{{ crit.title }}</a><span class='badge pull-right alert-success'>{{ crit.rate }}</span></span> <!-- READ MODE -->
+        <span v-else @click='sortByRisk(index)'><a>{{ risk.title }}</a><span class='badge pull-right alert-success'>{{ risk.rate }}</span></span> <!-- READ MODE -->
 
       </td> 
-        <!--  H2 IMPORTANCE  -->
+          <!--H2 Risk rate  -->
       <td>
-        
-          <span v-if='editMode'><input class='form-control' placeholder='Range' v-model='locales[currentLocale].range'></span>
+          <textarea v-if='editMode' rows='3' v-model='table.header.risks.title.range[i18n]' class='form-control' :placeholder='table.header.risks.title.range[i18n]'></textarea>
           
-          <span v-else> {{ locales[currentLocale].range }}</span> 
+          <span v-else> {{ table.header.risks.title.range[i18n] }}</span> 
       </td>
       <td v-for='imp in table.header.importance.subElements'>
         
-        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <textarea v-model='imp.name[currentLocale]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
+        <div v-if='editMode'>                                 <!-- EDIT MODE -->
+          <textarea v-model='imp.name[i18n]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
         </div>
         
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
-          <a>{{ imp.name[currentLocale] }}</a>
+          <a>{{ imp.name[i18n] }}</a>
         </span> 
       </td>
 
@@ -160,10 +163,10 @@
     
     <tr v-if='!editMode'>
       <td></td>
-      <td><input v-model="userInput" class="form-control col-xs-4" placeholder="Search"></td> <!-- TBODY / SEARCH-->
-      <td :colspan='getCriteriaslength + 5'></td>
+      <td><input v-model="userInput" class="form-control col-xs-4" :placeholder="table.functions.search[i18n]"></td> <!-- TBODY / SEARCH-->
+      <td :colspan='getRiskslength + 5'></td>
     </tr>
-    <!-- TBODY ROW -->
+     <!--TBODY ROW -->
     <tr v-for='(el, index) in filteredElements'>
       <td>{{ index+1 }}.</td>                                                                <!-- TBODY / INDEX-->
       <td>
@@ -171,21 +174,21 @@
         <div v-else><strong>{{ el.title }}</strong></div>                                     <!-- TBODY / ENTRY TITLE-->
       </td>
       
-      <!-- CRITERIAS -->
+       <!--RISK FACTORS -->
       <td v-for='(item, indextwo) in el.risks' :class='getRiskStyle(item.level) || "alert-default"'>
         
         <select v-if='editMode' v-model='item.level' class='form-control col-xs=10' > <!-- EDIT MODE --> <!-- @change='createDescription(index, indextwo, item.level)' <---maybe use w/o this, but in json it is good information-->
           <option data-hidden='true' disabled>Pick one...</option>
-          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name[currentLocale] }}</option> <!-- TBODY / CRITERIAS-->
+          <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name[i18n] }}</option> <!-- TBODY / RISK FACTORS-->
         </select>
         
-        <div v-else>{{ getRiskName(item.level)[currentLocale] }}</div>                         <!-- READ MODE -->
+        <div v-else>{{ getRiskName(item.level)[i18n] }}</div>                         <!-- READ MODE -->
       </td>
       
-      <!-- IMPORTANCE-->
+       <!--IMPORTANCE-->
       <td :value='getImpDescr(index)'> {{ getRangeMin(index) }} - {{ getRangeMax(index) }} </td>                                        <!-- TBODY / IMPORTANCE / RANGE-->
       <td> {{ getImpSum(index) }}</td>                                                        <!-- TBODY / IMPORTANCE / SUM-->
-      <td :class='el.impValue.style'>{{ el.impValue.name[currentLocale] }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
+      <td :class='el.impValue.style'>{{ el.impValue.name[i18n] }}</td>                              <!-- TBODY / IMPORTANCE / VALUE-->
 
       <td v-if='editMode'>
         <button class='btn btn-danger' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
@@ -198,22 +201,22 @@
     <tr>
       <td></td>
       <td><br>
-        <div>Add new entry</div>
+        <div>{{ table.functions.addEntry[i18n] }}</div>
       </td>
-      <td :colspan='getCriteriaslength + 5'></td>
+      <td :colspan='getRiskslength + 5'></td>
     </tr>
     <tr>
       <th>
-        <button class='form-control' @click='addNewRow()'>Add</button>
+        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[i18n] }}</button>
       </th>
       <td>
-        <input class='form-control' placeholder='New entry' v-model='newRow.title'>
+        <input class='form-control' :placeholder='table.functions.newEntry[i18n]' v-model='newRow.title'>
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option data-hidden='true' disabled>Pick one...</option>
+          <option data-hidden='true' disabled>{{ table.functions.pickOne[i18n] }}...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
-            <div class="row">{{ elem.name[currentLocale] }} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
+            <div class="row">{{ elem.name[i18n] }} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
@@ -221,10 +224,6 @@
     </tr>
   </tbody>
   
-            <!-- TFOOT MODE -->
-  <tfoot class='table table-stripped'>
-  </tfoot>
-
   </table>
 
 <!--<pre>{{ $data.userData }}</pre>  -->
@@ -244,16 +243,13 @@ export default {
       table: apiData.table,
       userTable: userData.tableElements,
       userData: userData.elements,
+      header: apiData.header,
+      tableNav: apiData.tableNav,
       editMode: false,
       showModal: false,
-      currentLocale: 'en',
-      locales: {
-        en: {
-          range: 'Range'
-        }
-      },
+      i18n: 'en',
       newRow: { title: '', risks: [] },
-      newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
+      newRisk: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       sorted: true
     };
@@ -267,7 +263,7 @@ export default {
           .filter(el => el.title.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
         );
     },
-    getCriteriaslength: function(){
+    getRiskslength: function(){
       return this.userTable.length;
     }
   },
@@ -289,7 +285,7 @@ export default {
   //     xhr.send();
   //   },
     createDescription: function(idx, idxtwo, val){
-      this.userData[idx].risks[idxtwo].description = this.table.header.criterias.subElements[idxtwo].values[val-1].value;
+      this.userData[idx].risks[idxtwo].description = this.table.header.risks.subElements[idxtwo].values[val-1].value;
     },
     getImpSum: function(idx) { // sums up all importance values
       return this.userData[idx].risks.reduce(function(a, item){
@@ -335,14 +331,19 @@ export default {
         a.risks[index].rate = newVal;
       }
     },
-    renameCriteria: function(index, newVal){
+    renameRisk: function(index, newVal){
       for (let a of this.userData){
         a.risks[index].title = newVal;
       }
     },
-    // ADD/REMOVE CRITERIAS
-    addNewCriteria: function(title, rate, descriptions){ 
-      if (window.confirm('Are you sure you add this Criteria?')) {
+    //LOCALIZATION i18n
+    changeLocaleTo: function(el){
+      let newLocale = el;
+      return this.i18n=newLocale;
+    },
+    // ADD/REMOVE RISKS
+    addnewRiskeria: function(title, rate, descriptions){ 
+      if (window.confirm('Are you sure you add this Risk Factor?')) {
         this.userTable.push({ 
           "title": title, 
           "rate": rate || 1,
@@ -361,17 +362,17 @@ export default {
             "level": 1 
           });
         }
-        this.newCrit.title = '',
-        this.newCrit.rate = 1,
-        this.newCrit.values.low = '',
-        this.newCrit.values.middle = '',
-        this.newCrit.values.high = '',
+        this.newRisk.title = '',
+        this.newRisk.rate = 1,
+        this.newRisk.values.low = '',
+        this.newRisk.values.middle = '',
+        this.newRisk.values.high = '',
         this.showModal = false;
       }
     },
-    removeCriteria: function(el, idx){
+    removeRisk: function(el, idx){
       let elements = this.userTable;
-      if (window.confirm('Are you sure you want to delete this criteria?')) {
+      if (window.confirm('Are you sure you want to delete this Risk Factor?')) {
         elements.splice(idx, 1);
         for (var a of this.userData){
           a.risks.splice(idx, 1);
@@ -415,7 +416,7 @@ export default {
       this.sorted *=-1;
       return this.userData.sort((a, b) => a.title > b.title ? this.sorted : this.sorted*-1 );
     },
-    sortByCrit: function(index){
+    sortByRisk: function(index){
       this.sorted *=-1;
       return this.userData.sort((a, b) => a.risks[index].level > b.risks[index].level ? this.sorted : this.sorted*-1 );
     },

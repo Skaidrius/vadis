@@ -1,27 +1,28 @@
 <template>
   <div>
 
-  <h4>IAS demand table legends
-    <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
-    <small v-else class='btn-success pull-right'>normal mode</small>
+  <h4>{{ header.title[i18n]  }}
+    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[i18n] }}</small>
+    <small v-else class='btn-success pull-right'>{{ header.mode.regular[i18n] }}</small>
   </h4>
+  
 
   <div class='form-inline text-right'>
-
-    <button v-if='editMode' @click='editMode = false' class='form-control'>Back to read mode</button>
-    <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
+    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[i18n] }}</button>
+  
+    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[i18n] }}</button>
   </div><br/>
   
-    <div class='form-inline text-right'>
-    <button v-if='currentLocale == "en"' @click='changeLocale("lt")' class='form-control'>Lt</button>
+  <div class='form-inline text-right'>
+    <button v-if='i18n == "en"' @click='changeLocaleTo("lt")' class='form-control'>Lt</button>
   
-    <button v-else @click='changeLocale("en")' class='form-control'>En</button>
+    <button v-else @click='changeLocaleTo("en")' class='form-control'>En</button>
   </div><br/>
   
-  <ul class="my-tabs nav nav-tabs">
-    <router-link to="/demand/demand-table"><li class='col-xs-2'>Table</li></router-link>
-    <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
-  </ul>
+    <ul class="my-tabs nav nav-tabs">
+      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
+      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
+    </ul>
   
   <table id="demandTableLegends"class='table table-hover table-striped table-bordered table-condensed text-centerr'>
     <thead>
@@ -33,35 +34,35 @@
           <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
             <tr>
               <th>
-                <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control' :value='table.header.criterias.titles.criterias[currentLocale]'>
+                <input v-model='table.header.criterias.titles.criterias[i18n]' class='form-control' :value='table.header.criterias.titles.criterias[i18n]'>
               </th>
               <th>
-                <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control' :value='table.header.criterias.titles.rate[currentLocale]'>
+                <input v-model='table.header.criterias.titles.rate[i18n]' class='form-control' :value='table.header.criterias.titles.rate[i18n]'>
               </th>
             </tr>
           </table>
-          <span v-else>{{ table.header.criterias.titles.criterias[currentLocale] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[currentLocale] }}</span></span>
+          <span v-else>{{ table.header.criterias.titles.criterias[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[i18n] }}</span></span>
         </th>
         
         <td colspan='3' class='col-xs-9 text-center'>
-          <input v-if='editMode' v-model='table.header.criterias.items.title[currentLocale]' class='form-control' :value='table.header.criterias.items.title[currentLocale]'>
-          <span v-else>{{ table.header.criterias.items.title[currentLocale] }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.title[i18n]' class='form-control' :value='table.header.criterias.items.title[i18n]'>
+          <span v-else>{{ table.header.criterias.items.title[i18n] }}</span>
         </td>
         
       </tr>
       
       <tr class='text-center'>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.low[currentLocale]' class='form-control' :value='table.header.criterias.items.values.low[currentLocale]'>
-          <span v-else>{{ table.header.criterias.items.values.low[currentLocale] }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.low[i18n]' class='form-control' :value='table.header.criterias.items.values.low[i18n]'>
+          <span v-else>{{ table.header.criterias.items.values.low[i18n] }}</span>
         </th>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.middle[currentLocale]' class='form-control' :value='table.header.criterias.items.values.middle[currentLocale]'>
-          <span v-else>{{ table.header.criterias.items.values.middle[currentLocale] }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.middle[i18n]' class='form-control' :value='table.header.criterias.items.values.middle[i18n]'>
+          <span v-else>{{ table.header.criterias.items.values.middle[i18n] }}</span>
         </th>
         <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.high[currentLocale]' class='form-control' :value='table.header.criterias.items.values.high[currentLocale]'>
-          <span v-else>{{ table.header.criterias.items.values.high[currentLocale] }}</span>
+          <input v-if='editMode' v-model='table.header.criterias.items.values.high[i18n]' class='form-control' :value='table.header.criterias.items.values.high[i18n]'>
+          <span v-else>{{ table.header.criterias.items.values.high[i18n] }}</span>
         </th>
       </tr>
     </thead>
@@ -74,7 +75,7 @@
           <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
             <td>
-              <input v-if='editMode' v-model='crit.title' class='form-control' :value='crit.title'>
+              <input v-if='editMode' v-model='crit.title' class='form-control' :value='crit.title' :placeholder='table.functions.newEntry[i18n]'>
             </td>
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
@@ -90,7 +91,7 @@
         </th>
 
         <td v-for='(risk, riskIndex) in crit.values' :class='table.options.risks[riskIndex].style || alert-info'>
-          <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value' placeholder='Enter a new description'>
+          <input v-if='editMode' v-model='risk.value' class='form-control' :value='risk.value' :placeholder='table.functions.addNewDescription[i18n]'>
           <span v-else>{{ risk.value }}</span>
         </td>
 
@@ -110,7 +111,7 @@ export default {
   
   data(){
     return {
-      currentLocale: 'lt',
+      i18n: 'en',
       locales: {
         en: {
 
@@ -119,13 +120,15 @@ export default {
       editMode: false,
       table: apiData.table,
       userTable: userData.tableElements,
-      tableData: userData.elements
+      tableData: userData.elements,
+      header: apiData.header,
+      tableNav: apiData.tableNav,
     };
   },
   methods: {
-    changeLocale: function(el){
+    changeLocaleTo: function(el){
       let newLocale = el;
-      return this.currentLocale=newLocale;
+      return this.i18n=newLocale;
     },
     reRate: function(index, newVal){
       for (let a of this.tableData){
