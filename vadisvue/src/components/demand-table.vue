@@ -58,39 +58,37 @@
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
               <modal v-if="showModal" @close="showModal = false">
   <!-- use custom content here to overwrite           -->
-                  <h3 slot="header">
-                    New criteria
-                  </h3>
+                  <h3 slot="header">{{ table.modal.newCrit[currentLocale] }}</h3>
                   <h4 slot='body'>
                     <div class="form-horizontal">
                       <div class='form-group'>
-                        <label class="col-xs-2 control-label">Name:</label>
+                        <label class="col-xs-2 control-label">{{ table.modal.critTitle[currentLocale] }}</label>
                         <div class="col-xs-10">
-                          <input v-model='newCrit.title' class='form-control text-center' placeholder="Input name">
+                          <input v-model='newCrit.title' class='form-control text-center' :placeholder="table.modal.enterTitle[currentLocale]">
                         </div>
                       </div>
                       <div class='form-group'>
-                        <label class="col-xs-2 control-label">Rate:</label>
+                        <label class="col-xs-2 control-label">{{ table.modal.critRate[currentLocale] }}</label>
                         <div class="col-xs-10">
                           <select v-model='newCrit.rate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                            <option data-hidden='true' disabled>Pick one...</option>
+                            <option data-hidden='true' disabled>{{ table.modal.pickOne[currentLocale] }}</option>
                             <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                           </select>
                         </div>
                       </div>
                       <div class='form-group form-group-last'>
-                        <label class="col-xs-2 control-label"><br> Risk <br> values:</label>
+                        <label class="col-xs-2 control-label"><br>{{ table.modal.critValues[currentLocale] }}</label>
                         <div class="col-xs-10">
-                          <input v-model='newCrit.values.low' class='form-control text-center' placeholder="Low risk value">
-                          <input v-model='newCrit.values.middle' class='form-control text-center' placeholder="Middle risk value">
-                          <input v-model='newCrit.values.high' class='form-control text-center' placeholder="High risk value">
+                          <input v-model='newCrit.values.low' class='form-control text-center' :placeholder="table.modal.lowRiskValue[currentLocale]">
+                          <input v-model='newCrit.values.middle' class='form-control text-center' :placeholder="table.modal.middleRiskValue[currentLocale]">
+                          <input v-model='newCrit.values.high' class='form-control text-center' :placeholder="table.modal.highRiskValue[currentLocale]">
                         </div>
                       </div>
                     </div>
                   </h4>
                   <h4 slot='footer'>
-                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCrit.title, newCrit.rate, [newCrit.values.low, newCrit.values.middle, newCrit.values.high]); $emit("close")'>Save changes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="$emit('close')">Cancel</button>
+                    <button type="button" class="btn btn-primary" @click='addNewCriteria(newCrit.title, newCrit.rate, [newCrit.values.low, newCrit.values.middle, newCrit.values.high]); $emit("close")'>{{ table.modal.saveChanges[currentLocale] }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="showModal = false">{{ table.modal.cancel[currentLocale] }}</button>
                   </h4>
             </modal>
             

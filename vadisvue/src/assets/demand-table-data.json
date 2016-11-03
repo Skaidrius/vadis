@@ -167,6 +167,52 @@
           			"en": "Pick one",
           			"lt": "Pasirinkite"
             	}
+        },
+        "modal": {
+        	"newCrit": {
+        		"en": "New Criteria",
+        		"lt": "Naujas kriterijus"
+        	},
+        	"critTitle": {
+        		"en": "Title",
+        		"lt": "Pavad."
+        	},
+        	"critRate": {
+        		"en": "Rate",
+        		"lt": "Lygis"
+        	},
+        	"critValues": {
+        		"en": "Risk",
+        		"lt": "Rizika"
+        	},  
+        	"enterTitle": {
+        		"en": "Enter Title",
+        		"lt": "Pavadinimas"
+        	},
+        	"pickOne": {
+        		"en": "Pick on",
+        		"lt": "Pasirinkite"
+        	},
+        	"lowRiskValue": {
+        		"en": "Low risk value",
+        		"lt": "Įveskite mažos rizikos reikšmę"
+        	},
+        	"middleRiskValue": {
+        		"en": "Middle risk value",
+        		"lt": "Įveskite vidutinės rizikos reikšmę"
+        	},
+        	"highRiskValue": {
+        		"en": "High risk value",
+        		"lt": "Įveskite didelės rizikos reikšmę"
+        	},
+        	"saveChanges": {
+        		"en": "Save changes",
+        		"lt": "Išsaugoti"
+        	},
+        	"cancel": {
+        		"en": "Cancel",
+        		"lt": "Atšaukti"
+        	}
         }
 		
 	}
