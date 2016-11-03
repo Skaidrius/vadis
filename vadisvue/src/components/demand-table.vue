@@ -71,7 +71,7 @@
                         <label class="col-xs-2 control-label">{{ table.modal.critRate[i18n] }}</label>
                         <div class="col-xs-10">
                           <select v-model='newCrit.rate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                            <option data-hidden='true' disabled>{{ table.modal.pickOne[i18n] }}</option>
+                            <option disabled>{{ table.modal.pickOne[i18n] }}</option>
                             <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                           </select>
                         </div>
@@ -136,7 +136,7 @@
             <td>
               <span class="input-group">                                 <!-- EDIT MODE -->
                   <select v-model='crit.rate' @change='reRate(index, crit.rate)' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                    <option data-hidden='true'>Pick one...</option>
+                    <option disabled>{{ table.modal.pickOne[i18n] }}</option>
                     <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                   </select>
               </span>
@@ -191,7 +191,7 @@
       <td v-for='(item, indextwo) in el.risks' :class='getRiskStyle(item.level) || "alert-default"'>
         
         <select v-if='editMode' v-model='item.level' class='form-control col-xs=10' > <!-- EDIT MODE --> <!-- @change='createDescription(index, indextwo, item.level)' <---maybe use w/o this, but in json it is good information-->
-          <option data-hidden='true' disabled>Pick one...</option>
+          <option disabled>{{ table.modal.pickOne[i18n] }}</option>
           <option  v-for='elem in table.options.risks' :value= 'elem.value'>{{ elem.name[i18n] }}</option> <!-- TBODY / CRITERIAS-->
         </select>
         
@@ -229,7 +229,7 @@
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
-          <option data-hidden='true' disabled>{{ table.functions.pickOne[i18n] }}...</option>
+          <option disabled>{{ table.functions.pickOne[i18n] }}...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
             <div class="row">{{ elem.name[i18n]}} &nbsp; {{ userTable[index].values[elemIndex].value }}</div>
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->

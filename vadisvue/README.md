@@ -51,8 +51,9 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] removeRow drops error trying remove last element    
 - [x] modal creating criterias with description
 
+- [x] localization - 2 languages (English, Lithuanian)
+
 #### ToDOs:   
-- [ ] localisation
 - [ ] AJAX 
 - [ ] get/write user data                
 
