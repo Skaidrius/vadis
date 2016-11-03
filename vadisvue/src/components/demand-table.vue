@@ -2,16 +2,16 @@
   
   <div>
   
-  <h4>IAS demand table
-    <small v-if='editMode' class='btn-danger pull-right'>edit mode</small>
-    <small v-else class='btn-success pull-right'>normal mode</small>
+  <h4>{{ header.title[currentLocale]  }}
+    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[currentLocale] }}</small>
+    <small v-else class='btn-success pull-right'>{{ header.mode.regular[currentLocale] }}</small>
   </h4>
   
 
   <div class='form-inline text-right'>
-    <button v-if='editMode' @click='editMode = false' class='form-control'>Back to read mode</button>
+    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[currentLocale] }}</button>
   
-    <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
+    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[currentLocale] }}</button>
   </div><br/>
   
   <div class='form-inline text-right'>
@@ -21,8 +21,8 @@
   </div><br/>
   
     <ul class="my-tabs nav nav-tabs">
-      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>Table</li></router-link>
-      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
+      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[currentLocale] }}</li></router-link>
+      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>{{ tableNav.legend[currentLocale] }}</li></router-link>
     </ul>
   
   <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
@@ -36,7 +36,7 @@
       <th rowspan='2' class='col-xs-2'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
-          <input v-model='table.title[currentLocale]' rows='6' class='form-control text-center' placeholder="Title"> <!-- EDIT TITLES -->
+          <input v-model='table.title[currentLocale]' rows='6' class='form-control text-center' :placeholder="table.title[currentLocale]"> <!-- EDIT TITLES -->
         </div>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
@@ -49,10 +49,10 @@
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
-            <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control text-center' placeholder="Criterias">
+            <input v-model='table.header.criterias.titles.criterias[currentLocale]' class='form-control text-center' :placeholder="table.header.criterias.titles.criterias[currentLocale]">
           </div>
           <div class="col-xs-3">
-            <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control text-center' placeholder="Rate">
+            <input v-model='table.header.criterias.titles.rate[currentLocale]' class='form-control text-center' :placeholder="table.header.criterias.titles.rate[currentLocale]">
           </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
@@ -297,7 +297,9 @@ import Modal from './demand-crit-modal-component.vue';
 export default {
   data(){
     return {
+      header: apiData.header,
       table: apiData.table,
+      tableNav: apiData.tableNav,
       userData: userData.elements,
       userTable: userData.tableElements,
       editMode: false,

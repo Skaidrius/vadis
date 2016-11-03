@@ -1,4 +1,40 @@
-{
+{	
+	"header": {
+		"title": {
+			"en": "IAS demand table",
+			"lt": "Vidaus audito poreikio apskaičiavimas"
+		},
+		"mode": {
+			"regular": {
+				"en": "regular mode",
+				"lt": "įprasta aplinka"
+			},
+			"edit": {
+				"en": "edit mode",
+				"lt": "redagavimo aplinka"
+			}
+		},
+		"changeModeTo": {
+			"regular": {
+				"en": "Click to enter regular mode",
+				"lt": "Grįžti į įprastą aplinką"
+			},
+			"edit": {
+				"en": "Click to enter edit mode",
+				"lt": "Pasirinkite redagavimo aplinką"
+			}
+		}
+	},
+	"tableNav": {
+		"table": {
+			"en": "Table",
+			"lt": "Lentelė"
+		},
+		"legend": {
+			"en": "Legend",
+			"lt": "Reikšmės"
+		}
+	},
 	"table": {
 		"title": { 
 			"en": "Title",
@@ -68,7 +104,7 @@
 						"lt": "Kriterijai"
 					}, 
 					"rate": {
-						"en": "Ratio",
+						"en": "Rate",
 						"lt": "Lygis"
 					}
 				},
@@ -123,7 +159,7 @@
 				"subElements": [{
 					"name": {
 						"en": "Days",
-						"lt": "Dienos"
+						"lt": "Dienomis"
 					}
 				}]
 			},
