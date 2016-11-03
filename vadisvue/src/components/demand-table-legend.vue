@@ -12,6 +12,12 @@
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
   </div><br/>
   
+    <div class='form-inline text-right'>
+    <button v-if='currentLocale == "en"' @click='changeLocale("lt")' class='form-control'>Lt</button>
+  
+    <button v-else @click='changeLocale("en")' class='form-control'>En</button>
+  </div><br/>
+  
   <ul class="my-tabs nav nav-tabs">
     <router-link to="/demand/demand-table"><li class='col-xs-2'>Table</li></router-link>
     <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
@@ -117,6 +123,10 @@ export default {
     };
   },
   methods: {
+    changeLocale: function(el){
+      let newLocale = el;
+      return this.currentLocale=newLocale;
+    },
     reRate: function(index, newVal){
       for (let a of this.tableData){
         a.risks[index].rate = newVal;

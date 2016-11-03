@@ -14,6 +14,12 @@
     <button v-else @click='editMode = true' class='form-control'>Click to enter Edit mode</button>
   </div><br/>
   
+  <div class='form-inline text-right'>
+    <button v-if='currentLocale == "en"' @click='changeLocale("lt")' class='form-control'>Lt</button>
+  
+    <button v-else @click='changeLocale("en")' class='form-control'>En</button>
+  </div><br/>
+  
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>Table</li></router-link>
       <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>Legend</li></router-link>
@@ -302,7 +308,7 @@ export default {
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       sorted: true,
-      currentLocale: 'lt',
+      currentLocale: 'en'
     };
   },
   components: {
@@ -394,6 +400,11 @@ export default {
       for (let a of this.userData){
         a.risks[index].title = newVal;
       }
+    },
+    // locales
+    changeLocale: function(el){
+      let newLocale = el;
+      return this.currentLocale=newLocale;
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(title, rate, descriptions){ 
