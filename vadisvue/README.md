@@ -11,25 +11,23 @@
 whole internal control _system should be checked at least once per 3 years_.
 5. *Risk factors/Demand risk analysis* criterias and audit scope entries could be _added/modified/removed_
 6. *Read mode* and *Edit (edit whole table entries, languages etc...)* modes
+7. Select between *two languages En/Lt*
 
 
 #### used techniques and technologies: 
     Frontend: 
-        html - html5,
-        CSS - CSS 3,
+        html,
+        CSS,
             frameworks:
                 Bootstrap 3,
-        Javascript - ES6, 
+        Javascript - ES6/ES2015(Babel), 
             frameworks:
-                vue.js
-                vue-resource
-                vue-router,
+                vue.js,
             Webpack 
-            Babel
     Backend: 
         node.js,
         Express
-        Json
+        JSON
 
 
 #### Done: 
@@ -41,8 +39,9 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] view mode / edit mode                               
 - [x] removeRow drops error trying remove last element    
 - [x] modal creating risk factors with description
+  - [ ] modal needs restyling
 
-- [ ] Risk selection
+- [ ] Risk Selection
 - [x] add/remove risk factors                             
 - [x] add/remove entries                                  
 - [x] search entries                                      
@@ -52,6 +51,22 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] modal creating criterias with description
 
 - [x] localization - 2 languages (English, Lithuanian)
+  - [ ] looking for simple vue solution with dictionary
+  - 
+- [ ] IA Recomendations Progress Monitoring
+- [ ] Callendar
+- [ ] Reminder
+- [ ] Status
+- [ ] add/remove criterias                                
+- [ ] add/remove entries                                  
+- [ ] search entries                                      
+- [ ] sort data by table header                           
+- [ ] view mode / edit mode                               
+
+- [ ] IA Strategy
+
+- [ ] IA annual planning 
+
 
 #### ToDOs:   
 - [ ] AJAX 

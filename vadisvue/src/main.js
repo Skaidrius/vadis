@@ -7,12 +7,15 @@ import RiskTableSelections from './components/risk-table-selections.vue';
 import RiskTable from './components/risk-table.vue';
 import Demand from './components/demand.vue';
 import DemandTable from './components/demand-table.vue';
-import DemandTableLegend from './components/demand-table-legend.vue';
+import DemandTableSelections from './components/demand-table-selections.vue';
 
 const App = Vue.extend(require('./App.vue'));
 
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+
+global.jQuery = require('jquery');
+require("bootstrap-webpack");
 
 // We want to apply VueResource and VueRouter
 // to our Vue instance
@@ -21,7 +24,6 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [
-    // { path: '/ias-demand', component: Demand },
     { path: '/front', component: FrontPage },
     { path: '/risk', component: RiskSelection, 
       children: [{ 
@@ -38,7 +40,7 @@ const router = new VueRouter({
       }, { 
         path: 'demand-table', component: DemandTable 
       }, { 
-        path: 'demand-table-legend', component: DemandTableLegend 
+        path: 'demand-table-legend', component: DemandTableSelections
       }]
     },
     { path: '*', redirect: '/demand' },

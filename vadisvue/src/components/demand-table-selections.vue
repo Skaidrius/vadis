@@ -1,44 +1,42 @@
 <template>
   <div>
 
-  <h4>{{ header.title[i18n]  }}
-    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[i18n] }}</small>
-    <small v-else class='btn-success pull-right'>{{ header.mode.regular[i18n] }}</small>
-  </h4>
-  
-
+   <!--control buttons-->
   <div class='form-inline text-right'>
-    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[i18n] }}</button>
-  
-    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[i18n] }}</button>
+    <small>
+      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+    </small><br>
+    
+    <button class='form-control'>
+      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
+      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
+    </button>
+    
+    <button class='form-control'>
+      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
+      <span v-else @click='changeLocaleTo("en")'>En</span>
+    </button>
   </div><br/>
   
-  <div class='form-inline text-right'>
-    <button v-if='i18n == "en"' @click='changeLocaleTo("lt")' class='form-control'>Lt</button>
-  
-    <button v-else @click='changeLocaleTo("en")' class='form-control'>En</button>
-  </div><br/>
-  
+  <nav>
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
+      <router-link to="/demand/demand-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
     </ul>
-  
+  </nav>
+  <!--.--- control buttons-->
+    
+  <!--DEMAND LEGENDS TABLE-->
   <table id="demandTableLegends"class='table table-hover table-striped table-bordered table-condensed text-centerr'>
-    <thead>
-      <tr>
-        <th :rowspan='2' class='col-xs-1'></th>
-        
-        <th :rowspan='2' class='col-xs-2'>
-        
-          <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
+    <thead class="row">
+      <tr class='text-center row'>
+        <!--<th :rowspan='2' class='col-xs-1'></th>-->
+        <th :rowspan='2' class='text-center'>
+          <table v-if='editMode' class='table insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
             <tr>
-              <th>
-                <input v-model='table.header.criterias.titles.criterias[i18n]' class='form-control' :value='table.header.criterias.titles.criterias[i18n]'>
-              </th>
-              <th>
-                <input v-model='table.header.criterias.titles.rate[i18n]' class='form-control' :value='table.header.criterias.titles.rate[i18n]'>
-              </th>
+              <th><input v-model='table.header.criterias.titles.criterias[i18n]' class='form-control' :value='table.header.criterias.titles.criterias[i18n]'></th>
+              <th><input v-model='table.header.criterias.titles.rate[i18n]' class='form-control' :value='table.header.criterias.titles.rate[i18n]'></th>
             </tr>
           </table>
           <span v-else>{{ table.header.criterias.titles.criterias[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[i18n] }}</span></span>
@@ -50,22 +48,15 @@
         </td>
         
       </tr>
-      
-      <tr class='text-center'>
-        <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.low[i18n]' class='form-control' :value='table.header.criterias.items.values.low[i18n]'>
-          <span v-else>{{ table.header.criterias.items.values.low[i18n] }}</span>
-        </th>
-        <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.middle[i18n]' class='form-control' :value='table.header.criterias.items.values.middle[i18n]'>
-          <span v-else>{{ table.header.criterias.items.values.middle[i18n] }}</span>
-        </th>
-        <th>
-          <input v-if='editMode' v-model='table.header.criterias.items.values.high[i18n]' class='form-control' :value='table.header.criterias.items.values.high[i18n]'>
-          <span v-else>{{ table.header.criterias.items.values.high[i18n] }}</span>
+
+      <tr class='text-center row'>
+        <th v-for="val in table.header.criterias.items.values" class="col-xs-3 text-center">
+          <input v-if='editMode' v-model='val[i18n]' class='form-control' :value='val[i18n]'>
+          <span v-else>{{ val[i18n] }}</span>
         </th>
       </tr>
     </thead>
+
     <tbody>
       <tr v-for='(crit, index) in userTable'>
         <td>{{ index+1 }}.</td>
@@ -112,11 +103,6 @@ export default {
   data(){
     return {
       i18n: 'en',
-      locales: {
-        en: {
-
-        }
-      },
       editMode: false,
       table: apiData.table,
       userTable: userData.tableElements,
@@ -130,9 +116,9 @@ export default {
       let newLocale = el;
       return this.i18n=newLocale;
     },
-    reRate: function(index, newVal){
+    reRate: function(idx, newVal){
       for (let a of this.tableData){
-        a.risks[index].rate = newVal;
+        a.risks[idx].rate = newVal;
       }
     }
   }

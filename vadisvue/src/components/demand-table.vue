@@ -1,29 +1,32 @@
 <template>
   
   <div>
-  
-  <h4>{{ header.title[i18n]  }}
-    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[i18n] }}</small>
-    <small v-else class='btn-success pull-right'>{{ header.mode.regular[i18n] }}</small>
-  </h4>
-  
 
+  <!--control buttons-->
   <div class='form-inline text-right'>
-    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[i18n] }}</button>
-  
-    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[i18n] }}</button>
+    <small>
+      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+    </small><br>
+    
+    <button class='form-control'>
+      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
+      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
+    </button>
+    
+    <button class='form-control'>
+      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
+      <span v-else @click='changeLocaleTo("en")'>En</span>
+    </button>
   </div><br/>
   
-  <div class='form-inline text-right'>
-    <button v-if='i18n == "en"' @click='changeLocaleTo("lt")' class='form-control'>Lt</button>
-  
-    <button v-else @click='changeLocaleTo("en")' class='form-control'>En</button>
-  </div><br/>
-  
+  <nav>
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/demand/demand-table-legend"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
+      <router-link to="/demand/demand-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
     </ul>
+  </nav>
+  <!--.--- control buttons-->
   
   <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
@@ -213,6 +216,8 @@
         <button class='btn btn-default' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
       </td>
     </tr>
+    
+    <!--ADD NEW ENTRY-->
     <tr>
       <td></td>
       <td><br>
@@ -221,11 +226,9 @@
       <td :colspan='getCriteriaslength + 5'></td>
     </tr>
     <tr>
-      <th>
-        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[i18n] }}</button>
-      </th>
+      <th></th>
       <td>
-        <input class='form-control' :placeholder='table.functions.newEntry[i18n]' v-model='newRow.title'>
+        <input class='form-control' :placeholder='table.functions.newTitle[i18n]' v-model='newRow.title'>
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
@@ -235,7 +238,9 @@
             </option>  <!-- INSTEAD OF NOME NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
-      <td colspan='5'></td>
+      <td colspan='5'>
+        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[i18n] }}</button>
+      </td>
     </tr>
   </tbody>
   

@@ -199,6 +199,10 @@
           			"en": "New entry",
           			"lt": "Naujas įrašas"
             	},
+            	 "newTitle": {
+          			"en": "Title",
+          			"lt": "Pavadinimas"
+            	},
           		"pickOne": {
           			"en": "Pick one",
           			"lt": "Pasirinkite"

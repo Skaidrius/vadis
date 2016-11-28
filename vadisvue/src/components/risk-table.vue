@@ -1,39 +1,43 @@
 <template>
-  
   <div>
   
-  <h4>{{ header.title[i18n]  }}
-    <small v-if='editMode' class='btn-danger pull-right'>{{ header.mode.edit[i18n] }}</small>
-    <small v-else class='btn-success pull-right'>{{ header.mode.regular[i18n] }}</small>
-  </h4>
-  
-
+    <!--control buttons-->
   <div class='form-inline text-right'>
-    <button v-if='editMode' @click='editMode = false' class='form-control'>{{ header.changeModeTo.regular[i18n] }}</button>
-  
-    <button v-else @click='editMode = true' class='form-control'>{{ header.changeModeTo.edit[i18n] }}</button>
+    <small>
+      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+    </small><br>
+    
+    <button class='form-control'>
+      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
+      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
+    </button>
+    
+    <button class='form-control'>
+      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
+      <span v-else @click='changeLocaleTo("en")'>En</span>
+    </button>
   </div><br/>
   
-  <div class='form-inline text-right'>
-    <button v-if='i18n == "en"' @click='changeLocaleTo("lt")' class='form-control'>Lt</button>
-  
-    <button v-else @click='changeLocaleTo("en")' class='form-control'>En</button>
-  </div><br/>
-  
+  <nav>
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
       <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
     </ul>
+  </nav>
+  <!--.--- control buttons-->
   
+  <!--risk table-->
   <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
-  <thead>  
-    <tr>
+  <!--HEADER-->
+  <thead class="row">  
+    <tr >
         <!--HEADER 1ST LINE (H1) -->
       <td rowspan='2'></td>
       
-            <!--H1 ACTIVITY TITLE-->
-      <th rowspan='2' class='col-xs-2'> 
+      <!--H1 ACTIVITY TITLE-->
+      <th rowspan='2' class='col-xs-2 text-center'> 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <input v-model='table.title[i18n]' rows='6' class='form-control text-center' :placeholder="table.title[i18n]"> <!-- EDIT TITLES -->
@@ -44,20 +48,23 @@
         </span> <!-- SORT TITLES -->
       </th>
 
-            <!--H1 RISK FACTORS  -->
+      <!--H1 RISK FACTORS  -->
       <td :colspan='getRiskslength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+          <!--risks and rate EDIT mode-->
           <div class='col-xs-9'>
             <input v-model='table.header.risks.title.risks[i18n]' class='form-control text-center' :placeholder="table.header.risks.title.risks[i18n]">
           </div>
           <div class="col-xs-3">
             <input v-model='table.header.risks.title.rate[i18n]' class='form-control text-center' :placeholder="table.header.risks.title.rate[i18n]">
           </div>
+          
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
+              
+              <!--MODAL-->
               <modal v-if="showModal" @close="showModal = false">
-   <!--use custom content here to overwrite           -->
                   <h3 slot="header">{{ table.modal.newRisk[i18n]}}</h3>
                   <h4 slot='body'>
                     <div class="form-horizontal">
@@ -102,9 +109,7 @@
 
             <!--H1 IMPORTANCE  -->
       <td  colspan='3' class='col-xs-2'> 
-      
         <input v-if='editMode' v-model='table.header.importance.name[i18n]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
-        
         <span v-else>{{ table.header.importance.name[i18n] }}</span>                                                            <!-- READ MODE -->
       </td>
 
@@ -159,6 +164,7 @@
     </tr>
   </thead>
 
+  <!--BODY-->
   <tbody>
     
     <tr v-if='!editMode'>
@@ -198,6 +204,9 @@
         <button class='btn btn-default' @click='removeRow(index)'>X</button>                   <!-- TBODY / REMOVE ENTRY BUTTON -->
       </td>
     </tr>
+    
+    
+    <!--NEW ENTRY-->
     <tr>
       <td></td>
       <td><br>
@@ -206,11 +215,9 @@
       <td :colspan='getRiskslength + 5'></td>
     </tr>
     <tr>
-      <th>
-        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[i18n] }}</button>
-      </th>
+      <th></th>
       <td>
-        <input class='form-control' :placeholder='table.functions.newEntry[i18n]' v-model='newRow.title'>
+        <input class='form-control' :placeholder='table.functions.newTitle[i18n]' v-model='newRow.title'>
       </td>
       <td v-for='(el, index) in userData[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
@@ -220,7 +227,9 @@
           </option>  <!-- INSTEAD OF NUM NEED DESCRIPTION OF RISK VALUES  -->
         </select>
       </td>
-      <td colspan='5'></td>
+      <th colspan = '4'>
+        <button class='form-control' @click='addNewRow()'>{{ table.functions.addButton[i18n] }}</button>
+      </th>
     </tr>
   </tbody>
   
