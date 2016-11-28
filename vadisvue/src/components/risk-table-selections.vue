@@ -103,7 +103,8 @@
 
 <script>
 const apiData = require('../assets/risk-table-data.json');
-const userData = require('../assets/risk-user-data.json');
+// const userData = require('../assets/risk-user-data.json');
+const userData = require('../assets/user-data.json');
 
 export default {
   
@@ -112,8 +113,10 @@ export default {
       i18n: 'en',
       editMode: false,
       table: apiData.table,
-      userTable: userData.tableElements,
-      tableData: userData.elements,
+      // userTable: userData.tableElements,
+      userTable: userData.risksTable.tableElements,
+      // tableData: userData.elements,
+      tableData: userData.risksTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
     };

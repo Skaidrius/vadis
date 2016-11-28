@@ -243,15 +243,18 @@
 
 <script>
 const apiData = require('../assets/risk-table-data.json');
-const userData = require('../assets/risk-user-data.json');
+// const userData = require('../assets/risk-user-data.json');
+const userData = require('../assets/user-data.json');
 import Modal from './modal-component.vue';
 
 export default {
   data(){
     return {
       table: apiData.table,
-      userTable: userData.tableElements,
-      userData: userData.elements,
+      userTable: userData.risksTable.tableElements,
+      // userTable: userData.tableElements,
+      userData: userData.risksTable.elements,
+      // userData: userData.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
       editMode: false,

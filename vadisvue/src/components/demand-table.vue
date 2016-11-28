@@ -48,7 +48,7 @@
       </th>
 
           <!--  H1 CRITERIAS  -->
-      <td :colspan='getCriteriaslength' class='text-center col-xs-7' > 
+      <td :colspan='getCriteriasLength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
@@ -180,7 +180,7 @@
     <tr v-if='!editMode'>
       <td></td>
       <td><input v-model="userInput" class="form-control col-xs-4" :placeholder="table.functions.search[i18n]"></td> <!-- TBODY / SEARCH-->
-      <td :colspan='getCriteriaslength + 5'></td>
+      <td :colspan='getCriteriasLength + 5'></td>
     </tr>
     <!-- TBODY ROW -->
     <tr v-for='(el, index) in filteredElements'>
@@ -223,7 +223,7 @@
       <td><br>
         <div>{{ table.functions.addEntry[i18n] }}</div>
       </td>
-      <td :colspan='getCriteriaslength + 5'></td>
+      <td :colspan='getCriteriasLength + 5'></td>
     </tr>
     <tr>
       <th></th>
@@ -247,32 +247,32 @@
             <!-- TFOOT MODE -->
   <tfoot class='table table-stripped'>
     <tr>
-      <th :colspan='getCriteriaslength + 3' class='text-right'>
+      <th :colspan='getCriteriasLength + 3' class='text-right'>
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Title' v-model='table.header.demandCalc.title[i18n]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'> {{ table.header.demandCalc.title[i18n] }}</span> 
+        <span v-else :colspan='getCriteriasLength +3' class='text-right'> {{ table.header.demandCalc.title[i18n] }}</span> 
       </th>
       <td>{{ daysDemand }}</td>
       <td colspan = '3'></td>
 
     </tr>
     <tr>
-      <td :colspan='getCriteriaslength + 3' class='text-right'>
+      <td :colspan='getCriteriasLength + 3' class='text-right'>
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Method' v-model='table.header.demandCalc.method[i18n]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ table.header.demandCalc.method[i18n] }}</span>
+        <span v-else :colspan='getCriteriasLength +3' class='text-right'>{{ table.header.demandCalc.method[i18n] }}</span>
       </td>
       <td>{{ demandCalculated.toFixed(2) }}</td>
       <td colspan = '3'></td>
     </tr>
     <tr>
-      <th :colspan='getCriteriaslength + 3' class='text-right'>
+      <th :colspan='getCriteriasLength + 3' class='text-right'>
         
         <span v-if='editMode'><input class='form-control text-right' placeholder='Description' v-model='table.header.demandCalc.description[i18n]'></span>
         
-        <span v-else :colspan='getCriteriaslength +3' class='text-right'>{{ table.header.demandCalc.description[i18n] }}</span>
+        <span v-else :colspan='getCriteriasLength +3' class='text-right'>{{ table.header.demandCalc.description[i18n] }}</span>
       </th>
       <td class='text-center'> {{demandCalculated.toFixed(0) }} </td>
       <th class='text-left' colspan='3'>
@@ -296,7 +296,8 @@
 
 <script>
 const apiData = require('../assets/demand-table-data.json');
-const userData = require('../assets/demand-user-data.json');
+// const userData = require('../assets/demand-user-data.json');
+const userData = require('../assets/user-data.json');
 import Modal from './modal-component.vue';
 
 export default {
@@ -305,8 +306,10 @@ export default {
       header: apiData.header,
       tableNav: apiData.tableNav,
       table: apiData.table,
-      userData: userData.elements,
-      userTable: userData.tableElements,
+      // userTable: userData.tableElements,
+      userTable: userData.demandTable.tableElements,
+      // userData: userData.elements,
+      userData: userData.demandTable.elements,
       editMode: false,
       showModal: false,
       newRow: { title: '', risks: [] },
@@ -325,7 +328,7 @@ export default {
           .filter(el => el.title.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
         );
     },
-    getCriteriaslength: function(){
+    getCriteriasLength: function(){
       return this.userTable.length;
     },
     demandCalculated: function(){ 

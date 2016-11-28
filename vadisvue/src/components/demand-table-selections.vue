@@ -96,7 +96,8 @@
 
 <script>
 const apiData = require('../assets/demand-table-data.json');
-const userData = require('../assets/demand-user-data.json');
+// const userData = require('../assets/demand-user-data.json');
+const userData = require('../assets/user-data.json');
 
 export default {
   
@@ -105,8 +106,11 @@ export default {
       i18n: 'en',
       editMode: false,
       table: apiData.table,
-      userTable: userData.tableElements,
-      tableData: userData.elements,
+      
+      // userTable: userData.tableElements,
+      userTable: userData.demandTable.tableElements,
+      // userTableData: userData.elements,
+      userTableData: userData.demandTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
     };
@@ -117,7 +121,7 @@ export default {
       return this.i18n=newLocale;
     },
     reRate: function(idx, newVal){
-      for (let a of this.tableData){
+      for (let a of this.userTableData){
         a.risks[idx].rate = newVal;
       }
     }
