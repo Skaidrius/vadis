@@ -1,10 +1,11 @@
 <template id="modal-template">
-   <transition name="modal" role="dialog">
-    <div class="modal-mask modal-dialog" role="document">
+   <transition name="modal">
+    <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container ">
+          
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')"><span aria-hidden="true">&times;</span></button>
+            <button class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')"><span aria-hidden="true">&times;</span></button>
             <slot name="header" class='modal-title'>
               default header
             </slot>
@@ -29,8 +30,7 @@
 
 <script>
     import Vue from 'vue';
-    const apiData = require('../assets/demand-table-data.json');
-    
+
     // register modal component
     Vue.component('Modal', {
       template: '#modal-template'

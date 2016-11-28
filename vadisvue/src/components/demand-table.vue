@@ -297,7 +297,7 @@
 <script>
 const apiData = require('../assets/demand-table-data.json');
 const userData = require('../assets/demand-user-data.json');
-import Modal from './demand-crit-modal-component.vue';
+import Modal from './modal-component.vue';
 
 export default {
   data(){

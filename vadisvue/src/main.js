@@ -2,9 +2,11 @@ import Vue from 'vue';
 // import App from './App.vue';
 // import Demand from './components/ias-demand.vue';
 import FrontPage from './components/front-page.vue';
+
 import RiskSelection from './components/risk-selection.vue';
 import RiskTableSelections from './components/risk-table-selections.vue';
 import RiskTable from './components/risk-table.vue';
+
 import Demand from './components/demand.vue';
 import DemandTable from './components/demand-table.vue';
 import DemandTableSelections from './components/demand-table-selections.vue';
@@ -40,7 +42,7 @@ const router = new VueRouter({
       }, { 
         path: 'demand-table', component: DemandTable 
       }, { 
-        path: 'demand-table-legend', component: DemandTableSelections
+        path: 'demand-table-selections', component: DemandTableSelections
       }]
     },
     { path: '*', redirect: '/demand' },

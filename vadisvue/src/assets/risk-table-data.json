@@ -16,12 +16,12 @@
 		},
 		"changeModeTo": {
 			"regular": {
-				"en": "Click to enter regular mode",
+				"en": "Enter regular mode",
 				"lt": "Grįžti į įprastą aplinką"
 			},
 			"edit": {
-				"en": "Click to enter edit mode",
-				"lt": "Pasirinkite redagavimo aplinką"
+				"en": "Enter edit mode",
+				"lt": "Redagavimo aplinka"
 			}
 		}
 	},

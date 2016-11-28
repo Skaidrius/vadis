@@ -39,7 +39,6 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] view mode / edit mode                               
 - [x] removeRow drops error trying remove last element    
 - [x] modal creating risk factors with description
-  - [ ] modal needs restyling
 
 - [ ] Risk Selection
 - [x] add/remove risk factors                             
