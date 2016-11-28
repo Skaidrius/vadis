@@ -31,10 +31,10 @@
   <table id="riskTableSelections" class='table table-hover table-striped table-bordered table-condensed text-centerr'>
 
     <!--HEADER-->
-    <thead class="row">
+    <thead>
       <tr class='text-center row'>
         <!--risk and rate-->
-        <th :rowspan='2' class='text-center'>
+        <th :rowspan='2' class='col-xs-3'>
           <!--table for splitting row to risks and rate EDIT MODE-->
           <table v-if='editMode' class='table insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
             <tr>
@@ -47,7 +47,7 @@
         </th>
         
         <!--values title-->
-        <td colspan='3' class='col-xs-7 text-center'>
+        <td colspan='3' class='col-xs-9'>
           <input v-if='editMode' v-model='table.header.risks.items.title[i18n]' class='form-control' :value='table.header.risks.items.title[i18n]'>
           <span v-else>{{ table.header.risks.items.title[i18n] }}</span>
         </td>

@@ -1,9 +1,9 @@
 <template>
   <div class="jumbotron">
-    <h1>Front page</h1>
+    <h1>VADIS<br><small>IA Documentation IS </small></h1>
     <p>
       <strong>
-        Get started.
+        Let's begin
       </strong>
     </p>  
   </div>
