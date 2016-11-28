@@ -13,6 +13,11 @@
       <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
     </button>
     
+        <!--insertData-->
+    <button class='form-control' @click='insertUserData()' >InsertData</span>
+    </button>
+    <!--/insertData-->
+    
     <button class='form-control'>
       <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
       <span v-else @click='changeLocaleTo("en")'>En</span>
@@ -219,7 +224,7 @@
       <td>
         <input class='form-control' :placeholder='table.functions.newTitle[i18n]' v-model='newRow.title'>
       </td>
-      <td v-for='(el, index) in userData[0].risks'>
+      <td v-for='(el, index) in userDataTable[0].risks'>
         <select class='form-control' v-model='newRow.risks[index]'>            <!-- EDIT MODE -->
           <option disabled>{{ table.functions.pickOne[i18n] }}...</option>
           <option  v-for='(elem, elemIndex) in table.options.risks' :value='elem.value || elem[0]'>
@@ -235,7 +240,7 @@
   
   </table>
 
-<!--<pre>{{ $data.userData }}</pre>  -->
+<!--<pre>{{ $data.userDataTable }}</pre>  -->
 <!--FOR TESTING AND VIEWING OF JSON ONLY -->
 </div>
 
@@ -243,8 +248,8 @@
 
 <script>
 const apiData = require('../assets/risk-table-data.json');
-// const userData = require('../assets/risk-user-data.json');
-const userData = require('../assets/user-data.json');
+// const userDataTable = require('../assets/risk-user-data.json');
+let userData = require('../assets/user-data.json');
 import Modal from './modal-component.vue';
 
 export default {
@@ -252,9 +257,9 @@ export default {
     return {
       table: apiData.table,
       userTable: userData.risksTable.tableElements,
-      // userTable: userData.tableElements,
-      userData: userData.risksTable.elements,
-      // userData: userData.elements,
+      // userTable: userDataTable.tableElements,
+      userDataTable: userData.risksTable.elements,
+      // userDataTable: userDataTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
       editMode: false,
@@ -271,7 +276,7 @@ export default {
   },
   computed: {
     filteredElements: function () {
-        return this.userData
+        return this.userDataTable
           .filter(el => el.title.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
         );
     },
@@ -284,6 +289,11 @@ export default {
   //     this.fetchData();
   // },
   methods: {
+    insertUserData: function(){
+      userData = require('../assets/user-data-1.json');
+      this.userTable = userData.demandTable.tableElements;
+      this.userDataTable = userData.demandTable.elements;
+    },
   // // AJAX CALL
   //   fetchData: function () {
   //     var xhr = new XMLHttpRequest();
@@ -297,21 +307,21 @@ export default {
   //     xhr.send();
   //   },
     createDescription: function(idx, idxtwo, val){
-      this.userData[idx].risks[idxtwo].description = this.table.header.risks.subElements[idxtwo].values[val-1].value;
+      this.userDataTable[idx].risks[idxtwo].description = this.table.header.risks.subElements[idxtwo].values[val-1].value;
     },
     getImpSum: function(idx) { // sums up all importance values
-      return this.userData[idx].risks.reduce(function(a, item){
+      return this.userDataTable[idx].risks.reduce(function(a, item){
         return a + (item.rate*item.level);
       }, 0);
     },
     getRangeMin: function(idx){
-      return this.userData[idx].risks.reduce(function(a, b){
+      return this.userDataTable[idx].risks.reduce(function(a, b){
         return a + b.rate;
       }, 0);
     },
     getRangeMax: function(idx){
       let length = this.table.options.riskRates.values.length;
-      return this.userData[idx].risks.reduce(function(a, b){
+      return this.userDataTable[idx].risks.reduce(function(a, b){
         return a + b.rate * length;
       }, 0);
     },
@@ -336,15 +346,15 @@ export default {
       } else if (thisValue > 0) {                         // > 0 && < 1/3 of difference + min range => low
         temp = values[1];
       } else temp = values[0];                            // 0 - just for calculation
-      this.userData[idx].impValue = temp;
+      this.userDataTable[idx].impValue = temp;
     },
     reRate: function(index, newVal){
-      for (let a of this.userData){
+      for (let a of this.userDataTable){
         a.risks[index].rate = newVal;
       }
     },
     renameRisk: function(index, newVal){
-      for (let a of this.userData){
+      for (let a of this.userDataTable){
         a.risks[index].title = newVal;
       }
     },
@@ -367,7 +377,7 @@ export default {
             "value": descriptions[2] 
           }]
         });
-        for (var a of this.userData.entries()){
+        for (var a of this.userDataTable.entries()){
           a[1].risks.push({ 
             "title": title, 
             "rate": rate || 1, 
@@ -386,7 +396,7 @@ export default {
       let elements = this.userTable;
       if (window.confirm('Are you sure you want to delete this Risk Factor?')) {
         elements.splice(idx, 1);
-        for (var a of this.userData){
+        for (var a of this.userDataTable){
           a.risks.splice(idx, 1);
         }
       }
@@ -394,7 +404,7 @@ export default {
     // ADD/REMOVE ROWS
     removeRow: function(index){                        
       if (window.confirm('Are you sure you want to delete this entry?')) {
-        this.userData.splice(index, 1);
+        this.userDataTable.splice(index, 1);
       }
     },
     addNewRow: function(){
@@ -416,7 +426,7 @@ export default {
         return arr;
         };
         getRisks();
-        this.userData.push({ 
+        this.userDataTable.push({ 
           title: newTitle, 
           risks: getRisks()
         });
@@ -426,15 +436,15 @@ export default {
     },
     sortByTitle: function(){
       this.sorted *=-1;
-      return this.userData.sort((a, b) => a.title > b.title ? this.sorted : this.sorted*-1 );
+      return this.userDataTable.sort((a, b) => a.title > b.title ? this.sorted : this.sorted*-1 );
     },
     sortByRisk: function(index){
       this.sorted *=-1;
-      return this.userData.sort((a, b) => a.risks[index].level > b.risks[index].level ? this.sorted : this.sorted*-1 );
+      return this.userDataTable.sort((a, b) => a.risks[index].level > b.risks[index].level ? this.sorted : this.sorted*-1 );
     },
     sortByDemand: function(){
       this.sorted *=-1;
-      return this.userData.sort((a, b) => a.impValue.days > b.impValue.days ? this.sorted : this.sorted*-1 );
+      return this.userDataTable.sort((a, b) => a.impValue.days > b.impValue.days ? this.sorted : this.sorted*-1 );
     }
   }
 };

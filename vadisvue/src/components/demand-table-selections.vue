@@ -13,6 +13,11 @@
       <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
     </button>
     
+        <!--insertData-->
+    <button class='form-control' @click='insertUserData()' >InsertData</span>
+    </button>
+    <!--/insertData-->
+    
     <button class='form-control'>
       <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
       <span v-else @click='changeLocaleTo("en")'>En</span>
@@ -97,7 +102,7 @@
 <script>
 const apiData = require('../assets/demand-table-data.json');
 // const userData = require('../assets/demand-user-data.json');
-const userData = require('../assets/user-data.json');
+let userData = require('../assets/user-data.json');
 
 export default {
   
@@ -109,19 +114,24 @@ export default {
       
       // userTable: userData.tableElements,
       userTable: userData.demandTable.tableElements,
-      // userTableData: userData.elements,
-      userTableData: userData.demandTable.elements,
+      // userDataTable: userData.elements,
+      userDataTable: userData.demandTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
     };
   },
   methods: {
+    insertUserData: function(){
+      userData = require('../assets/user-data-1.json');
+      this.userTable = userData.demandTable.tableElements;
+      this.userDataTable = userData.demandTable.elements;
+    },
     changeLocaleTo: function(el){
       let newLocale = el;
       return this.i18n=newLocale;
     },
     reRate: function(idx, newVal){
-      for (let a of this.userTableData){
+      for (let a of this.userDataTable){
         a.risks[idx].rate = newVal;
       }
     }
