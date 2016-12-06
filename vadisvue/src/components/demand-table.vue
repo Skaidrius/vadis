@@ -4,34 +4,21 @@
 
   <!--control buttons-->
   <div class='form-inline text-right'>
-    <small>
-      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-    </small><br>
-    
-    <button class='form-control'>
-      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
-      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
-    </button>
-    
-    <!--insertData-->
+        <!--insertData-->
     <button class='form-control' @click='insertUserData()' >InsertData</span>
     </button>
     <!--/insertData-->
-    
-    <button class='form-control'>
-      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
-      <span v-else @click='changeLocaleTo("en")'>En</span>
-    </button>
+
   </div><br/>
-  
+
+<!--navigation-->
   <nav>
     <ul class="my-tabs nav nav-tabs">
       <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
       <router-link to="/demand/demand-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
     </ul>
   </nav>
-  <!--.--- control buttons-->
+<!--navigation-->
   
   <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
@@ -64,6 +51,8 @@
           </div>
           <span class="input-group-btn">
             <button class='form-control btn btn-success' id="show-modal" @click="showModal = true">+</button>
+              
+              <!--MODAL-->
               <modal v-if="showModal" @close="showModal = false">
   <!-- use custom content here to overwrite           -->
                   <h3 slot="header">{{ table.modal.newCrit[i18n] }}</h3>
@@ -79,17 +68,17 @@
                         <label class="col-xs-2 control-label">{{ table.modal.critRate[i18n] }}</label>
                         <div class="col-xs-10">
                           <select v-model='newCrit.rate' class="form-control"> <!-- need to change it to show rate when adding new criteria   -->
-                            <option disabled>{{ table.modal.pickOne[i18n] }}</option>
-                            <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
+                            <!--<option disabled>{{ table.modal.pickOne[i18n] }}</option>-->
+                            <option v-for='val in table.options.riskRates.values' :value="val" :selected="table.options.riskRates.selectedVal">{{val}}</option>
                           </select>
                         </div>
                       </div>
                       <div class='form-group form-group-last'>
                         <label class="col-xs-2 control-label"><br>{{ table.modal.critValues[i18n] }}</label>
                         <div class="col-xs-10">
-                          <input v-model='newCrit.values.low' class='form-control text-center' :placeholder="table.modal.lowRiskValue[i18n]">
-                          <input v-model='newCrit.values.middle' class='form-control text-center' :placeholder="table.modal.middleRiskValue[i18n]">
-                          <input v-model='newCrit.values.high' class='form-control text-center' :placeholder="table.modal.highRiskValue[i18n]">
+                          <input v-model='newCrit.values.low' class='form-control text-center' :placeholder="table.modal.newCritValues.lowRiskValue[i18n]">
+                          <input v-model='newCrit.values.middle' class='form-control text-center' :placeholder="table.modal.newCritValues.middleRiskValue[i18n]">
+                          <input v-model='newCrit.values.high' class='form-control text-center' :placeholder="table.modal.newCritValues.highRiskValue[i18n]">
                         </div>
                       </div>
                     </div>
@@ -302,7 +291,7 @@
 <script>
 const apiData = require('../assets/demand-table-data.json');
 // const userDataTable = require('../assets/demand-user-data.json');
-let userData = require('../assets/user-data.json');
+let userData = require('../assets/default-data.json');
 import Modal from './modal-component.vue';
 
 export default {
@@ -315,15 +304,16 @@ export default {
       userTable: userData.demandTable.tableElements,
       // userDataTable: userDataTable.elements,
       userDataTable: userData.demandTable.elements,
-      editMode: false,
+      // editMode: false,
       showModal: false,
       newRow: { title: '', risks: [] },
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       sorted: true,
-      i18n: 'en'
+      // i18n: 'en'
     };
   },
+  props: ['i18n', 'editMode'],
   components: {
     modal: Modal
   },
@@ -418,11 +408,6 @@ export default {
       for (let a of this.userDataTable){
         a.risks[index].title = newVal;
       }
-    },
-    // LOCALIZATION i18n
-    changeLocaleTo: function(el){
-      let newLocale = el;
-      return this.i18n=newLocale;
     },
     // ADD/REMOVE CRITERIAS
     addNewCriteria: function(title, rate, descriptions){ 

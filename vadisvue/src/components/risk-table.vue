@@ -3,25 +3,11 @@
   
     <!--control buttons-->
   <div class='form-inline text-right'>
-    <small>
-      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-    </small><br>
-    
-    <button class='form-control'>
-      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
-      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
-    </button>
-    
         <!--insertData-->
     <button class='form-control' @click='insertUserData()' >InsertData</span>
     </button>
     <!--/insertData-->
-    
-    <button class='form-control'>
-      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
-      <span v-else @click='changeLocaleTo("en")'>En</span>
-    </button>
+
   </div><br/>
   
   <nav>
@@ -83,13 +69,13 @@
                         <label class="col-xs-2 control-label">{{ table.modal.riskRate[i18n] }}</label>
                         <div class="col-xs-10">
                           <select v-model='newRisk.rate' class="form-control"> <!-- need to change it to show rate when adding new risk factor   -->
-                            <option disabled>{{ table.modal.pickOne[i18n] }}</option>
+                            <!--<option disabled>{{ table.modal.pickOne[i18n] }}</option>-->
                             <option v-for='val in table.options.riskRates.values' :value="val">{{val}}</option>
                           </select>
                         </div>
                       </div>
                       <div class='form-group form-group-last'>
-                        <label class="col-xs-2 control-label">{{  table.modal.riskValues[i18n] }}</label>
+                        <label class="col-xs-2 control-label"><br><br>{{  table.modal.riskValues[i18n] }}</label>
                         <div class="col-xs-10">
                           <input v-model='newRisk.values.low' class='form-control text-center' :placeholder="table.modal.lowRiskValue[i18n]">
                           <input v-model='newRisk.values.middle' class='form-control text-center' :placeholder="table.modal.middleRiskValue[i18n]">
@@ -249,7 +235,7 @@
 <script>
 const apiData = require('../assets/risk-table-data.json');
 // const userDataTable = require('../assets/risk-user-data.json');
-let userData = require('../assets/user-data.json');
+let userData = require('../assets/default-data.json');
 import Modal from './modal-component.vue';
 
 export default {
@@ -262,9 +248,7 @@ export default {
       // userDataTable: userDataTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
-      editMode: false,
       showModal: false,
-      i18n: 'en',
       newRow: { title: '', risks: [] },
       newRisk: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
@@ -288,6 +272,7 @@ export default {
   // created: function () {
   //     this.fetchData();
   // },
+  props: ['i18n', 'editMode'],
   methods: {
     insertUserData: function(){
       userData = require('../assets/user-data-1.json');

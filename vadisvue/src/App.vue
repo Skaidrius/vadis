@@ -6,12 +6,28 @@
           <i class="glyphicon glyphicon-zoom-in"></i>
           Vadis
         </a>
+        
         <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Admin</a>&nbsp;</p>
+        
+        <p class="navbar-text navbar-right">
+          <button class='form-control'>
+            <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
+            <span v-else @click='changeLocaleTo("en")'>En</span>
+          </button>
+        </p>
+        <p class="navbar-text navbar-right">
+          <button class='form-control'>
+            <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
+            <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
+          </button>
+        </p>
+
         <ul class="nav navbar-nav">
           <!--/<li><router-link to="/ias-demand">IAS demand</router-link></li>-->
           <li><router-link to="/front">Front page</router-link></li>
           <li><router-link to="/risk">Risk selection</router-link></li>
           <li><router-link to="/demand">Demand</router-link></li>
+          <li><router-link to="/recommend">Recommendations</router-link></li>
         </ul>
       </div>
     </nav>
@@ -20,11 +36,35 @@
    
       </div>
       <div class="col-sm-11">
-        <router-view class='view'></router-view>
+        <router-view class='view' :i18n='i18n' :editMode='editMode'></router-view>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  
+const apiData = require('assets/demand-table-data.json');
+let userData = require('assets/default-data.json');
+
+    export default {
+      data(){
+        return {
+          header: apiData.header,
+          editMode: false,
+          i18n: 'en'
+        };
+      },
+      methods: {
+            // LOCALIZATION i18n
+        changeLocaleTo: function(el){
+          let newLocale = el;
+          return this.i18n=newLocale;
+        },
+      }
+    };
+  
+</script>
 
 <style>
 

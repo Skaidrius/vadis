@@ -11,6 +11,8 @@ import Demand from './components/demand.vue';
 import DemandTable from './components/demand-table.vue';
 import DemandTableSelections from './components/demand-table-selections.vue';
 
+import Recommendations from './components/recommendations.vue';
+
 const App = Vue.extend(require('./App.vue'));
 
 import VueRouter from 'vue-router';
@@ -45,7 +47,9 @@ const router = new VueRouter({
         path: 'demand-table-selections', component: DemandTableSelections
       }]
     },
-    { path: '*', redirect: '/demand' },
+    { path: '/recommend', component: Recommendations },
+    { path: '*', redirect: '/demand' }
+    
   ],
 });
 

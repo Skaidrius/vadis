@@ -3,25 +3,11 @@
 
   <!--control buttons-->
   <div class='form-inline text-right'>
-    <small>
-      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-    </small><br>
-    
-    <button class='form-control'>
-      <span v-if='editMode' @click='editMode = false' >{{ header.changeModeTo.regular[i18n] }}</span>
-      <span v-else @click='editMode = true'>{{ header.changeModeTo.edit[i18n] }}</span>
-    </button>
-    
         <!--insertData-->
     <button class='form-control' @click='insertUserData()' >InsertData</span>
     </button>
     <!--/insertData-->
-    
-    <button class='form-control'>
-      <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
-      <span v-else @click='changeLocaleTo("en")'>En</span>
-    </button>
+
   </div><br/>
   
   <nav>
@@ -109,14 +95,12 @@
 <script>
 const apiData = require('../assets/risk-table-data.json');
 // const userDataTable = require('../assets/risk-user-data.json');
-let userData = require('../assets/user-data.json');
+let userData = require('../assets/default-data.json');
 
 export default {
   
   data(){
     return {
-      i18n: 'en',
-      editMode: false,
       table: apiData.table,
       // userTable: userData.tableElements,
       userTable: userData.risksTable.tableElements,
@@ -126,6 +110,7 @@ export default {
       tableNav: apiData.tableNav,
     };
   },
+  props: ['i18n', 'editMode'],
   methods: {
     insertUserData: function(){
       userData = require('../assets/user-data-1.json');

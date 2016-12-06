@@ -64,7 +64,8 @@
 				"style": "alert-danger"
 			}],
 			"riskRates": {
-				"values": [1, 2, 3]
+				"values": [1, 2, 3],
+				"selectedVal": 1
 			},
 			"importanceValues": [{
 				"name": {
@@ -237,17 +238,19 @@
         		"en": "Pick on",
         		"lt": "Pasirinkite"
         	},
-        	"lowRiskValue": {
-        		"en": "Low risk value",
-        		"lt": "Įveskite mažos rizikos reikšmę"
-        	},
-        	"middleRiskValue": {
-        		"en": "Middle risk value",
-        		"lt": "Įveskite vidutinės rizikos reikšmę"
-        	},
-        	"highRiskValue": {
-        		"en": "High risk value",
-        		"lt": "Įveskite didelės rizikos reikšmę"
+        	"newCritValues": {
+	        	"lowRiskValue": {
+	        		"en": "Low risk value",
+	        		"lt": "Įveskite mažos rizikos reikšmę"
+	        	},
+	        	"middleRiskValue": {
+	        		"en": "Middle risk value",
+	        		"lt": "Įveskite vidutinės rizikos reikšmę"
+	        	},
+	        	"highRiskValue": {
+	        		"en": "High risk value",
+	        		"lt": "Įveskite didelės rizikos reikšmę"
+	        	}
         	},
         	"saveChanges": {
         		"en": "Save changes",
