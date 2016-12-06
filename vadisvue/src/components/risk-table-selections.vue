@@ -4,8 +4,21 @@
   <!--control buttons-->
   <div class='form-inline text-right'>
         <!--insertData-->
-    <button class='form-control' @click='insertUserData()' >InsertData</span>
-    </button>
+
+    <div class='form-inline text-right'>
+      <small>
+        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+      </small>
+    </div>
+      <!--control buttons-->
+    <div class='form-inline text-right'>
+          <!--insertData-->
+      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+      <!--/insertData-->
+    </div>
+
+
     <!--/insertData-->
 
   </div><br/>
@@ -94,7 +107,6 @@
 
 <script>
 const apiData = require('../assets/risk-table-data.json');
-// const userDataTable = require('../assets/risk-user-data.json');
 let userData = require('../assets/default-data.json');
 
 export default {
@@ -102,10 +114,8 @@ export default {
   data(){
     return {
       table: apiData.table,
-      // userTable: userData.tableElements,
       userTable: userData.risksTable.tableElements,
-      // userDataTable: userData.elements,
-      userDataTable: userData.risksTable.elements,
+      tableData: userData.risksTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
     };
@@ -118,15 +128,15 @@ export default {
       this.userDataTable = userData.demandTable.elements;
     },
     reRate: function(idx, newVal){ 
-      for (let a of this.userDataTable){
+      for (let a of this.tableData){
         a.risks[idx].rate = newVal; 
       }
     },
-        //LOCALIZATION i18n
-    changeLocaleTo: function(el){
-      let newLocale = el;
-      return this.i18n=newLocale;
-    }
+    //     //LOCALIZATION i18n
+    // changeLocaleTo: function(el){
+    //   let newLocale = el;
+    //   return this.i18n=newLocale;
+    // }
   }
   
 };

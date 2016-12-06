@@ -2,17 +2,10 @@
   
   <div class="parent">
     
-      <h3>Risk selection</h3>
-      
-      <br />
-      
-      <div class='form-inline text-right'>
-        <small>
-          <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-          <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-        </small><br>
-
-    </div><br/>
+    <div class="jumbotron">
+      <h2>Risk Selection<br><small>And Management</small></h2>
+  
+    </div>
 
       <router-view class="child" :i18n='i18n' :editMode='editMode'></router-view>
 

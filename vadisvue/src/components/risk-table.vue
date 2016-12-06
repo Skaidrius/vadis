@@ -2,10 +2,18 @@
   <div>
   
     <!--control buttons-->
-  <div class='form-inline text-right'>
+
+    <div class='form-inline text-right'>
+      <small>
+        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+      </small>
+    </div>
+    <!--control buttons-->
+    <div class='form-inline text-right'>
         <!--insertData-->
-    <button class='form-control' @click='insertUserData()' >InsertData</span>
-    </button>
+      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+      <!--/insertData-->
     <!--/insertData-->
 
   </div><br/>

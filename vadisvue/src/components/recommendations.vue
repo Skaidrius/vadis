@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumbotron">
-      <h1>Recommendations<br><small>Implementation monitoring</small></h1>
+      <h2>Recommendations<br><small>Implementation</small></h2>
   
     </div>
     <div>
