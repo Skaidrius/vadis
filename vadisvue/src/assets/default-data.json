@@ -42,5 +42,35 @@
     			"level": 3
     		}]
     	}]
+    },
+    "recommendationsTable": {
+            "tableElements": [{
+                "auditReport": "auto moto", 
+                "recNo": 3, 
+                "recContent": "Do Something", 
+                "recRate":"high", 
+                "recImplement": "To buy autos", 
+                "period":"2016-12-15", 
+                "implementInfo": "Searching for autos", 
+                "status": "active" 
+            }, {
+                "auditReport": "nota bene", 
+                "recNo": 3, 
+                "recContent": "benito nono", 
+                "recRate":"middle", 
+                "recImplement": "To toto bene", 
+                "period":"2016-12-01", 
+                "implementInfo": "toto for nono", 
+                "status": "active" 
+        }, {
+                "auditReport": "Cora bora", 
+                "recNo": 3, 
+                "recContent": "Do again", 
+                "recRate":"low", 
+                "recImplement": "To cora bora", 
+                "period":"2016-12-10", 
+                "implementInfo": "did a cora bora", 
+                "status": "done" 
+        }]
     }
 }

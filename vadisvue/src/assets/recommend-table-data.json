@@ -1,0 +1,166 @@
+{	
+	"table": {
+		"header": {
+			"elements": [{
+				"en": "#",
+				"lt": "Nr.",
+				"style": "col-xs-1"
+			},{
+				"en": "Audit Report (AR)",
+				"lt": "VA Ataskaita (VAA)",
+				"style": "col-xs-2"
+			},{
+				"en": "Rec # in AR",
+				"lt": "Rek. Nr. VAA",
+				"style": "col-xs-1"
+			},{
+				"en": "Rec Content",
+				"lt": "Rek. turinys",
+				"style": "col-xs-2"
+			},{
+				"en": "Rec. Rate",
+				"lt": "Rek. lygis",
+				"style": "col-xs-1"
+			},{
+				"en": "Implement",
+				"lt": "Priemonė",
+				"style": "col-xs-2"
+			},{
+				"en": "Period",
+				"lt": "Terminas",
+				"style": "col-xs-1"
+			},{
+				"en": "Information",
+				"lt": "Informacija",
+				"style": "col-xs-2"
+			},{
+				"en": "Status",
+				"lt": "Statusas",
+				"style": "col-xs-1"
+			}],
+				
+			"title": { 
+				"en": "Title",
+				"lt": "Pavadinimas"
+			},
+			"criterias": {
+				"titles": { 
+					"criterias": {
+						"en": "Criterias",
+						"lt": "Kriterijai"
+					}, 
+					"rate": {
+						"en": "Rate",
+						"lt": "Lygis"
+					}
+				},
+				"items": {
+					"title": {
+						"en": "Values",
+						"lt": "Vertės"
+					},
+					"values": {
+						"low": {
+							"en": "Low",
+							"lt": "Žema"
+						},
+						"middle": {
+							"en": "Middle",
+							"lt": "Vidutinė"
+						},
+						"high": {
+							"en": "High",
+							"lt": "Aukšta"
+						}
+					}
+				}
+			},
+			"importance": {
+				"name": {
+					"en": "Importance",
+					"lt": "Svarba"
+				},
+				"subElements": [{
+					"name": {
+						"en": "Range",
+						"lt": "Ribos"
+					}
+				}, {
+					"name": {
+						"en": "Total",
+						"lt": "Viso"
+					}
+				}, {
+					"name": {
+						"en": "Level",
+						"lt": "Lygis"
+					}
+				}]
+			},
+			"demand": {
+				"name": {
+					"en": "Demand",
+					"lt": "Poreikis"
+				},
+				"subElements": [{
+					"name": {
+						"en": "Days",
+						"lt": "Dienomis"
+					}
+				}]
+			}
+		},
+        "functions": {
+        		"titles": {
+        			"addNew" : {
+        				"en": "Add New Recommendation",
+        				"lt": "Pridėti naują rekomendaciją"
+        			}	
+        		},
+          		"report": {
+          			"en": "Audit Report (AR)",
+          			"lt": "VA ataskaita (VAA)"
+          		},
+          		"recNo": {
+          			"en": "Rec # in AR",
+          			"lt": "Rek. Nr. VAA"
+            	},
+          		"content": {
+          			"en": "Recommendation Content",
+          			"lt": "Rekomendacijos turinys"
+            	},
+            	"recRate": {
+					"title": {
+						"en": "Rec. Rate",
+						"lt": "Reikšmė"
+					},
+					"values": {
+						"low": {
+							"en": "Low",
+							"lt": "Žema"
+						},
+						"middle": {
+							"en": "Middle",
+							"lt": "Vidutinė"
+						},
+						"high": {
+							"en": "High",
+							"lt": "Aukšta"
+						}
+					}
+				},
+            	 "measure": {
+          			"en": "Measure",
+          			"lt": "Priemonė"
+            	},
+          		"period": {
+          			"en": "Period",
+          			"lt": "Terminas"
+            	},
+          		"addButton": {
+          			"en": "Add",
+          			"lt": "Pridėti"
+            	}
+        }
+	}
+}
