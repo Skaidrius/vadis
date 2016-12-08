@@ -6,7 +6,7 @@
     </div>
     <div>
     
-      <h4>today is {{today}} </h4><h5>{{ typeof today }}</h5><br>
+      <h4>today is {{today}} </h4><br>
       
      <div>
       <h4>{{ functions.titles.addNew[i18n] }}</h4>
@@ -80,36 +80,7 @@
         </tbody>
       </table>
     </div>
-    
-    <!--<table class='table table-hover table-striped table-bordered text-center'>-->
-    <!--  <thead>-->
-    <!--    <tr>-->
-    <!--      <th class='col-xs-1'>#</th>-->
-    <!--      <th class='col-xs-1'>Audit</th>-->
-    <!--      <th class='col-xs-1'>Rec. #</th>-->
-    <!--      <th class='col-xs-2'>Rec. Rate</th>-->
-    <!--      <th class='col-xs-2'>Recommendation</th>-->
-    <!--      <th class='col-xs-1'>Rec Rate</th>-->
-    <!--      <th class='col-xs-1'>Period</th>-->
-    <!--      <th class='col-xs-2'>Implementation</th>-->
-    <!--      <th class='col-xs-1'>Actual</th>-->
-    <!--    </tr>-->
-    <!--  </thead>-->
-    <!--  <tbody>-->
-    <!--    <tr v-for='(rec, index) in recList'>-->
-    <!--      <td>{{ index+1 }}. </td>-->
-    <!--      <td>{{ rec.audit }} </td>-->
-    <!--      <td>{{ rec.recNo }}. </td>-->
-    <!--      <td>{{ rec.rec }} </td>-->
-    <!--      <td>{{ rec.means }} </td>-->
-    <!--      <td>{{ rec.recRate }} </td>-->
-    <!--      <td>{{ rec.period }} </td>-->
-    <!--      <td>{{ rec.implementInfo }} </td>-->
-    <!--      <td> {{ rec.active }}</td>-->
-    <!--  </tr>-->
-    <!--  </tbody>-->
-    <!--</table>-->
-   
+
     </div>
   </div>
 </template>
@@ -125,60 +96,74 @@ export default{
         functions: apiData.table.functions,
         recommendations: userData.recommendationsTable.tableElements,
         tableElements: apiData.table.header.elements
-      // recList : [{
-      //     audit: "a", recNo: 3, rec:"Do something", means: "Do Something", recRate: "High", period:"2016-12-15", implementInfo: "alksjd alksdj laks kjds", active:false 
-      //   },{
-      //     audit: "a", recNo: 2, rec:"Do something more", means: "Do Something", recRate: "Low", period:"2016-12-17", implementInfo: "alksjd alksdj laks kjds", active:true
-      //   },{
-      //     audit: "c", recNo: 1, rec:"Do something more 1", means: "Do Something 1", recRate: "Middle", period:"2016-12-21", implementInfo: "alksjd alksdj laks kjds", active:false
-      //   },{
-      //     audit: "c", recNo: 3, rec:"Do something more 2", means: "Do Something 2", recRate: "Low", period:"2016-12-09", implementInfo: "alksjd alksdj laks kjds", active:true
-      //   },{
-      //     audit: "c", recNo: 5, rec:"Do something more 3", means: "Do Something 3", recRate: "High", period:"2016-12-01", implementInfo: "alksjd alksdj laks kjds", active:false
-      //   },{
-      //     audit: "f", recNo: 3, rec:"Do something more 1", means: "Do Something 1", recRate: "Middle", period:"2016-12-23", implementInfo: "alksjd alksdj laks kjds", active:true
-      //   },{
-      //     audit: "g", recNo: 3, rec:"Do something more 1", means: "Do Something 1", recRate: "High", period:"2016-12-25", implementInfo: "alksjd alksdj laks kjds", active:false
-      //   }]
       };
     },
     props: ['i18n', 'editMode'],
     computed: {
-
       activeRecommendations: function (){ 
         let active = [];
         this.recommendations.map(function(e){
-          if (e["status"] === 'active') active.push(e);
+          if (e.actual) active.push(e);
         });
         return active;
       },
+      
+      // LACKS of checking whether it is implemented later than should be. Maybe needs 1 more criteria - implementation date - LATER WHEN BUTTON 'DONE' WILL BE IMPLEMENTED
       lateRecommendations: function () { 
         let late = [];
         this.recommendations.map(function(e){
-          if (e.period < 3) late.push(e);
+          
+          // TIMESTAMPS
+          const todayTime = Date.now();
+          const todayStamp = Math.floor(todayTime / 1000);
+          const someTime = new Date(e["period"]).getTime();
+          const getTimeStamp = Math.floor(someTime / 1000);
+          
+          // check whether is late (still active and period is earlear than today) 
+          if (e.actual && (getTimeStamp < todayStamp)) {
+            late.push(e);
+          }
         }); 
+        return late;
       },
+      
       impledRecommendations: function () {
         let impled = [];
         this.recommendations.map(function(e){
-          if (e["status"] === 'done') impled.push(e);
+          if (!e.actual) impled.push(e);
         });
         return impled;
       },
 
-      today: function(){
+      today: function() {
+        let str = "";
+    
         let td = new Date;
         let thisYear = td.getFullYear();
-        
         let thisMonth = td.getMonth()+1;
-        // const months = ["sausio", "Vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
         let thisDay = td.getDate();
-        let today = thisYear + '-' + thisMonth + '-'+ thisDay; 
-        // ("YY-mm-dd");
-        // console.log(td);
-        // let year = td.splice(0, 4);
-        return today;
+    
+        if (thisMonth < 10) thisMonth = "0" + thisMonth;
+        if (thisDay < 10) thisDay = "0" + thisDay;
+
+        str += thisYear + "-" + thisMonth + "-" + thisDay + " ";
+
+        return str;
       }
+
+      // today: function(){
+        // let td = new Date;
+        // let thisYear = td.getFullYear();
+      
+        // let thisMonth = td.getMonth()+1;
+        // // const months = ["sausio", "Vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
+        // let thisDay = td.getDate();
+        // let today = thisYear + '-' + thisMonth + '-'+ thisDay; 
+        // // ("YY-mm-dd");
+        // // console.log(td);
+        // // let year = td.splice(0, 4);
+      //   // return today;
+      // }
     }
 };
 
