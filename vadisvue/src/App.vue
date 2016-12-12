@@ -7,7 +7,7 @@
           Vadis
         </a>
         
-        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Admin</a>&nbsp;</p>
+        <!--<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Admin</a>&nbsp;</p>-->
         
         <p class="navbar-text navbar-right">
           <button class='form-control'>
@@ -24,7 +24,7 @@
 
         <ul class="nav navbar-nav">
           <!--/<li><router-link to="/ias-demand">IAS demand</router-link></li>-->
-          <li><router-link to="/front">{{ pages.front[i18n]}}</router-link></li>
+          <!--<li><router-link to="/main">{{ pages.front[i18n]}}</router-link></li>-->
           <li><router-link to="/risk">{{ pages.risk[i18n] }}</router-link></li>
           <li><router-link to="/demand">{{ pages.demand[i18n] }}</router-link></li>
           <li><router-link to="/recommend">{{ pages.recommendations[i18n] }}</router-link></li>
@@ -33,9 +33,10 @@
     </nav>
     <div class="container-fluid">
       <div class="col-sm-1">
-   
+    <!--place for aside components-->
       </div>
       <div class="col-sm-11">
+    <!--main area-->
         <router-view class='view' :i18n='i18n' :editMode='editMode'></router-view>
       </div>
     </div>

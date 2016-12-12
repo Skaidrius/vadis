@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron">
-    <h1>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h1>
+    <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
     <p>
       <strong>
         {{ pageTitle.jumboStrong[i18n] }}
@@ -16,8 +16,8 @@
         return {
           pageTitle: {
             jumboHead : {
-                en: "Title",
-                lt: "Pavadinimas" 
+                en: "VADIS",
+                lt: "VADIS" 
             },
             jumboSmall : {
                 en: "(description)",

@@ -28,7 +28,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [
-    { path: '/front', component: FrontPage },
+    { path: '/main', component: FrontPage },
     { path: '/risk', component: RiskSelection, 
       children: [{ 
         path: '', component: RiskTable
@@ -48,7 +48,7 @@ const router = new VueRouter({
       }]
     },
     { path: '/recommend', component: Recommendations },
-    { path: '*', redirect: '/demand' }
+    { path: '*', redirect: '/main' }
     
   ],
 });

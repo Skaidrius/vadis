@@ -53,6 +53,7 @@ whole internal control _system should be checked at least once per 3 years_.
   - [ ] looking for simple vue solution with dictionary
   - 
 - [ ] IA Recomendations Progress Monitoring
+- [x] actual/late/implemented
 - [ ] Callendar
 - [ ] Reminder
 - [ ] Status

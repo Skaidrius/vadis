@@ -142,7 +142,7 @@
           			"lt": "Rek. Nr. VAA"
             	},
           		"content": {
-          			"en": "Recommendation Content",
+          			"en": "Content of Recommendation",
           			"lt": "Rekomendacijos turinys"
             	},
             	"recRate": {
