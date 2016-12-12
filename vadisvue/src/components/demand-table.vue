@@ -30,9 +30,9 @@
           <!--  H1 ACTIVITY TITLE-->
       <th rowspan='2' class='col-xs-2'> 
       
-        <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
+        <span v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <input v-model='table.title[i18n]' rows='6' class='form-control text-center' :placeholder="table.title[i18n]"> <!-- EDIT TITLES -->
-        </div>
+        </span>
         
         <span v-else @click='sortByTitle()'>                                      <!-- READ MODE -->
           <a>{{ table.title[i18n] }}</a>
@@ -499,9 +499,9 @@ export default {
 
 <style>
 
-#demandTable thead tr {
-  background: #27a;
-  color: #fff;
+#demandTable thead {
+  /*background: #27a;*/
+  color: #000;
 }
 
 </style>

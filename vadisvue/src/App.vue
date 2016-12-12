@@ -104,7 +104,7 @@ let userData = require('assets/default-data.json');
 } 
 
 thead tr a {
-  color: #eed;
+  color: #000;
   cursor: pointer;
 }
 
@@ -115,10 +115,10 @@ thead tr a:hover {
 
 /* table footer */
 
-tfoot tr {
-  background: #7bd;
-  color: #333;
-}
+/*tfoot tr {*/
+/*  background: #7bd;*/
+/*  color: #333;*/
+/*}*/
 
 .table select {
   text-align-last: center;

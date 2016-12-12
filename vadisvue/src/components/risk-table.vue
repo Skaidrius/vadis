@@ -447,8 +447,8 @@ export default {
 <style>
 
 #risksTable thead tr {
-  background: #175;
-  color: #fff;
+  /*background: #175;*/
+  /*color: #fff;*/
 }
 
 </style>

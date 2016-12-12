@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumbotron">
-      <h2>Recommendations<br><small>Implementation</small></h2>
+      <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
   
     </div>
     <div>
@@ -93,6 +93,16 @@ let userData = require('../assets/default-data.json');
 export default{
     data(){
       return {
+        pageTitle:{
+          jumboHead : {
+            en: "Recommendations",
+            lt: "Rekomendacijų" 
+          },
+          jumboSmall : {
+            en: "Implementation",
+            lt: "Įgyvendinimas"
+          }
+        },
         tables: apiData.table.tables,
         functions: apiData.table.functions,
         recommendations: userData.recommendationsTable.tableElements,

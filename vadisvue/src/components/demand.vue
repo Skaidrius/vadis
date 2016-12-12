@@ -2,7 +2,7 @@
   <div class="parent">
     
     <div class="jumbotron">
-      <h2>Demand <br><small>Of Internal Audit Staff</small></h2>
+      <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
     </div>
 
       <div class='form-inline text-right'>
@@ -26,6 +26,16 @@ const apiData = require('../assets/demand-table-data.json');
     export default {
       data(){
         return {
+          pageTitle:{
+            jumboHead : {
+                en: "Demand",
+                lt: "Vidaus audito" 
+            },
+            jumboSmall : {
+                en: "Of Internal Audit Staff",
+                lt: "Poreikis"
+            }
+          },
           header: apiData.header,
         };
       },
