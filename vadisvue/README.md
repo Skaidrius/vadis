@@ -49,11 +49,12 @@ whole internal control _system should be checked at least once per 3 years_.
 - [x] removeRow drops error trying remove last element    
 - [x] modal creating criterias with description
 
-- [x] localization - 2 languages (English, Lithuanian)
+- [x] localization [i18n] - 2 languages (English, Lithuanian)
   - [ ] looking for simple vue solution with dictionary
   - 
 - [ ] IA Recomendations Progress Monitoring
-- [x] actual/late/implemented
+- [x] Actual/late/implemented
+- [ ] Modal
 - [ ] Callendar
 - [ ] Reminder
 - [ ] Status
@@ -71,6 +72,7 @@ whole internal control _system should be checked at least once per 3 years_.
 #### ToDOs:   
 - [ ] AJAX 
 - [ ] get/write user data                
+- [ ] put i18n data to 1 file by language 
 
 ## Build Setup
 

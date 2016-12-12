@@ -51,10 +51,10 @@
         </th>
         
         <!--values title-->
-        <td colspan='3' class='col-xs-9'>
+        <th colspan='3' class='col-xs-9'>
           <input v-if='editMode' v-model='table.header.risks.items.title[i18n]' class='form-control' :value='table.header.risks.items.title[i18n]'>
           <span v-else>{{ table.header.risks.items.title[i18n] }}</span>
-        </td>
+        </th>
       </tr>
       
       <!-- H2 values: low, middle, high-->
@@ -145,9 +145,9 @@ export default {
 
 <style>
   
-#riskTableSelections thead tr {
-  background: #1a5;
-  color: #fff;
-}
+/*#riskTableSelections thead tr {*/
+/*  background: #1a5;*/
+/*  color: #fff;*/
+/*}*/
   
 </style>

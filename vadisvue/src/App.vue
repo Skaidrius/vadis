@@ -9,11 +9,8 @@
         
         <!--<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Admin</a>&nbsp;</p>-->
         
-        <p class="navbar-text navbar-right">
-          <button class='form-control'>
-            <span v-if='i18n == "en"' @click='changeLocaleTo("lt")' >Lt</span>
-            <span v-else @click='changeLocaleTo("en")'>En</span>
-          </button>
+        <p class="navbar-text navbar-right" style="padding-right:10px;">
+          <button class='form-control' @click='i18n == "en" ? changeLocaleTo("lt") : changeLocaleTo("en")' >{{ changei18nTo[i18n] }}</button>
         </p>
         <p class="navbar-text navbar-right">
           <button class='form-control'>
@@ -51,6 +48,10 @@ let userData = require('assets/default-data.json');
     export default {
       data(){
         return {
+          changei18nTo: {
+            en: "Lt",
+            lt: "En"
+          },
           pages: {
             front: {
               en: "Front Page",

@@ -33,7 +33,7 @@
   <thead class="row">  
     <tr >
         <!--HEADER 1ST LINE (H1) -->
-      <td rowspan='2'></td>
+      <th rowspan='2'></th>
       
       <!--H1 ACTIVITY TITLE-->
       <th rowspan='2' class='col-xs-2 text-center'> 
@@ -48,7 +48,7 @@
       </th>
 
       <!--H1 RISK FACTORS  -->
-      <td :colspan='getRiskslength' class='text-center col-xs-7' > 
+      <th :colspan='getRiskslength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <!--risks and rate EDIT mode-->
@@ -104,21 +104,21 @@
         <span v-else>                                                             <!-- READ MODE -->
           {{ table.header.risks.title.risks[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.risks.title.rate[i18n] }}</span>
         </span>
-      </td>
+      </th>
 
             <!--H1 IMPORTANCE  -->
-      <td  colspan='3' class='col-xs-2'> 
+      <th  colspan='3' class='col-xs-2'> 
         <input v-if='editMode' v-model='table.header.importance.name[i18n]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         <span v-else>{{ table.header.importance.name[i18n] }}</span>                                                            <!-- READ MODE -->
-      </td>
+      </th>
 
-      <td rowspan='2'></td>
+      <th rowspan='2'></th>
 
     </tr>
     <tr>
         <!--HEADER 2ND LINE  -->
           <!--H2 RISK FACTORS  -->
-      <td v-for='(risk, index) in userTable'>
+      <th v-for='(risk, index) in userTable'>
         
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
@@ -142,14 +142,14 @@
         </table>
         <span v-else @click='sortByRisk(index)'><a>{{ risk.title }}</a><span class='badge pull-right alert-success'>{{ risk.rate }}</span></span> <!-- READ MODE -->
 
-      </td> 
+      </th> 
           <!--H2 Risk rate  -->
-      <td>
+      <th>
           <textarea v-if='editMode' rows='3' v-model='table.header.risks.title.range[i18n]' class='form-control' :placeholder='table.header.risks.title.range[i18n]'></textarea>
           
           <span v-else> {{ table.header.risks.title.range[i18n] }}</span> 
-      </td>
-      <td v-for='imp in table.header.importance.subElements'>
+      </th>
+      <th v-for='imp in table.header.importance.subElements'>
         
         <div v-if='editMode'>                                 <!-- EDIT MODE -->
           <textarea v-model='imp.name[i18n]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | SUM | LEVEL -->
@@ -158,7 +158,7 @@
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ imp.name[i18n] }}</a>
         </span> 
-      </td>
+      </th>
 
     </tr>
   </thead>
@@ -446,10 +446,10 @@ export default {
 
 <style>
 
-#risksTable thead tr {
+/*#risksTable thead tr {*/
   /*background: #175;*/
   /*color: #fff;*/
-}
+/*}*/
 
 </style>
 

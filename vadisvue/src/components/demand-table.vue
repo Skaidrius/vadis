@@ -40,7 +40,7 @@
       </th>
 
           <!--  H1 CRITERIAS  -->
-      <td :colspan='getCriteriasLength' class='text-center col-xs-7' > 
+      <th :colspan='getCriteriasLength' class='text-center col-xs-7' > 
       
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <div class='col-xs-9'>
@@ -95,30 +95,30 @@
         <span v-else>                                                             <!-- READ MODE -->
           {{ table.header.criterias.titles.criterias[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[i18n] }}</span>
         </span>
-      </td>
+      </th>
 
           <!--  H1 IMPORTANCE  -->
-      <td  colspan='3' class='col-xs-2'> 
+      <th  colspan='3' class='col-xs-2'> 
       
         <input v-if='editMode' v-model='table.header.importance.name[i18n]' class='form-control  text-center' placeholder='Importance'> <!-- EDIT MODE -->
         
         <span v-else>{{ table.header.importance.name[i18n] }}</span>                                                            <!-- READ MODE -->
-      </td>
+      </th>
 
           <!--  H1 DEMAND  --> 
-      <td :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
+      <th :colspan='table.header.demand.subElements.length' class='col-xs-1'> 
       
         <input v-if='editMode' v-model='table.header.demand.name[i18n]' class='form-control  text-center' placeholder='Demand'>  <!-- EDIT MODE -->
         
         <span v-else>{{ table.header.demand.name[i18n] }}</span>                                                                 <!-- READ MODE -->
-      </td>
-      <td rowspan='2'></td>
+      </th>
+      <th rowspan='2'></th>
 
     </tr>
     <tr>
       <!--  HEADER 2ND LINE  -->
         <!--  H2 CRITERIAS  -->
-      <td v-for='(crit, index) in userTable'>
+      <th v-for='(crit, index) in userTable'>
         
         <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
           <tr>
@@ -142,10 +142,10 @@
         </table>
         <span v-else @click='sortByCrit(index)'><a>{{ crit.title }}</a><span class='badge pull-right alert-success'>{{ crit.rate }}</span></span> <!-- READ MODE -->
 
-      </td> 
+      </th> 
         <!--  H2 IMPORTANCE  -->
 
-      <td v-for='imp in table.header.importance.subElements'>
+      <th v-for='imp in table.header.importance.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <textarea v-model='imp.name[i18n]' rows='3' class='form-control' placeholder='Enter new value'></textarea> <!--  H2 IMPORTANCE / RANGE | TOTA | LEVEL -->
@@ -154,9 +154,9 @@
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ imp.name[i18n] }}</a>
         </span> 
-      </td>
+      </th>
         <!--  H2 DEMAND  -->
-      <td v-for='dem in table.header.demand.subElements'>
+      <th v-for='dem in table.header.demand.subElements'>
         
         <div v-if='editMode' class="input-group">                                 <!-- EDIT MODE -->
           <textarea v-model='dem.name[i18n]' rows='3' class='form-control' placeholder='Enter new value'></textarea>
@@ -165,7 +165,7 @@
         <span v-else rows='3' @click='sortByDemand()'>                            <!-- READ MODE -->
           <a>{{ dem.name[i18n] }}</a>
         </span>
-      </td>
+      </th>
     </tr>
   </thead>
 

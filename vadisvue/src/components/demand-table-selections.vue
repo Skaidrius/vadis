@@ -34,10 +34,10 @@
           <span v-else>{{ table.header.criterias.titles.criterias[i18n] }} <span class='badge pull-right alert-success'>{{ table.header.criterias.titles.rate[i18n] }}</span></span>
         </th>
         
-        <td colspan='3' class='col-xs-9 text-center'>
+        <th colspan='3' class='col-xs-9 text-center'>
           <input v-if='editMode' v-model='table.header.criterias.items.title[i18n]' class='form-control' :value='table.header.criterias.items.title[i18n]'>
           <span v-else>{{ table.header.criterias.items.title[i18n] }}</span>
-        </td>
+        </th>
         
       </tr>
 
@@ -127,9 +127,9 @@ export default {
 
 <style>
 
-#demandTableLegends thead tr {
-  background: #2aa;
-  color: #fff;
-}
+/*#demandTableLegends thead tr {*/
+/*  background: #2aa;*/
+/*  color: #fff;*/
+/*}*/
 
 </style>
