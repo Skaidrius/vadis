@@ -24,10 +24,10 @@
 
         <ul class="nav navbar-nav">
           <!--/<li><router-link to="/ias-demand">IAS demand</router-link></li>-->
-          <li><router-link to="/front">Front page</router-link></li>
-          <li><router-link to="/risk">Risk selection</router-link></li>
-          <li><router-link to="/demand">Demand</router-link></li>
-          <li><router-link to="/recommend">Recommendations</router-link></li>
+          <li><router-link to="/front">{{ pages.front[i18n]}}</router-link></li>
+          <li><router-link to="/risk">{{ pages.risk[i18n] }}</router-link></li>
+          <li><router-link to="/demand">{{ pages.demand[i18n] }}</router-link></li>
+          <li><router-link to="/recommend">{{ pages.recommendations[i18n] }}</router-link></li>
         </ul>
       </div>
     </nav>
@@ -50,6 +50,24 @@ let userData = require('assets/default-data.json');
     export default {
       data(){
         return {
+          pages: {
+            front: {
+              en: "Front Page",
+              lt: "Pagrindinis"
+            },
+            risk: {
+              en: "Risk Selection",
+              lt: "Rizikos Atranka"
+            },
+            demand: {
+              en: "IA Demand",
+              lt: "VA Poreikis"
+            },
+            recommendations: {
+              en: "Recommendations",
+              lt: "Rekomendacijos"
+            }
+          },
           header: apiData.header,
           editMode: false,
           i18n: 'en'

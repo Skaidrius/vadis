@@ -31,51 +31,51 @@
     </div>
     
     <div v-if='activeRecommendations'>
-      <h2> Active Recommendations </h2>
+      <h2> {{ tables.activeRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
           <tr>
-            <th v-for='header in tableElements' :class='header.style'>{{ header[i18n] }}</th>
+            <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>{{ header[i18n] }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for='(data, index) in activeRecommendations'>
             <td>{{ index+1 }}.</td>
-            <td v-for='el in data'>{{ el }}</td>
+            <td v-for='(el, key) in data' v-show='key!=="actual"'>{{ el }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     
     <div v-if='lateRecommendations'>
-      <h2> Late Recommendations </h2>
+      <h2> {{ tables.lateRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
           <tr>
-            <th v-for='header in tableElements' :class='header.style'>{{ header[i18n] }}</th>
+            <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>{{ header[i18n] }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for='(data, index) in lateRecommendations'>
             <td>{{ index+1 }}.</td>
-            <td v-for='el in data'>{{ el }}</td>
+            <td v-for='(el, key) in data' v-show='key!=="actual"'>{{ el }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     
     <div v-if='impledRecommendations'>
-      <h2> Implemented Recommendations </h2>
+      <h2> {{ tables.impleRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
           <tr>
-            <th v-for='header in tableElements' :class='header.style'>{{ header[i18n] }}</th>
+            <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>{{ header[i18n] }}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for='(data, index) in impledRecommendations'>
             <td>{{ index+1 }}.</td>
-            <td v-for='el in data'>{{ el }}</td>
+            <td v-for='(el, key) in data' v-show='key!=="actual"'>{{ el }}</td>
           </tr>
         </tbody>
       </table>
@@ -93,6 +93,7 @@ let userData = require('../assets/default-data.json');
 export default{
     data(){
       return {
+        tables: apiData.table.tables,
         functions: apiData.table.functions,
         recommendations: userData.recommendationsTable.tableElements,
         tableElements: apiData.table.header.elements

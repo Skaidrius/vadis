@@ -1,43 +1,45 @@
 {	
 	"table": {
 		"header": {
-			"elements": [{
-				"en": "#",
-				"lt": "Nr.",
-				"style": "col-xs-1"
-			},{
-				"en": "Audit Report (AR)",
-				"lt": "VA Ataskaita (VAA)",
-				"style": "col-xs-2"
-			},{
-				"en": "Rec # in AR",
-				"lt": "Rek. Nr. VAA",
-				"style": "col-xs-1"
-			},{
-				"en": "Rec Content",
-				"lt": "Rek. turinys",
-				"style": "col-xs-2"
-			},{
-				"en": "Rec. Rate",
-				"lt": "Rek. lygis",
-				"style": "col-xs-1"
-			},{
-				"en": "Implement",
-				"lt": "Priemonė",
-				"style": "col-xs-2"
-			},{
-				"en": "Period",
-				"lt": "Terminas",
-				"style": "col-xs-1"
-			},{
-				"en": "Information",
-				"lt": "Informacija",
-				"style": "col-xs-2"
-			},{
-				"en": "Status",
-				"lt": "Statusas",
-				"style": "col-xs-1"
-			}],
+			"elements": [
+				{
+					"en": "#",
+					"lt": "Nr.",
+					"style": "col-xs-1"
+				},{
+					"en": "Audit Report (AR)",
+					"lt": "VA Ataskaita (VAA)",
+					"style": "col-xs-2"
+				},{
+					"en": "Rec # in AR",
+					"lt": "Rek. Nr. VAA",
+					"style": "col-xs-1"
+				},{
+					"en": "Rec Content",
+					"lt": "Rek. turinys",
+					"style": "col-xs-2"
+				},{
+					"en": "Rec. Rate",
+					"lt": "Rek. lygis",
+					"style": "col-xs-1"
+				},{
+					"en": "Implement",
+					"lt": "Priemonė",
+					"style": "col-xs-2"
+				},{
+					"en": "Period",
+					"lt": "Terminas",
+					"style": "col-xs-1"
+				},{
+					"en": "Information",
+					"lt": "Informacija",
+					"style": "col-xs-2"
+				},{
+					"en": "Actual",
+					"lt": "Aktuali",
+					"style": "col-xs-1"
+				}
+			],
 				
 			"title": { 
 				"en": "Title",
@@ -108,6 +110,20 @@
 						"lt": "Dienomis"
 					}
 				}]
+			}
+		},
+		"tables": {
+			"activeRec": {
+				"en": "Actual Recommendations",
+				"lt": "Aktualios Rekomendacijos"
+			},
+			"impleRec": {
+				"en": "Implemented Recommentations",
+				"lt": "Įgyvendintos Rekomendacijos"
+			},
+			"lateRec": {
+				"en": "Implementation is late",
+				"lt": "Vėluoja Įgyvendinimas"
 			}
 		},
         "functions": {
