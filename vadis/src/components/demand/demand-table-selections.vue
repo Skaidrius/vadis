@@ -87,9 +87,9 @@
 </template>
 
 <script>
-const apiData = require('../assets/demand-table-data.json');
+const apiData = require('../../assets/demand-table-data.json');
 // const userData = require('../assets/demand-user-data.json');
-let userData = require('../assets/default-data.json');
+let userData = require('../../assets/default-data.json');
 
 export default {
   
@@ -110,7 +110,7 @@ export default {
   props: ['i18n', 'editMode'],
   methods: {
     insertUserData: function(){
-      userData = require('../assets/user-data-1.json');
+      userData = require('../../assets/user-data-1.json');
       this.userTable = userData.demandTable.tableElements;
       this.userDataTable = userData.demandTable.elements;
     },

@@ -14,7 +14,7 @@
 
 <script>
 
-const apiData = require('../assets/demand-table-data.json');
+const apiData = require('../../assets/demand-table-data.json');
 
     export default {
       data(){

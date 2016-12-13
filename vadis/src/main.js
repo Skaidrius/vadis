@@ -3,15 +3,22 @@ import Vue from 'vue';
 // import Demand from './components/ias-demand.vue';
 import FrontPage from './components/front-page.vue';
 
-import RiskSelection from './components/risk-selection.vue';
-import RiskTableSelections from './components/risk-table-selections.vue';
-import RiskTable from './components/risk-table.vue';
+import RiskSelection from './components/risk/risk-selection.vue';
+import RiskTableSelections from './components/risk/risk-table-selections.vue';
+import RiskTable from './components/risk/risk-table.vue';
 
-import Demand from './components/demand.vue';
-import DemandTable from './components/demand-table.vue';
-import DemandTableSelections from './components/demand-table-selections.vue';
+import Demand from './components/demand/demand.vue';
+import DemandTable from './components/demand/demand-table.vue';
+import DemandTableSelections from './components/demand/demand-table-selections.vue';
 
-import Recommendations from './components/recommendations.vue';
+import Recommendations from './components/recs/recommendations.vue';
+
+import ActualRec from './components/recs/actualRec.vue';
+// const ActualRec = { template: '#activeRecommendations' };
+const LateRec = { template: '#lateRecommendations' };
+const ImpledRec = { template: '#impledRecommendations' };
+const SearchRec = { template: '#searchRecommendations' };
+const AddNewRec = { template: '#addNewRecommendation' };
 
 const App = Vue.extend(require('./App.vue'));
 
@@ -47,7 +54,19 @@ const router = new VueRouter({
         path: 'demand-table-selections', component: DemandTableSelections
       }]
     },
-    { path: '/recommend', component: Recommendations },
+    { path: '/recommend', component: Recommendations,
+      children: [{ 
+        path: 'actual', component: ActualRec 
+      }, { 
+        path: 'late', component: LateRec 
+      }, { 
+        path: 'implemented', component: ImpledRec
+      }, { 
+        path: 'search', component: SearchRec 
+      }, { 
+        path: 'add', component: AddNewRec
+      }]
+    },
     { path: '*', redirect: '/main' }
     
   ],

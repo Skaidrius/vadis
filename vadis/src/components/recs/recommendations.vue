@@ -7,10 +7,22 @@
     </div>
     
     <div>
-    
+      
+      
+    <nav class='container-fluid'>
+      <ul class="my-tabs nav nav-pills">
+        <router-link to="/recommendations/actual" class="active"><li class='col-xs-2'>{{ tables.activeRec[i18n] }}</li></router-link>
+        <router-link to="/recommendations/late"><li class='col-xs-2'>{{ tables.lateRec[i18n] }}</li></router-link>
+        <router-link to="/recommendations/implemented"><li class='col-xs-2'>{{ tables.impleRec[i18n] }}</li></router-link>
+        <router-link to="/recommendations/search"><li class='col-xs-2'>{{ functions.search[i18n] }}</li></router-link>
+        <router-link to="/recommendations/add"><li class='col-xs-2'>{{ functions.titles.addNew[i18n] }}</li></router-link>
+      </ul>
+    </nav>
+    <router-view class="view"></router-view>
+
     <!--panel with search and search results-->
-    <div class='panel panel-default'> <!--  SEARCH-->
-      <div v-if='!editMode'>
+    <div class='panel panel-default' v-if='!editMode' id='searchRecommendations'> <!--  SEARCH-->
+      <div >
         
         <div class="panel-body">
           <h2> {{ functions.search[i18n] }} </h2>
@@ -57,7 +69,7 @@
     </div>
     
     <!--active recommendations-->
-    <div v-if='activeRecommendations'>
+    <div v-if='activeRecommendations' id='activeRecommendations'>
       <h2> {{ tables.activeRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -88,7 +100,7 @@
     </div>
 
     <!--Add new recommendation-->
-    <div class='panel panel-default'> 
+    <div class='panel panel-default' id='addNewRecommendation'> 
       <div class='panel-heading'>{{ functions.titles.addNew[i18n] }}</div>
       <table class='table table-hover table-striped table-bordered table-condensed text-center'>
         <thead>
@@ -111,7 +123,7 @@
     </div>
     
     <!--Late recommedations table-->
-    <div v-if='lateRecommendations'>
+    <div v-if='lateRecommendations' id="lateRecommendations">
       <h2> {{ tables.lateRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -142,7 +154,7 @@
     </div>
     
     <!--implimented recommnendations-->
-    <div v-if='impledRecommendations'>
+    <div v-if='impledRecommendations' id='impledRecommendations'>
       <h2> {{ tables.impleRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -178,8 +190,8 @@
 
 <script>
 
-const apiData = require('../assets/recommend-table-data.json');
-let userData = require('../assets/default-data.json');
+const apiData = require('../../assets/recommend-table-data.json');
+let userData = require('../../assets/default-data.json');
 
 export default{
     data(){
