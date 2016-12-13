@@ -413,21 +413,21 @@ export default {
     addNewCriteria: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Criteria?')) {
         this.userTable.push({ 
-          "title": title, 
-          "rate": rate || 1,
-          "values": [{ 
-            "value": descriptions[0]
+          'title': title, 
+          'rate': rate || 1,
+          'values': [{ 
+            'value': descriptions[0]
           }, {
-            "value": descriptions[1] 
+            'value': descriptions[1] 
           },{ 
-            "value": descriptions[2] 
+            'value': descriptions[2] 
           }]
         });
         for (var a of this.userDataTable.entries()){
           a[1].risks.push({ 
-            "title": title, 
-            "rate": rate || 1, 
-            "level": 1 
+            'title': title, 
+            'rate': rate || 1, 
+            'level': 1 
           });
         }
         this.newCrit.title = '',

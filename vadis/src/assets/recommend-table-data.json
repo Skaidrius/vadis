@@ -113,6 +113,10 @@
 			}
 		},
 		"tables": {
+			"recSearchRes": {
+				"en": "Search Results",
+				"lt": "Paieškos Rezultatai"
+			},
 			"activeRec": {
 				"en": "Actual Recommendations",
 				"lt": "Aktualios Rekomendacijos"
@@ -176,7 +180,45 @@
           		"addButton": {
           			"en": "Add",
           			"lt": "Pridėti"
-            	}
+            	},
+            	"search": {
+          			"en": "Search",
+          			"lt": "Ieškoti"
+          		},
+          		"noRes": {
+          			"en": "No results found.",
+          			"lt": "Nieko neradome"
+          		},
+          		"status" : {
+          			"title" : {
+	          			"en": "Status",
+	          			"lt": "Būsena"
+          			},
+          			"actual": {
+          				"en": "Actual",
+          				"lt": "Aktuali"
+          			},
+          			"implemented": {
+          				"en": "Implemented",
+          				"lt": "Įgyvendinta"
+          			},
+          			"late": {
+          				"en": "Late",
+          				"lt": "Vėluoja"
+          			}
+          		},
+          		"recRates": [
+      				{
+						"en": "Low",
+						"lt": "Žema"
+					}, {
+						"en": "Middle",
+						"lt": "Vidutinė"
+					}, {
+						"en": "High",
+						"lt": "Aukšta"
+					}
+				]
         }
 	}
 }

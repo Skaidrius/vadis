@@ -15,12 +15,11 @@
     "exports-loader": "^0.6.3",
     "fetchival": "^0.3.2",
     "imports-loader": "^0.6.5",
-    "jQuery": "^1.7.4",
     "jquery": "^3.1.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
-    "vue": "^2.0.1",
+    "vue": "",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.0"
   },
