@@ -3,7 +3,7 @@
     <div class="jumbotron">
       <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
 
-      <h4>today is {{today}} </h4>
+      <h4>{{pageTitle.todayIs[i18n]}} {{today}} </h4>
     </div>
     
     <div>
@@ -44,7 +44,9 @@
             <tr v-for='(data, index) in filteredElements'>
               <td>{{ index+1 }}.</td>
               <td v-for='(el, key) in data' v-show='key!=="actual"'>
-                {{ el }}</td>
+                <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
+                <span v-else>{{ el }}</span>
+              </td>
               <td>{{ data.actual? functions.status.actual[i18n] : functions.status.implemented[i18n] }}</td>
             </tr>
           </tbody>
@@ -191,6 +193,10 @@ export default{
           jumboSmall : {
             en: "Implementation",
             lt: "Įgyvendinimas"
+          },
+          todayIs : {
+            en: "today is: ",
+            lt: "šiandien yra: "
           }
         },
         sorted: true,
@@ -245,34 +251,42 @@ export default{
       },
 
       today: function() {
+        let i18n = this.i18n;
         let str = "";
     
         let td = new Date;
         let thisYear = td.getFullYear();
-        let thisMonth = td.getMonth()+1;
+        let thisMonth = td.getMonth();
         let thisDay = td.getDate();
-    
+        let tempDay;
+        
+        const monthsLt = ["sausio", "vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
+        const monthsEn = ["Januar", "Februar", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        
         if (thisMonth < 10) thisMonth = "0" + thisMonth;
         if (thisDay < 10) thisDay = "0" + thisDay;
-
-        str += thisYear + "-" + thisMonth + "-" + thisDay + " ";
-
+        
+        if (i18n == 'lt'){
+          // lithuanian date format
+          str += thisYear + " m. " + monthsLt[thisMonth] + " " + thisDay + " d.";
+        } else {
+          // us date format 
+          if (thisDay > 10 && thisDay < 14 ) {
+            tempDay = thisDay + 'th';
+          } else if (thisDay % 10 == 1) {
+            tempDay = thisDay + 'st';
+          } else if (thisDay % 10 == 2) {
+            tempDay = thisDay + 'nd';
+          } else if (thisDay % 10 == 3) {
+            tempDay = thisDay + 'rd';
+          } else {
+            tempDay = thisDay + 'th';
+          }
+          str += tempDay + ' of ' + monthsEn[thisMonth] + ', ' + thisYear; 
+        }
         return str;
       }
 
-      // today: function(){
-        // let td = new Date;
-        // let thisYear = td.getFullYear();
-      
-        // let thisMonth = td.getMonth()+1;
-        // // const months = ["sausio", "Vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
-        // let thisDay = td.getDate();
-        // let today = thisYear + '-' + thisMonth + '-'+ thisDay; 
-        // // ("YY-mm-dd");
-        // // console.log(td);
-        // // let year = td.splice(0, 4);
-      //   // return today;
-      // }
     },
     methods: {
       sortByRate: function(el){ //currently sorts middle/high by letter h l m, not by value l=1, m = 2, h = 3

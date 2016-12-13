@@ -2,12 +2,16 @@
 
 > A Vue.js project
 
-## Internal audit planning and risk selection system
-#### ATM It lets:
+## Internal Audit Planning and Risk Management system
+#### ATM:
+- Risk Management
+- IAS demand calculation
+- Recommendations monitoring
+
 1. Choose/write new *Audit scope elements*
 2. *Search* any entry and *filter* all rows
-3. Perform **Risk analysis** based on *Risk factor rate* and *value*
-4. Perform **IA staff demand calculation** based on *individual risk analysis* and assuming that 
+3. Analyse **Risk** based on *Risk factor rate* and *value*
+4. Calculate **IA staff demand ** based on *individual risk analysis* and assuming that 
 whole internal control _system should be checked at least once per 3 years_.
 5. *Risk factors/Demand risk analysis* criterias and audit scope entries could be _added/modified/removed_
 6. *Read mode* and *Edit (edit whole table entries, languages etc...)* modes

@@ -21,12 +21,12 @@ const apiData = require('../assets/demand-table-data.json');
         return {
             pageTitle:{
               jumboHead : {
-                en: "Risk Selection",
-                lt: "Rizikos atranka" 
+                en: "Risk Management",
+                lt: "Rizikos Valdymas" 
               },
               jumboSmall : {
-                en: "And Management",
-                lt: "Ir Valdymas"
+                en: "And Selection",
+                lt: "Ir Atranka"
             }
           },
           header: apiData.header,

@@ -58,8 +58,8 @@ let userData = require('assets/default-data.json');
               lt: "Pagrindinis"
             },
             risk: {
-              en: "Risk Selection",
-              lt: "Rizikos Atranka"
+              en: "Risk Management",
+              lt: "Rizikos Valdymas"
             },
             demand: {
               en: "IA Demand",
