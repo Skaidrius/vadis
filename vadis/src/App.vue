@@ -24,7 +24,7 @@
           <!--<li><router-link to="/main">{{ pages.front[i18n]}}</router-link></li>-->
           <li><router-link to="/risk">{{ pages.risk[i18n] }}</router-link></li>
           <li><router-link to="/demand">{{ pages.demand[i18n] }}</router-link></li>
-          <li><router-link to="/recommend">{{ pages.recommendations[i18n] }}</router-link></li>
+          <li><router-link to="/recommendations">{{ pages.recommendations[i18n] }}</router-link></li>
         </ul>
       </div>
     </nav>

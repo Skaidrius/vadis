@@ -1,4 +1,4 @@
-<template>
+<template id='allRecommendations'>
   <div>
     <div class="jumbotron">
       <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
@@ -6,9 +6,6 @@
       <h4>{{pageTitle.todayIs[i18n]}} {{today}} </h4>
     </div>
     
-    <div>
-      
-      
     <nav class='container-fluid'>
       <ul class="my-tabs nav nav-pills">
         <router-link to="/recommendations/actual" class="active"><li class='col-xs-2'>{{ tables.activeRec[i18n] }}</li></router-link>
@@ -17,11 +14,14 @@
         <router-link to="/recommendations/search"><li class='col-xs-2'>{{ functions.search[i18n] }}</li></router-link>
         <router-link to="/recommendations/add"><li class='col-xs-2'>{{ functions.titles.addNew[i18n] }}</li></router-link>
       </ul>
-    </nav>
-    <router-view class="view"></router-view>
+      </nav>
 
-    <!--panel with search and search results-->
-    <div class='panel panel-default' v-if='!editMode' id='searchRecommendations'> <!--  SEARCH-->
+    <div>
+<!--</template>-->
+
+<!--<template id='searchRecommendations'>-->
+  <!--panel with search and search results-->
+    <div class='panel panel-default' v-if='!editMode' > <!--  SEARCH-->
       <div >
         
         <div class="panel-body">
@@ -67,9 +67,11 @@
         <div v-if='userInput!== "" && filteredElements.length === 0' class='panel-footer'>{{ functions.noRes[i18n] }}</div>
       </div>
     </div>
-    
+<!--</template>-->
+
+<!--<template id='activeRecommendations'>-->
     <!--active recommendations-->
-    <div v-if='activeRecommendations' id='activeRecommendations'>
+    <div v-if='activeRecommendations' >
       <h2> {{ tables.activeRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -99,8 +101,12 @@
       </table>
     </div>
 
+<!--</template>-->
+
+<!--<template id='addNewRecommendation>-->
+
     <!--Add new recommendation-->
-    <div class='panel panel-default' id='addNewRecommendation'> 
+    <div class='panel panel-default'></div> 
       <div class='panel-heading'>{{ functions.titles.addNew[i18n] }}</div>
       <table class='table table-hover table-striped table-bordered table-condensed text-center'>
         <thead>
@@ -121,9 +127,11 @@
           </thead>
       </table>
     </div>
-    
+
+<!--</template>-->
+<!--<templateid="lateRecommendations">-->
     <!--Late recommedations table-->
-    <div v-if='lateRecommendations' id="lateRecommendations">
+    <div v-if='lateRecommendations' >
       <h2> {{ tables.lateRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -152,9 +160,12 @@
         </tbody>
       </table>
     </div>
-    
+
+<!--</template>-->
+  
+<!--<template id='impledRecommendations'>-->
     <!--implimented recommnendations-->
-    <div v-if='impledRecommendations' id='impledRecommendations'>
+    <div v-if='impledRecommendations' >
       <h2> {{ tables.impleRec[i18n] }} </h2>
       <table class='table table-hover table-striped table-bordered text-center'>
         <thead>
@@ -312,6 +323,26 @@ export default{
       sortByStatus: function(){
         this.sorted *=-1;
         return this.recommendations.sort((a, b) => a.actual > b.actual ? this.sorted : this.sorted*-1 );
+      }
+    },
+    components: {
+      allRecs: {
+        template: '#allRecommendations'
+      },
+      ActualRec: {
+        template: '#activeRecommendations'
+      },
+      LateRec : {
+        template: '#lateRecommendations'
+      },
+      ImpledRec : {
+        template: '#impledRecommendations'
+      },
+      SearchRec: {
+        template: '#searchRecommendations'
+      },
+      AddNewRec : {
+        template: '#addNewRecommendation'
       }
     }
 };

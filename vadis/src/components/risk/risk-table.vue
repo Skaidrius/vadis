@@ -3,27 +3,26 @@
   
     <!--control buttons-->
 
-    <div class='form-inline text-right'>
-      <small>
-        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-      </small>
-    </div>
+  <!--  <div class='form-inline text-right'>-->
+  <!--    <small>-->
+  <!--      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>-->
+  <!--      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>-->
+  <!--    </small>-->
+  <!--  </div>-->
     <!--control buttons-->
-    <div class='form-inline text-right'>
+  <!--  <div class='form-inline text-right'>-->
         <!--insertData-->
-      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+  <!--    <button class='form-control' @click='insertUserData()' >InsertData</span></button>-->
       <!--/insertData-->
-    <!--/insertData-->
 
-  </div><br/>
+  <!--</div><br/>-->
   
-  <nav>
-    <ul class="my-tabs nav nav-tabs">
-      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
-    </ul>
-  </nav>
+  <!--<nav>-->
+  <!--  <ul class="my-tabs nav nav-tabs">-->
+  <!--    <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>-->
+  <!--    <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>-->
+  <!--  </ul>-->
+  <!--</nav>-->
   <!--.--- control buttons-->
   
   <!--risk table-->
@@ -242,18 +241,13 @@
 
 <script>
 const apiData = require('../../assets/risk-table-data.json');
-// const userDataTable = require('../assets/risk-user-data.json');
-let userData = require('../../assets/default-data.json');
+
 import Modal from './../modal-component.vue';
 
 export default {
   data(){
     return {
       table: apiData.table,
-      userTable: userData.risksTable.tableElements,
-      // userTable: userDataTable.tableElements,
-      userDataTable: userData.risksTable.elements,
-      // userDataTable: userDataTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
       showModal: false,
@@ -266,6 +260,11 @@ export default {
   components: {
     modal: Modal
   },
+  // // FOR AJAX  - NOT WORKING YET
+  // created: function () {
+  //     this.fetchData();
+  // },
+  props: ['i18n', 'editMode', 'userData', 'userTable', 'userDataTable'],
   computed: {
     filteredElements: function () {
         return this.userDataTable
@@ -276,17 +275,7 @@ export default {
       return this.userTable.length;
     }
   },
-  // // FOR AJAX  - NOT WORKING YET
-  // created: function () {
-  //     this.fetchData();
-  // },
-  props: ['i18n', 'editMode'],
   methods: {
-    insertUserData: function(){
-      userData = require('../../assets/user-data-1.json');
-      this.userTable = userData.demandTable.tableElements;
-      this.userDataTable = userData.demandTable.elements;
-    },
   // // AJAX CALL
   //   fetchData: function () {
   //     var xhr = new XMLHttpRequest();
@@ -357,7 +346,7 @@ export default {
       return this.i18n=newLocale;
     },
     // ADD/REMOVE RISKS
-    addnewRiskeria: function(title, rate, descriptions){ 
+    addnewRisk: function(title, rate, descriptions){ 
       if (window.confirm('Are you sure you add this Risk Factor?')) {
         this.userTable.push({ 
           "title": title, 

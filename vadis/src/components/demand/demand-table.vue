@@ -2,24 +2,6 @@
   
   <div>
 
-  <!--control buttons-->
-  <div class='form-inline text-right'>
-        <!--insertData-->
-    <button class='form-control' @click='insertUserData()' >InsertData</span>
-    </button>
-    <!--/insertData-->
-
-  </div><br/>
-
-<!--navigation-->
-  <nav>
-    <ul class="my-tabs nav nav-tabs">
-      <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/demand/demand-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
-    </ul>
-  </nav>
-<!--navigation-->
-  
   <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
 
   <thead>  
@@ -220,7 +202,7 @@
       <td :colspan='getCriteriasLength + 5'></td>
     </tr>
     <tr>
-      <th></th>
+      <td></td>
       <td>
         <input class='form-control' :placeholder='table.functions.newTitle[i18n]' v-model='newRow.title'>
       </td>
@@ -290,8 +272,6 @@
 
 <script>
 const apiData = require('../../assets/demand-table-data.json');
-// const userDataTable = require('../assets/demand-user-data.json');
-let userData = require('../../assets/default-data.json');
 import Modal from '../modal-component.vue';
 
 export default {
@@ -300,20 +280,14 @@ export default {
       header: apiData.header,
       tableNav: apiData.tableNav,
       table: apiData.table,
-      // userTable: userDataTable.tableElements,
-      userTable: userData.demandTable.tableElements,
-      // userDataTable: userDataTable.elements,
-      userDataTable: userData.demandTable.elements,
-      // editMode: false,
       showModal: false,
       newRow: { title: '', risks: [] },
       newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
       userInput: '',
       sorted: true,
-      // i18n: 'en'
     };
   },
-  props: ['i18n', 'editMode'],
+  props: ['i18n', 'editMode', 'userData', 'userDataTable', 'userTable'],
   components: {
     modal: Modal
   },
@@ -352,11 +326,6 @@ export default {
   //     };
   //     xhr.send();
   //   },
-    insertUserData: function(){
-      userData = require('../../assets/user-data-1.json');
-      this.userTable = userData.demandTable.tableElements;
-      this.userDataTable = userData.demandTable.elements;
-    },
     createDescription: function(idx, idxtwo, val){
       this.userDataTable[idx].risks[idxtwo].description = this.userTable[idxtwo].values[val-1].value;
     },

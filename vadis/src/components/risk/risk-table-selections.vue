@@ -1,36 +1,6 @@
 <template>
   <div>
 
-  <!--control buttons-->
-  <div class='form-inline text-right'>
-        <!--insertData-->
-
-    <div class='form-inline text-right'>
-      <small>
-        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-      </small>
-    </div>
-      <!--control buttons-->
-    <div class='form-inline text-right'>
-          <!--insertData-->
-      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
-      <!--/insertData-->
-    </div>
-
-
-    <!--/insertData-->
-
-  </div><br/>
-  
-  <nav>
-    <ul class="my-tabs nav nav-tabs">
-      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
-    </ul>
-  </nav>
-  <!--.--- control buttons-->
-
   <!--risk selections table-->
   <table id="riskTableSelections" class='table table-hover table-striped table-bordered table-condensed text-centerr'>
 
@@ -107,36 +77,23 @@
 
 <script>
 const apiData = require('../../assets/risk-table-data.json');
-let userData = require('../../assets/default-data.json');
 
 export default {
   
   data(){
     return {
       table: apiData.table,
-      userTable: userData.risksTable.tableElements,
-      tableData: userData.risksTable.elements,
       header: apiData.header,
       tableNav: apiData.tableNav,
     };
   },
-  props: ['i18n', 'editMode'],
+  props: ['i18n', 'editMode', 'userData', 'userTable', 'userDataTable'],
   methods: {
-    insertUserData: function(){
-      userData = require('../../assets/user-data-1.json');
-      this.userTable = userData.demandTable.tableElements;
-      this.userDataTable = userData.demandTable.elements;
-    },
     reRate: function(idx, newVal){ 
-      for (let a of this.tableData){
+      for (let a of this.userTableData){
         a.risks[idx].rate = newVal; 
       }
-    },
-    //     //LOCALIZATION i18n
-    // changeLocaleTo: function(el){
-    //   let newLocale = el;
-    //   return this.i18n=newLocale;
-    // }
+    }
   }
   
 };

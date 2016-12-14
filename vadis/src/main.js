@@ -13,12 +13,11 @@ import DemandTableSelections from './components/demand/demand-table-selections.v
 
 import Recommendations from './components/recs/recommendations.vue';
 
-import ActualRec from './components/recs/actualRec.vue';
-// const ActualRec = { template: '#activeRecommendations' };
-const LateRec = { template: '#lateRecommendations' };
-const ImpledRec = { template: '#impledRecommendations' };
-const SearchRec = { template: '#searchRecommendations' };
-const AddNewRec = { template: '#addNewRecommendation' };
+import ActualRec from './components/recs/recommendations.vue';
+import LateRec from './components/recs/recommendations.vue';
+import ImpledRec from './components/recs/recommendations.vue';
+import SearchRec  from './components/recs/recommendations.vue';
+import AddNewRec from './components/recs/recommendations.vue';
 
 const App = Vue.extend(require('./App.vue'));
 
@@ -54,8 +53,10 @@ const router = new VueRouter({
         path: 'demand-table-selections', component: DemandTableSelections
       }]
     },
-    { path: '/recommend', component: Recommendations,
+    { path: '/recommendations', component: Recommendations,
       children: [{ 
+        path: '', component: ActualRec, 
+      },{ 
         path: 'actual', component: ActualRec 
       }, { 
         path: 'late', component: LateRec 
