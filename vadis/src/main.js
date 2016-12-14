@@ -13,11 +13,11 @@ import DemandTableSelections from './components/demand/demand-table-selections.v
 
 import Recommendations from './components/recs/recommendations.vue';
 
-import ActualRec from './components/recs/recommendations.vue';
-import LateRec from './components/recs/recommendations.vue';
-import ImpledRec from './components/recs/recommendations.vue';
-import SearchRec  from './components/recs/recommendations.vue';
-import AddNewRec from './components/recs/recommendations.vue';
+import ActualRec from './components/recs/actual-recs.vue';
+import LateRec from './components/recs/late-recs.vue';
+import ImpledRec from './components/recs/impled-recs.vue';
+import SearchRec  from './components/recs/search-recs.vue';
+import AddRecs from './components/recs/add-recs.vue';
 
 const App = Vue.extend(require('./App.vue'));
 
@@ -65,7 +65,7 @@ const router = new VueRouter({
       }, { 
         path: 'search', component: SearchRec 
       }, { 
-        path: 'add', component: AddNewRec
+        path: 'add', component: AddRecs
       }]
     },
     { path: '*', redirect: '/main' }
