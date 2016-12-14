@@ -1,10 +1,14 @@
 <!--Add new recommendation-->
 <template>
-    <div>
+  <div>
 
-      <div class='panel panel-default'></div> 
-        <div class='panel-heading'>{{ functions.titles.addNew[i18n] }}</div>
-        <table class='table table-hover table-striped table-bordered table-condensed text-center'>
+    <div class='panel panel-default'>
+    
+      <div class="panel-body">
+        <h3>{{ functions.titles.addNew[i18n] }}</h3>
+      </div>
+
+      <table class='table table-hover table-striped table-bordered table-condensed text-center'>
           <thead>
               <tr>
                 <th class='col-xs-3'><input :placeholder="functions.report[i18n]" class='form-control'></th>
@@ -22,9 +26,12 @@
               </tr>
             </thead>
         </table>
-      </div>
+        
+      <div class="panel-footer"></div>
 
     </div>
+
+  </div>
 </template>
 
 <script>

@@ -5,7 +5,7 @@
     <div class='panel panel-default'> <!--  SEARCH-->
 
       <div class="panel-body">
-        <h2> {{ functions.search[i18n] }} </h2>
+        <h3> {{ functions.search[i18n] }} </h3>
         <p>
           <input v-model="userInput" class="form-control" :placeholder="functions.search[i18n]"/>
         </p>

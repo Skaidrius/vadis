@@ -7,12 +7,12 @@
     </div>
     
     <nav class='container-fluid'>
-      <ul class="my-tabs nav nav-pills">
-        <router-link to="/recommendations/actual" class="active"><li class='col-xs-2'>{{ tables.activeRec[i18n] }}</li></router-link>
-        <router-link to="/recommendations/late"><li class='col-xs-2'>{{ tables.lateRec[i18n] }}</li></router-link>
-        <router-link to="/recommendations/implemented"><li class='col-xs-2'>{{ tables.impleRec[i18n] }}</li></router-link>
-        <router-link to="/recommendations/search"><li class='col-xs-2'>{{ functions.search[i18n] }}</li></router-link>
-        <router-link to="/recommendations/add"><li class='col-xs-2'>{{ functions.titles.addNew[i18n] }}</li></router-link>
+      <ul class="nav nav-pills text-center my-tabs row">
+        <li class='col-xs-2'><router-link to="/recommendations/actual">{{ tables.activeRec[i18n] }}</router-link></li>
+        <li class='col-xs-2'><router-link to="/recommendations/late">{{ tables.lateRec[i18n] }}</router-link></li>
+        <li class='col-xs-2'><router-link to="/recommendations/implemented">{{ tables.impleRec[i18n] }}</router-link></li>
+        <li class='col-xs-2'><router-link to="/recommendations/add">{{ functions.titles.addNew[i18n] }}</router-link></li>
+        <li class='col-xs-2'><router-link to="/recommendations/search">{{ functions.search[i18n] }}</router-link></li>
       </ul>
       </nav>
 

@@ -4,6 +4,14 @@
 			"en": "Risk management and selection",
 			"lt": "Rizikos valdymas ir atranka"
 		},
+		"risktabletitle": {
+			"en": "Risk Factors",
+			"lt": "Rizikos Veiksniai"
+		},
+		"risklegendstitle": {
+			"en": "Values Of Risk Factors",
+			"lt": "Rizikos Veiksnių Reikšmės"
+		},
 		"mode": {
 			"regular": {
 				"en": "regular mode",

@@ -4,6 +4,14 @@
 			"en": "IAS demand table",
 			"lt": "Vidaus audito poreikio apskaičiavimas"
 		},
+		"demandtabletitle": {
+			"en": "Demand of IA Staff",
+			"lt": "VAT Poreikis"
+		},
+		"demandlegendstitle": {
+			"en": "Values Of IAS Demand Table",
+			"lt": "VAT Poreikio Lentelės Reikšmės"
+		},
 		"mode": {
 			"regular": {
 				"en": "regular mode",

@@ -158,4 +158,28 @@ textarea {
   resize: none;
 }
 
+ .my-tabs {
+        margin: 0;
+        padding: 0;
+    }
+    .my-tabs li{
+        display: inline-block;
+        background: white;
+        border: 1px #ddd solid;
+        border-bottom: none;
+        /*width: 32em;*/
+        /*padding: 20px;*/
+        text-align: center;
+        padding: 0;
+    }
+ /* .my-tabs li:hover,*/
+ /* .my-tabs li:active,*/
+ /* .my-tabs li:focus*/
+ /*{*/
+ /*   background: #ddd;*/
+ /*   border: 1px #ccc solid;*/
+ /*   border-radius: 5px 5px 0 0;*/
+ /*   border-bottom: none;*/
+ /* } */
+
 </style>

@@ -4,25 +4,26 @@
     
     <div class="jumbotron">
       <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
-    </div>
 
-    <div class='form-inline text-right'>
-      <small>
-        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-      </small>
+      <div class='form-inline text-right'>
+        <small>
+          <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+          <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+        </small>
+      </div>
+    
+      <div class='form-inline text-right'>
+          <!--insertData-->
+        <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+        <!--/insertData-->
+      </div>
+
     </div>
     
-    <div class='form-inline text-right'>
-        <!--insertData-->
-      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
-      <!--/insertData-->
-    </div>
-
     <nav>
       <ul class="my-tabs nav nav-tabs">
-        <router-link to="/demand/demand-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-        <router-link to="/demand/demand-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
+        <li class='col-xs-2'><router-link to="/demand/demand-table">{{ tableNav.table[i18n] }}</router-link></li>
+        <li class='col-xs-2'><router-link to="/demand/demand-table-selections">{{ tableNav.legend[i18n] }}</router-link></li>
       </ul>
     </nav>
 
@@ -70,29 +71,7 @@ let userData = require('../../assets/default-data.json');
 
 <style>
 
-    .my-tabs {
-        margin: 0;
-        padding: 0;
-    }
-    .my-tabs li{
-        display: inline-block;
-        background: white;
-        border: 1px white solid;
-        border-bottom: none;
-        width: 32em;
-        padding: 20px;
-        text-align: center;
-    }
-  .my-tabs li:hover,
-  .my-tabs li:active,
-  .my-tabs li:focus
- {
-    background: #ddd;
-    border: 1px #ccc solid;
-    border-radius: 5px 5px 0 0;
-    border-bottom: none;
-  } 
-    
+   
 </style>
 
  <!--   To do - 

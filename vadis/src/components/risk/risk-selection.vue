@@ -1,37 +1,39 @@
 <!--Risk selections main-->
 <template>
-  
-  <div class="parent">
+  <div>
     
-    <div class="jumbotron">
-      <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
-    </div>
+    <div class="parent">
+      
+      <div class="jumbotron">
+        <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
 
-    <div class='form-inline text-right'>
-      <small>
-        <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-        <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-      </small>
-    </div>
+        <div class='form-inline text-right'>
+          <small>
+            <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+            <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+          </small>
+        </div>
 
-    <div class='form-inline text-right'>
-        <!--insertData-->
-      <button class='form-control' @click='insertUserData()' >InsertData</span></button>
-      <!--/insertData-->
-    </div>
+        <div class='form-inline text-right'>
+            <!--insertData-->
+          <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+          <!--/insertData-->
+        </div>
+      
+       </div>
+    
+      <nav>
+        <ul class="my-tabs nav nav-tabs">
+          <li class='col-xs-2'><router-link to="/risk/risk-table">{{ tableNav.table[i18n] }}</router-link></li>
+          <li class='col-xs-2'><router-link to="/risk/risk-table-selections">{{ tableNav.legend[i18n] }}</router-link></li>
+        </ul>
+      </nav>
+    
+      <router-view class="child" :i18n='i18n' :editMode='editMode' :userData='userData' :userTable='userTable' :userDataTable='userDataTable'></router-view>
   
-  <nav>
-    <ul class="my-tabs nav nav-tabs">
-      <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>
-      <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>
-    </ul>
-  </nav>
-
-
-  <router-view class="child" :i18n='i18n' :editMode='editMode' :userData='userData' :userTable='userTable' :userDataTable='userDataTable'></router-view>
-
+    </div>
+    
   </div>
-
 </template>
 
 <script>
