@@ -1,5 +1,5 @@
+<!--Demand table -->
 <template>
-  
   <div>
 
   <table id='demandTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 
@@ -266,8 +266,7 @@
 
 <!--<pre>{{ $data.userDataTable }}</pre>  -->
 <!--FOR TESTING AND VIEWING OF JSON ONLY -->
-</div>
-
+  </div>
 </template>
 
 <script>

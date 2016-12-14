@@ -1,3 +1,4 @@
+<!--Implemented recommendations-->
 <template id='impledRecommendations'>
     <div>
     <!--implimented recommnendations-->

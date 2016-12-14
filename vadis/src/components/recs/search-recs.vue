@@ -1,51 +1,52 @@
+<!-- search recommendation-->
 <template>
   <div><!--panel with search and search results-->
-    <div class='panel panel-default' v-if='!editMode' > <!--  SEARCH-->
-      <div >
-        
-        <div class="panel-body">
-          <h2> {{ functions.search[i18n] }} </h2>
-          <p>
-            <input v-model="userInput" class="form-control" :placeholder="functions.search[i18n]"/>
-          </p>
-        </div>
 
-        <div class='panel-heading'>
-          <span v-if='userInput!== ""'> {{ tables.recSearchRes[i18n] }}</span>
-        </div>
-        
-        <table v-if='userInput!== "" && filteredElements.length > 0' class='table table-hover table-striped table-bordered text-center' name='resultsTable'>
-          <thead>
-            <tr>
-              <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>
-                <span v-if='header == tableElements[4]'>
-                  <a @click='sortByRate()'>{{ header[i18n] }}</a>
-                </span>
-                <span v-else>
-                  <span v-if='header == tableElements[6]'>
-                    <a @click='sortByDate()'>{{ header[i18n] }}</a>
-                  </span>
-                  <span v-else>{{ header[i18n] }}</span>
-                </span>
-              </th>
-              <th @click='sortByStatus()'><a>{{ functions.status.title[i18n] }}</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for='(data, index) in filteredElements'>
-              <td>{{ index+1 }}.</td>
-              <td v-for='(el, key) in data' v-show='key!=="actual"'>
-                <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
-                <span v-else>{{ el }}</span>
-              </td>
-              <td>{{ data.actual? functions.status.actual[i18n] : functions.status.implemented[i18n] }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class='panel panel-default'> <!--  SEARCH-->
 
-        <div v-if='userInput!== "" && filteredElements.length === 0' class='panel-footer'>{{ functions.noRes[i18n] }}</div>
+      <div class="panel-body">
+        <h2> {{ functions.search[i18n] }} </h2>
+        <p>
+          <input v-model="userInput" class="form-control" :placeholder="functions.search[i18n]"/>
+        </p>
       </div>
+
+      <div class='panel-heading'>
+        <span v-if='userInput!== ""'> {{ tables.recSearchRes[i18n] }}</span>
+      </div>
+        
+      <table v-if='userInput!== "" && filteredElements.length > 0' class='table table-hover table-striped table-bordered text-center' name='resultsTable'>
+        <thead>
+          <tr>
+            <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>
+              <span v-if='header == tableElements[4]'>
+                <a @click='sortByRate()'>{{ header[i18n] }}</a>
+              </span>
+              <span v-else>
+                <span v-if='header == tableElements[6]'>
+                  <a @click='sortByDate()'>{{ header[i18n] }}</a>
+                </span>
+                <span v-else>{{ header[i18n] }}</span>
+              </span>
+            </th>
+            <th @click='sortByStatus()'><a>{{ functions.status.title[i18n] }}</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for='(data, index) in filteredElements'>
+            <td>{{ index+1 }}.</td>
+            <td v-for='(el, key) in data' v-show='key!=="actual"'>
+              <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
+              <span v-else>{{ el }}</span>
+            </td>
+            <td>{{ data.actual? functions.status.actual[i18n] : functions.status.implemented[i18n] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div v-if='userInput!== "" && filteredElements.length === 0' class='panel-footer'>{{ functions.noRes[i18n] }}</div>
     </div>
+
   </div>
 </template>
 

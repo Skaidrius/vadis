@@ -1,7 +1,7 @@
+  <!--DEMAND LEGENDS TABLE-->
 <template>
   <div>
 
-  <!--DEMAND LEGENDS TABLE-->
   <table id="demandTableLegends"class='table table-hover table-striped table-bordered table-condensed text-centerr'>
     <thead class="row">
       <tr class='text-center row'>
@@ -64,7 +64,6 @@
   </table>
 
   </div>
-  
 </template>
 
 <script>

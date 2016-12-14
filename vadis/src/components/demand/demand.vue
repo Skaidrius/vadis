@@ -1,5 +1,5 @@
+<!--Demand  main-->
 <template>
-  
   <div class="parent">
     
     <div class="jumbotron">
@@ -29,7 +29,6 @@
     <router-view class="child" :i18n='i18n' :editMode='editMode' :userData='userData' :userTable='userTable' :userDataTable='userDataTable'></router-view>
 
   </div>
-
 </template>
 
 <script>

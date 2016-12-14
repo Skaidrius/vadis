@@ -1,29 +1,6 @@
+<!--Risk selections risk table-->
 <template>
   <div>
-  
-    <!--control buttons-->
-
-  <!--  <div class='form-inline text-right'>-->
-  <!--    <small>-->
-  <!--      <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>-->
-  <!--      <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>-->
-  <!--    </small>-->
-  <!--  </div>-->
-    <!--control buttons-->
-  <!--  <div class='form-inline text-right'>-->
-        <!--insertData-->
-  <!--    <button class='form-control' @click='insertUserData()' >InsertData</span></button>-->
-      <!--/insertData-->
-
-  <!--</div><br/>-->
-  
-  <!--<nav>-->
-  <!--  <ul class="my-tabs nav nav-tabs">-->
-  <!--    <router-link to="/risk/risk-table" class="active"><li class='col-xs-2'>{{ tableNav.table[i18n] }}</li></router-link>-->
-  <!--    <router-link to="/risk/risk-table-selections"><li class='col-xs-2'>{{ tableNav.legend[i18n] }}</li></router-link>-->
-  <!--  </ul>-->
-  <!--</nav>-->
-  <!--.--- control buttons-->
   
   <!--risk table-->
   <table id='risksTable' class='table table-hover table-striped table-bordered table-condensed text-center'> 

@@ -1,3 +1,4 @@
+<!--Late recommendations-->
 <template>
     <div>
     <!--Late recommedations table-->
