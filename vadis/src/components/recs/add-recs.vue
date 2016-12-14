@@ -1,5 +1,4 @@
 <template>
-    
     <div>
 
     <!--Add new recommendation-->
@@ -26,24 +25,15 @@
     </div>
 
     </div>
-    
 </template>
+
 <script>
   
-const apiData = require('../../assets/recommend-table-data.json');
+// const apiData = require('../../assets/recommend-table-data.json');
 
 export default {
   data(){
     return {
-    //   tables: apiData.table.tables,
-    //   header: apiData.header,
-    //   tableNav: apiData.tableNav,
-    //   table: apiData.table,
-    //   showModal: false,
-    //   newRow: { title: '', risks: [] },
-    //   newCrit: { title: '', rate: '', values: { low: '', middle: '', high:'' } },
-    //   userInput: '',
-    //   sorted: true,
     };
   },
   methods: {

@@ -12,7 +12,6 @@ import DemandTable from './components/demand/demand-table.vue';
 import DemandTableSelections from './components/demand/demand-table-selections.vue';
 
 import Recommendations from './components/recs/recommendations.vue';
-
 import ActualRec from './components/recs/actual-recs.vue';
 import LateRec from './components/recs/late-recs.vue';
 import ImpledRec from './components/recs/impled-recs.vue';

@@ -87,7 +87,7 @@ export default {
         return this.recommendations.sort((a, b) => a.actual > b.actual ? this.sorted : this.sorted*-1 );
       }
   },
-  props: ["i18n", "editMode", "functions", 'tables', 'recommendations', "tableElements"]
+  props: ['i18n', 'editMode', 'functions', 'tables', 'recommendations', 'tableElements']
 };
   
 </script>

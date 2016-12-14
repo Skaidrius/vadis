@@ -22,7 +22,11 @@
                                 :tables='tables'
                                 :userData='userData'
                                 :recommendations='recommendations' 
-                                :tableElements='tableElements'></router-view>
+                                :tableElements='tableElements'
+                                :sortByDate='sortByDate'
+                                :sortByRate='sortByRate'
+                                :sortByStatus='sortByStatus'>
+    </router-view>
 
     <div>
 
