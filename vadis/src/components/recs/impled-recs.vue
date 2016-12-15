@@ -32,7 +32,7 @@
           <tbody>
             <tr v-for='(data, index) in impledRecommendations'>
               <td>{{ index+1 }}.</td>
-              <td v-for='(el, key) in data' v-show='key!=="actual"'>
+              <td v-for='(el, key) in data.recommendations' v-show='key!=="actual"'>
                 <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
                 <span v-else>{{ el }}</span>
               </td>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-const apiData = require('../../assets/demand-table-data.json');
+const apiData = require('../../assets/recommend-table-data.json');
 
 export default {
   data(){
@@ -65,7 +65,7 @@ export default {
     impledRecommendations: function () {
       let impled = [];
       this.recommendations.map(function(e){
-        if (!e.actual) impled.push(e);
+        if (!e.recommendations.actual) impled.push(e);
       });
       return impled;
     },

@@ -44,88 +44,133 @@
     	}]
     },
     "recommendationsTable": {
-        "tableElements": [{
-                "auditReport": "auto moto", 
-                "recNo": 3, 
-                "recContent": "Do Something", 
-                "recRate": 3, 
-                "recImplement": "To buy autos", 
-                "period":"2016-12-08", 
-                "implementInfo": "Searching for autos", 
-                "actual": true 
+            "tableElements": [{ 
+                "recommendations": {
+                    "auditReport": "auto moto", 
+                    "recNo": 3, 
+                    "recContent": "Do Something", 
+                    "recRate": 3, 
+                    "recImplement": "To buy autos", 
+                    "period":"2016-12-08", 
+                    "implementInfo": "Searching for autos", 
+                    "actual": true 
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dorm", "duties": "CFO", "email": "john@doe.doe" }
+                ]
             }, {
-                "auditReport": "nota bene", 
-                "recNo": 3, 
-                "recContent": "benito nono", 
-                "recRate":2, 
-                "recImplement": "To toto bene", 
-                "period":"2016-12-01", 
-                "implementInfo": "toto for nono", 
-                "actual": true 
-        }, {
-                "auditReport": "Cora bora", 
-                "recNo": 3, 
-                "recContent": "Do again", 
-                "recRate":1, 
-                "recImplement": "To cora bora", 
-                "period":"2016-12-10", 
-                "implementInfo": "did a cora bora", 
-                "actual": false
-        }, {
-                "auditReport": "a", 
-                "recNo": 3, 
-                "recContent": "Do something", 
-                "recRate":3, 
-                "recImplement": "To Do Something", 
-                "period":"2016-12-15", 
-                "implementInfo": "alksjd alksdj laks kjds", 
-                "actual": false 
-        }, {
-                "auditReport": "a", 
-                "recNo": 2, 
-                "recContent": "Do something more", 
-                "recRate":1, 
-                "recImplement": "To cora something", 
-                "period":"2016-12-07", 
-                "implementInfo": "did alksjd alksdj laks kjds", 
-                "actual": true 
-        }, {
-                "auditReport": "c", 
-                "recNo": 1, 
-                "recContent": "Do something more 1", 
-                "recRate":2, 
-                "recImplement": "To toto bene", 
-                "period":"2016-12-21", 
-                "implementInfo": "alksjd alksdj laks kjds", 
-                "actual": false
-        }, {
-                "auditReport": "c", 
-                "recNo": 3, 
-                "recContent": "Do something more 2", 
-                "recRate":1, 
-                "recImplement": "Do Something 2", 
-                "period":"2016-12-09", 
-                "implementInfo": "alksjd alksdj laks kjds", 
-                "actual": true 
-        }, {
-                "auditReport": "c", 
-                "recNo": 5, 
-                "recContent": "Do something more 3", 
-                "recRate": 3, 
-                "recImplement": "Do Something 3", 
-                "period":"2016-12-01", 
-                "implementInfo": "alksjd alksdj laks kjds", 
-                "actual": false 
-        }, {
-                "auditReport": "f", 
-                "recNo": 3, 
-                "recContent": "Do something more 1", 
-                "recRate": 2, 
-                "recImplement": "Do Something 1", 
-                "period":"2016-12-23", 
-                "implementInfo": "alksjd alksdj laks kjds", 
-                "actual": true 
-        }]
+                "recommendations": {
+                    "auditReport": "nota bene", 
+                    "recNo": 3, 
+                    "recContent": "benito nono", 
+                    "recRate":2, 
+                    "recImplement": "To toto bene", 
+                    "period":"2016-12-01", 
+                    "implementInfo": "toto for nono", 
+                    "actual": true
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dotere", "duties": "CJO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "Cora bora", 
+                    "recNo": 3, 
+                    "recContent": "Do again", 
+                    "recRate":1, 
+                    "recImplement": "To cora bora", 
+                    "period":"2016-12-10", 
+                    "implementInfo": "did a cora bora", 
+                    "actual": false
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dodasde", "duties": "ChO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "a", 
+                    "recNo": 3, 
+                    "recContent": "Do something", 
+                    "recRate":3, 
+                    "recImplement": "To Do Something", 
+                    "period":"2016-12-15", 
+                    "implementInfo": "alksjd alksdj laks kjds", 
+                    "actual": false
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dasdoe", "duties": "CfO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "a", 
+                    "recNo": 2, 
+                    "recContent": "Do something more", 
+                    "recRate":1, 
+                    "recImplement": "To cora something", 
+                    "period":"2016-12-07", 
+                    "implementInfo": "did alksjd alksdj laks kjds", 
+                    "actual": true
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dtsroe", "duties": "CdO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "c", 
+                    "recNo": 1, 
+                    "recContent": "Do something more 1", 
+                    "recRate":2, 
+                    "recImplement": "To toto bene", 
+                    "period":"2016-12-21", 
+                    "implementInfo": "alksjd alksdj laks kjds", 
+                    "actual": false
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dsfsoe", "duties": "CsO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "c", 
+                    "recNo": 3, 
+                    "recContent": "Do something more 2", 
+                    "recRate":1, 
+                    "recImplement": "Do Something 2", 
+                    "period":"2016-12-09", 
+                    "implementInfo": "alksjd alksdj laks kjds", 
+                    "actual": true
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dosfe", "duties": "CeO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "c", 
+                    "recNo": 5, 
+                    "recContent": "Do something more 3", 
+                    "recRate": 3, 
+                    "recImplement": "Do Something 3", 
+                    "period":"2016-12-01", 
+                    "implementInfo": "alksjd alksdj laks kjds", 
+                    "actual": false
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dggsoe", "duties": "CwO", "email": "john@doe.doe" }
+                ]
+            }, {
+                "recommendations": {
+                    "auditReport": "f", 
+                    "recNo": 3, 
+                    "recContent": "Do something more 1", 
+                    "recRate": 2, 
+                    "recImplement": "Do Something 1", 
+                    "period":"2016-12-23", 
+                    "implementInfo": "alksjd alksdj laks kjds", 
+                    "actual": true
+                }, 
+                "responsibles": [
+                    { "person": "Jonh Dodgse", "duties": "CqO", "email": "john@doe.doe" }
+                ]
+            }]
     }
 }
 

@@ -132,8 +132,8 @@
 				"lt": "Aktualios Rekomendacijos"
 			},
 			"impleRec": {
-				"en": "Implemented Recommentations",
-				"lt": "Įgyvendintos Rekomendacijos"
+				"en": "Implemented",
+				"lt": "Įgyvendintos"
 			},
 			"lateRec": {
 				"en": "Implementation Is Late",
