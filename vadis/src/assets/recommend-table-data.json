@@ -110,6 +110,16 @@
 						"lt": "Dienomis"
 					}
 				}]
+			},
+			"mode": {
+				"regular": {
+					"en": "regular mode",
+					"lt": "įprasta aplinka"
+				},
+				"edit": {
+					"en": "edit mode",
+					"lt": "redagavimo aplinka"
+				}
 			}
 		},
 		"tables": {

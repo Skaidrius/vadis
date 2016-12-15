@@ -1,21 +1,29 @@
 <!--Demand  main-->
 <template>
-  <div class="parent">
+  <div>
     
     <div class="jumbotron">
-      <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
+      <div class="row">
+        <div class='col-xs-10'>
+          <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
+        </div>
 
-      <div class='form-inline text-right'>
-        <small>
-          <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
-          <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
-        </small>
-      </div>
+        <div class='col-xs-2'>
+          <br/><br/>
+          
+          <div class='form-inline text-right'>
+            <small>
+              <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+              <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+            </small>
+          </div>
     
-      <div class='form-inline text-right'>
-          <!--insertData-->
-        <button class='form-control' @click='insertUserData()' >InsertData</span></button>
-        <!--/insertData-->
+          <div class='form-inline text-right'>
+              <!--insertData-->
+            <button class='form-control' @click='insertUserData()' >InsertData</span></button>
+            <!--/insertData-->
+          </div>
+        </div>
       </div>
 
     </div>

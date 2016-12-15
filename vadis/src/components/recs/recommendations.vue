@@ -1,9 +1,32 @@
+<!--Recommendations main-->
 <template>
   <div>
+    
     <div class="jumbotron">
-      <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
+      <div class="row">
+        <div class='col-xs-10'>
+          <h2>{{ pageTitle.jumboHead[i18n] }}<br><small>{{ pageTitle.jumboSmall[i18n] }}</small></h2>
+    
+          <h4>{{pageTitle.todayIs[i18n]}} {{today}} </h4>
+        </div>
+        
+        <div class='col-xs-2'>
+          <br/><br/>
+          <div class='form-inline text-right'>
+            <small>
+              <span v-if='editMode' class='btn-danger '>{{ header.mode.edit[i18n] }}</span>
+              <span v-else class='btn-success '>{{ header.mode.regular[i18n] }}</span>
+            </small>
+          </div>
 
-      <h4>{{pageTitle.todayIs[i18n]}} {{today}} </h4>
+          <!--insertData-->
+          <div class='form-inline text-right'>
+            <button class='form-control' @click='insertUserData()' >InsertData</button>
+          </div>
+          <!--/insertData-->
+
+        </div>
+      </div>
     </div>
     
     <nav class='container-fluid'>
@@ -61,7 +84,8 @@ export default{
         tables: apiData.table.tables,
         functions: apiData.table.functions,
         recommendations: userData.recommendationsTable.tableElements,
-        tableElements: apiData.table.header.elements
+        tableElements: apiData.table.header.elements,
+        header: apiData.table.header,
       };
     },
     props: ['i18n', 'editMode'],
