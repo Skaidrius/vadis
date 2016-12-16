@@ -1,5 +1,5 @@
 <!--Implemented recommendations-->
-<template id='impledRecommendations'>
+<template>
   <div>
 
     <div class='panel panel-default'>
@@ -26,6 +26,8 @@
                     <span v-else>{{ header[i18n] }}</span>
                   </span>
               </th>
+              <!--NEED TO CHANGE DONE TO 18n-->
+              <th v-if='editMode'>{{ functions.mark[i18n] }}</th>
             </tr>
           </thead>
           
@@ -36,10 +38,19 @@
                 <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
                 <span v-else>{{ el }}</span>
               </td>
+              <!--BUTTON FUNCTION-->
+              <td v-if='editMode'>
+                <input type='checkbox' v-model='impledRecommendations[index].marked'/>
+              </td>
             </tr>
           </tbody>
           
         </table>
+        
+        <!--button if adit mode and some are marked-->
+        <div class='form-inline text-right' v-if='editMode && (marked > 0)'> 
+          <button class='form-control' v-on:click='fromImplemented'>{{ functions.selectActual[i18n] }}</button>
+        </div>
       
       <div class="panel-footer"></div>  
       </div>
@@ -69,6 +80,25 @@ export default {
       });
       return impled;
     },
+    marked: function () {
+      let temp = 0;
+      this.impledRecommendations.map(function (e) {
+        if (e.marked) {
+          temp++;
+        }
+      });
+      return temp;
+    }
+  },
+  methods: {
+    fromImplemented: function(){
+      this.impledRecommendations.map(function(e){
+        if (e.marked) {
+          e.marked = false;
+          e.recommendations.actual = true;
+        }
+      });
+    }
   },
   props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendations', 'tableElements']
 };

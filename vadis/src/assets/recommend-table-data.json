@@ -228,7 +228,19 @@
 						"en": "high",
 						"lt": "aukšta"
 					}
-				]
+				],
+				"mark" : {
+				        "en": "Mark",
+          				"lt": "Žymėti"
+				},
+				"selectDone" : {
+					    "en": "Select as Done",
+          				"lt": "Į Įgyvendintas"
+				},
+				"selectActual" : {
+				        "en": "Select as Atual",
+          				"lt": "Į Aktualias"
+				}
         }
 	}
 }

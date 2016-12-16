@@ -99,6 +99,10 @@ let userData = require('assets/default-data.json');
      text-align:center
 }
 
+.panel {
+  margin: 0;
+}
+
 /* table header */
 
 .table thead {

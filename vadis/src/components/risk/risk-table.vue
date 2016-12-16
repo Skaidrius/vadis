@@ -105,7 +105,7 @@
             <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
               <tr>
                 <td colspan='2'>
-                  <button class='form-control btn btn-danger' @click='removeRisk(risk, index)'>x</button>
+                  <button class='form-control btn alert-danger' @click='removeRisk(risk, index)'>x</button>
                 </td>
               </tr>
               <tr>

@@ -111,7 +111,7 @@
             <table v-if='editMode' class='table text-center insertedTable '>   <!-- EDIT MODE --> <!-- TABLE INSTERTED TO SPLIT COLUMN TO TWO -->
               <tr>
                 <td colspan='2'>
-                  <button class='form-control btn btn-danger' @click='removeCriteria(crit, index)'>x</button>
+                  <button class='form-control btn alert-danger' @click='removeCriteria(crit, index)'>x</button>
                 </td>
               </tr>
               <tr>

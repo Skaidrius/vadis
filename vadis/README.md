@@ -27,6 +27,7 @@ whole internal control _system should be checked at least once per 3 years_.
         Javascript - ES6/ES2015(Babel), 
             frameworks:
                 vue.js,
+                vue-router
             Webpack 
     Backend: 
         node.js,
@@ -64,13 +65,18 @@ whole internal control _system should be checked at least once per 3 years_.
 - [ ] Status
 - [ ] add/remove criterias                                
 - [ ] add/remove entries                                  
-- [ ] search entries                                      
-- [ ] sort data by table header                           
+- [x] search entries                                      
+- [x] sort data by table header                           
 - [ ] view mode / edit mode                               
 
 - [ ] IA Strategy
 
 - [ ] IA annual planning 
+
+- [ ] Audit Program
+
+- [ ] Audit Report
+
 
 
 #### ToDOs:   

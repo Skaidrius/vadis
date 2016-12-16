@@ -57,6 +57,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dorm", "duties": "CFO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -71,6 +74,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dotere", "duties": "CJO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -85,6 +91,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dodasde", "duties": "ChO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -99,6 +108,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dasdoe", "duties": "CfO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -113,6 +125,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dtsroe", "duties": "CdO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -127,6 +142,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dsfsoe", "duties": "CsO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -141,6 +159,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dosfe", "duties": "CeO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -155,6 +176,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dggsoe", "duties": "CwO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }, {
                 "recommendations": {
@@ -169,6 +193,9 @@
                 }, 
                 "responsibles": [
                     { "person": "Jonh Dodgse", "duties": "CqO", "email": "john@doe.doe" }
+                ],
+                "curation": [
+                    { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
                 ]
             }]
     }
