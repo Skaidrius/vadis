@@ -11,7 +11,7 @@
           <h3> {{ tables.activeRec[i18n] }} </h3>
         </div>
         
-        <table class='table table-hover table-striped table-bordered text-center'>
+        <table class='table table-hover table-bordered text-center'>
           
           <thead>
             <tr>
@@ -31,21 +31,26 @@
             </tr>
           </thead>
           
-          <tbody>
-            <tr v-for='(data, index) in actualRecommendations'>
+          <tbody v-for='(data, index) in actualRecommendations'>
+            <tr v-on:click='expandRec(data)'>
               <td>{{ index+1 }}.</td>
               <td v-for='(el, key) in data.recommendations' v-show='key!=="actual"'>
                 <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
 
                 <span v-else>
                   <span v-if='editMode && key=="implementInfo"'><textarea v-model='data.recommendations[key]' :placeholder='data.recommendations[key]' class='form-control'></textarea></span>
-                  <span v-else>{{ el }}</span>
+                  <span v-else>
+                    {{ el }}
+                  </span>
                 </span>
               </td>
               <!--BUTTON FUNCTION-->
               <td v-if='editMode'>
                 <input type='checkbox' v-model='actualRecommendations[index].marked' v-on:change='getMarked'/>
               </td>
+            </tr>
+            <tr v-if='data.contentVisible'>
+              <td colspan=8>{{ data.responsibles }}</td>
             </tr>
           </tbody>
 
@@ -83,7 +88,9 @@ export default {
     actualRecommendations: function (){ 
       let actualRecs = [];
       this.recommendations.map(function(e){
-          if (e.recommendations.actual) actualRecs.push(e);
+        if (e.recommendations.actual) {
+          actualRecs.push(e);
+        }
       });
       return actualRecs;
     },
@@ -105,6 +112,16 @@ export default {
         }
       });
       this.marked = temp; 
+    },
+    expandRec: function(data){
+      this.actualRecommendations.map(function (e) {
+        if (e == data) { 
+          data.contentVisible = !data.contentVisible;
+        } else { 
+          e.contentVisible = false; 
+        }
+      });
+      console.log("changed to "+data.contentVisible);
     }
   },
   props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendations', 'tableElements']

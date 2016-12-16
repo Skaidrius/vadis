@@ -143,8 +143,8 @@
         "functions": {
         		"titles": {
         			"addNew" : {
-        				"en": "Add New Recommendation",
-        				"lt": "Pridėti naują rekomendaciją"
+        				"en": "Add New",
+        				"lt": "Pridėti Naują"
         			}	
         		},
           		"report": {
