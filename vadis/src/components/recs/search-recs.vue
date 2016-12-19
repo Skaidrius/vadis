@@ -5,7 +5,7 @@
     <div class='panel panel-default'> <!--  SEARCH-->
 
       <div class="panel-body">
-        <h3> {{ functions.search[i18n] }} </h3>
+        <h2> {{ functions.search[i18n] }} </h2>
         <p>
           <input v-model="userInput" class="form-control" :placeholder="functions.search[i18n]"/>
         </p>
@@ -35,7 +35,7 @@
         <tbody>
           <tr v-for='(data, index) in filteredElements'>
             <td>{{ index+1 }}.</td>
-            <td v-for='(el, key) in data' v-show='key!=="actual"'>
+            <td v-for='(el, key) in data.recommendations' v-show='key!=="actual"'>
               <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
               <span v-else>{{ el }}</span>
             </td>
@@ -70,7 +70,7 @@ export default {
   computed:{
     filteredElements: function () {
       return this.recommendations
-        .filter(el => el.auditReport.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
+        .filter(el => el.recommendations.auditReport.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
       );
     },
   },
