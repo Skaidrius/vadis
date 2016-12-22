@@ -45,7 +45,7 @@
                         <span v-else>{{ el }}</span>
                       </td>
                       <td class='col-xs-1 expand expand-symbol'>
-                        <input type='checkbox' v-on:click='expandRec(data)' v-model='data.checked'/>
+                        <input type='checkbox' class='check_box' v-on:click='expandRec(data)' v-model='data.checked'/>
                       </td>
                     </tr>
                   </table>
@@ -175,18 +175,33 @@ export default {
     margin-bottom: 0;
   }
   
-  /*#expand {*/
-  /*  position: relative;*/
-  /*  left: 5px;*/
-  /*}*/
+table {
+  overflow: hidden
+}
   
   .table .no-padding, .table .with-innertable, .table .expand{
     padding: 2px 0;
   }
 
-  .innertable {
-    background: inherit;
-    background: rgba(255, 255, 255, .1);
+  .check_box {
+        position: relative;
+    left: -2050px;
   }
+  
+  .expand input[type=checkbox]:before { 
+    position: relative;
+    left: 2050px;
+    content: "\25b8";
+  }
+  
+  .expand input[type=checkbox]:checked:before {
+    content: "\25b2";
+}
+  /*.check_box:after { */
+  /*  position: relative;*/
+  /*  left: -2050px;*/
+  /*  content: "\25b4"; float: right; */
+  /*}*/
+  
 
 </style>
