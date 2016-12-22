@@ -44,6 +44,7 @@
                         </span>
                         <span v-else>{{ el }}</span>
                       </td>
+                      <!--input checkbox = arrow-->
                       <td class='col-xs-1 expand expand-symbol'>
                         <input type='checkbox' class='check_box' v-on:click='expandRec(data)' v-model='data.checked'/>
                       </td>
@@ -52,7 +53,7 @@
                 </td>
                 <!-- RECS mark as selected - -->
                 <td class='no-padding'>
-                  <input type='checkbox' v-model='actualRecommendations[index].marked' v-on:click='getMarked'/>
+                  <input type='checkbox' v-model='actualRecommendations[index].marked' v-on:change='getMarked'/>
                 </td>
             </tr>
             <!--Expanded recs table - shows if edit mode or cell checked -->
@@ -65,32 +66,101 @@
                       <th class='no-padding'>{{ functions.person[i18n] }}</th>
                       <th class='no-padding'>{{ functions.position[i18n] }}</th>
                       <th class='no-padding'>{{ functions.email[i18n] }}</th>
+                      <th v-if='editMode' class='no-padding'></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for='(responsibles, no) in data.responsibles'>
                       <!--RESPONSIBLE persons-->
                       <th class='pull-right no-padding'>{{ functions.responsible[i18n] }}</th>
-                      <td v-for='( person, key ) in responsibles' class='no-padding'>
-                        <span v-if='editMode'>
-                          <input v-model='actualRecommendations[index].responsibles[no].person[key]' :placeholder='person' class='form-control'/>
-                        </span>
-                        <span v-else>
-                          <a v-if='key == "email"'>{{ person }}</a>
-                          <span v-else>{{ person }}</span>
-                        </span>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.responsibles[no].person' :placeholder='data.responsibles[no].person' class='form-control'></td>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.responsibles[no].duties' :placeholder='data.responsibles[no].duties' class='form-control'/></td>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.responsibles[no].email' :placeholder='data.responsibles[no].email' class='form-control'/></td>
+                      <td class='col-xs-1 no-padding' v-if='editMode'><button class='form-control' v-on:click='showResponsiblesModal = true'>{{ functions.addButton[i18n] }}</button></td>
+                      
+                      <td v-if='!editMode' v-for='( person, key ) in responsibles' class='no-padding'>
+                        <!--CHANGE POINTER AND SEND MAIL COMMAND ??? -->
+                        <a v-if='key == "email"'>{{ person }}</a>
+                        <span v-else>{{ person }}</span>
                       </td>
                     </tr>
-                    <tr v-for='curation in data.curation'>
+                    <!--ADD RESPONSIBLES MODAL-->
+                    <modal v-if="showResponsiblesModal" @close="showResponsiblesModal = false">
+      <!-- use custom content here to overwrite           -->
+                      <h3 slot="header">{{ functions.addResponsible[i18n] }}</h3>
+                      <h4 slot='body'>
+                        <div class="form-horizontal">
+                          <div class='form-group'>
+                            <label class="col-xs-3 control-label">{{ functions.person[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newResponsible.person' class='form-control text-center'>
+                            </div>
+                          </div>
+                          <div class='form-group form-group-last'>
+                            <label class="col-xs-3 control-label">{{ functions.position[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newResponsible.position' class='form-control text-center'>
+                            </div>
+                          </div>
+                          <div class='form-group form-group-last'>
+                            <label class="col-xs-3 control-label">{{ functions.email[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newResponsible.email' class='form-control text-center'>
+                            </div>
+                          </div>
+                        </div>
+                      </h4>
+                      <h4 slot='footer'>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="showResponsiblesModal = false">{{ functions.cancelButton[i18n] }}</button>
+                        <button type="button" class="btn btn-primary" @click='addNewResponcible(newResponsible.person, newResponsible.position, newResponsible.email); $emit("close")'>{{ functions.addButton[i18n] }}</button>
+                      </h4>
+                    </modal>
+                    
+                    <tr v-for='(curation, no) in data.curation'>
                       <!--CURATORS -->
-                      <th class='pull-right no-padding'>{{ functions.curators[i18n] }}</th>
-                      <td v-for='curator in curation'  class='no-padding'>
-                        <span v-if='editMode'>
-                          <input v-model='curation.curator' :placeholder='curator' class='form-control'/>
-                        </span>
-                        <span v-else>{{ curator }}</span>
+                      <th class='pull-right no-padding'>{{ functions.responsible[i18n] }}</th>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.curation[no].person' :placeholder='data.curation[no].person' class='form-control'></td>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.curation[no].duties' :placeholder='data.curation[no].duties' class='form-control'/></td>
+                      <td v-if='editMode' class='no-padding'><input v-model='data.curation[no].email' :placeholder='data.curation[no].email' class='form-control'/></td>
+                      <td class='col-xs-1 no-padding' v-if='editMode'><button class='form-control' v-on:click='showCuratorsModal = true'>{{ functions.addButton[i18n] }}</button></td>
+                      
+                      <td v-if='!editMode' v-for='curator in curation' class='no-padding'>
+                         <span>{{ curator }}</span>
                       </td>
                     </tr>
+                    
+                    <!--ADD RESPONSIBLES MODAL-->
+                    <modal v-if="showCuratorsModal" @close="showCuratorsModal = false">
+      <!-- use custom content here to overwrite           -->
+                      <h3 slot="header">{{ functions.addCurators[i18n] }}</h3>
+                      <h4 slot='body'>
+                        <div class="form-horizontal">
+                          <div class='form-group'>
+                            <label class="col-xs-3 control-label">{{ functions.person[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newCurators.person' class='form-control text-center'>
+                            </div>
+                          </div>
+                          <div class='form-group form-group-last'>
+                            <label class="col-xs-3 control-label">{{ functions.position[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newCurators.position' class='form-control text-center'>
+                            </div>
+                          </div>
+                          <div class='form-group form-group-last'>
+                            <label class="col-xs-3 control-label">{{ functions.email[i18n] }}</label>
+                            <div class="col-xs-9">
+                              <input v-model='newCurators.email' class='form-control text-center'>
+                            </div>
+                          </div>
+                        </div>
+                      </h4>
+                      <h4 slot='footer'>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close" @click="showCuratorsModal = false">{{ functions.cancelButton[i18n] }}</button>
+                        <button type="button" class="btn btn-primary" @click='addNewCurator(newCurators.person, newCurators.position, newCurators.email); $emit("close")'>{{ functions.addButton[i18n] }}</button>
+                      </h4>
+                    </modal>
+                    
                   </tbody>
               </table>
               </td>
@@ -117,14 +187,22 @@
 
 <script>
 const apiData = require('../../assets/recommend-table-data.json');
+import Modal from '../modal-component.vue';
 
 export default {
   data(){
     return {
       header: apiData.header,
       sorted: true,
-      marked: 0
+      marked: 0,
+      newResponsible: { person: '', position: '', email: ''},
+      newCurators: { person: '', position: '', email: ''},
+      showResponsiblesModal: false,
+      showCuratorsModal: false
     };
+  },
+  components: {
+    modal: Modal
   },
   computed:{
     // get actual recommendations from recommendations
@@ -171,7 +249,7 @@ export default {
 
 <style>
   
-  td .table {
+  .table, td .table {
     margin-bottom: 0;
   }
   

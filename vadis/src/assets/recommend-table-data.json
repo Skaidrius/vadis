@@ -191,6 +191,10 @@
           			"en": "Add",
           			"lt": "Pridėti"
             	},
+                "cancelButton": {
+          			"en": "Cancel",
+          			"lt": "Atšaukti"
+            	},
             	"search": {
           			"en": "Search",
           			"lt": "Ieškoti"
@@ -238,16 +242,24 @@
           				"lt": "Į Įgyvendintas"
 				},
 				"selectActual" : {
-				        "en": "Select as Atual",
+				        "en": "Select as Actual",
           				"lt": "Į Aktualias"
 				},
 				"responsible" : {
-						"en": "Responsible staff:",
+						"en": "Responsible Staff:",
 						"lt": "Atsakingi darbuotojai:"
 				},
+				"addResponsible" : {
+						"en": "Add Responsible Staff:",
+						"lt": "Pridėti Atsakingą Darbuotoja:"
+				},
 				"curators": {
-						"en": "Curators: ",
-						"lt": "Kuruoja: "
+						"en": "Curators:",
+						"lt": "Kuruoja:"
+				},
+				"addCurators": {
+						"en": "Add Curator:",
+						"lt": "Pridėti Kuratorių:"
 				},
 				"person": {
 						"en": "Staff",
