@@ -39,7 +39,7 @@
               </td>
               <!--BUTTON FUNCTION-->
               <td v-if='editMode'>
-                <input type='checkbox' v-model='impledRecommendations[index].marked'/>
+                <input type='checkbox' v-model='impledRecommendations[index].marked' v-on:change='getMarked'/>
               </td>
             </tr>
           </tbody>
@@ -69,6 +69,7 @@ export default {
     return {
       header: apiData.header,
       sorted: true,
+      marked: 0
     };
   },
   computed: {
@@ -78,15 +79,6 @@ export default {
         if (!e.recommendations.actual) impled.push(e);
       });
       return impled;
-    },
-    marked: function () {
-      let temp = 0;
-      this.impledRecommendations.map(function (e) {
-        if (e.marked) {
-          temp++;
-        }
-      });
-      return temp;
     }
   },
   methods: {
@@ -97,6 +89,15 @@ export default {
           e.recommendations.actual = true;
         }
       });
+    },
+    getMarked: function () {
+      let temp = 0;
+      this.impledRecommendations.map(function (e) {
+        if (e.marked) {
+          temp++;
+        }
+      });
+      this.marked = temp; 
     }
   },
   props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendationsArray', 'tableElements']

@@ -84,6 +84,7 @@
                         <span v-else>{{ person }}</span>
                       </td>
                     </tr>
+                    
                     <!--ADD RESPONSIBLES MODAL-->
                     <modal v-if="showResponsiblesModal" @close="showResponsiblesModal = false">
       <!-- use custom content here to overwrite           -->
@@ -129,7 +130,7 @@
                       </td>
                     </tr>
                     
-                    <!--ADD RESPONSIBLES MODAL-->
+                    <!--ADD CURATORS MODAL-->
                     <modal v-if="showCuratorsModal" @close="showCuratorsModal = false">
       <!-- use custom content here to overwrite           -->
                       <h3 slot="header">{{ functions.addCurators[i18n] }}</h3>
