@@ -191,6 +191,10 @@
           			"en": "Add",
           			"lt": "Pridėti"
             	},
+                "delButton": {
+          			"en": "Delete",
+          			"lt": "Trinti"
+            	},
                 "cancelButton": {
           			"en": "Cancel",
           			"lt": "Atšaukti"
