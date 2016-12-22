@@ -29,9 +29,9 @@
      </div>
   
     <nav>
-      <ul class="my-tabs nav nav-tabs">
-        <li class='col-xs-2'><router-link to="/risk/risk-table">{{ tableNav.table[i18n] }}</router-link></li>
-        <li class='col-xs-2'><router-link to="/risk/risk-table-selections">{{ tableNav.legend[i18n] }}</router-link></li>
+      <ul class="my-tabs nav nav-pills">
+        <li class='col-xs-2 active' data-toggle="tab"><router-link to="/risk/risk-table">{{ tableNav.table[i18n] }}</router-link></li>
+        <li class='col-xs-2' data-toggle="tab"><router-link to="/risk/risk-table-selections">{{ tableNav.legend[i18n] }}</router-link></li>
       </ul>
     </nav>
   
