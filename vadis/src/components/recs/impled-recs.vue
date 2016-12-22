@@ -18,13 +18,12 @@
               <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>
                 <span v-if='header == tableElements[4]'>
                     <a @click='sortByRate()'>{{ header[i18n] }}</a>
-                  </span>
-                  <span v-else>
-                    <span v-if='header == tableElements[6]'>
-                      <a @click='sortByDate()'>{{ header[i18n] }}</a>
-                    </span>
-                    <span v-else>{{ header[i18n] }}</span>
-                  </span>
+                </span>
+                <span v-else-if='header == tableElements[6]'>
+                    <a @click='sortByDate()'>{{ header[i18n] }}</a>
+                </span>
+                <span v-else>{{ header[i18n] }}</span>
+                </span>
               </th>
               <!--NEED TO CHANGE DONE TO 18n-->
               <th v-if='editMode'>{{ functions.mark[i18n] }}</th>
@@ -75,7 +74,7 @@ export default {
   computed: {
     impledRecommendations: function () {
       let impled = [];
-      this.recommendations.map(function(e){
+      this.recommendationsArray.map(function(e){
         if (!e.recommendations.actual) impled.push(e);
       });
       return impled;
@@ -100,7 +99,7 @@ export default {
       });
     }
   },
-  props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendations', 'tableElements']
+  props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendationsArray', 'tableElements']
 };
 
 </script>

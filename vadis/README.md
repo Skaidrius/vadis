@@ -59,15 +59,18 @@ whole internal control _system should be checked at least once per 3 years_.
   - 
 - [ ] IA Recomendations Progress Monitoring
 - [x] Actual/late/implemented
-- [ ] Modal
+- [x] Modal / not modal - expanding list with responsible staff and curation
 - [ ] Callendar
 - [ ] Reminder
-- [ ] Status
+- [ ] Send email if not implemented
+  - [ ] automatic
+  - [ ] manual
+- [x] Status
 - [ ] add/remove criterias                                
 - [ ] add/remove entries                                  
 - [x] search entries                                      
 - [x] sort data by table header                           
-- [ ] view mode / edit mode                               
+- [x] view mode / edit mode                               
 
 - [ ] IA Strategy
 

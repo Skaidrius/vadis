@@ -22,12 +22,10 @@
               <span v-if='header == tableElements[4]'>
                 <a @click='sortByRate()'>{{ header[i18n] }}</a>
               </span>
-              <span v-else>
-                <span v-if='header == tableElements[6]'>
-                  <a @click='sortByDate()'>{{ header[i18n] }}</a>
-                </span>
-                <span v-else>{{ header[i18n] }}</span>
+              <span v-else-if='header == tableElements[6]'>
+                <a @click='sortByDate()'>{{ header[i18n] }}</a>
               </span>
+              <span v-else>{{ header[i18n] }}</span>
             </th>
             <th @click='sortByStatus()'><a>{{ functions.status.title[i18n] }}</a></th>
           </tr>
@@ -39,7 +37,7 @@
               <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
               <span v-else>{{ el }}</span>
             </td>
-            <td>{{ data.actual? functions.status.actual[i18n] : functions.status.implemented[i18n] }}</td>
+            <td>{{ data.recommendations.actual ? functions.status.actual[i18n] : functions.status.implemented[i18n] }}</td>
           </tr>
         </tbody>
       </table>
@@ -69,26 +67,18 @@ export default {
   },
   computed:{
     filteredElements: function () {
-      return this.recommendations
+      return this.recommendationsArray
         .filter(el => el.recommendations.auditReport.toLowerCase().indexOf(this.userInput.toLowerCase()) >-1
       );
     },
   },
   methods: {
-      sortByRate: function(el){ //currently sorts middle/high by letter h l m, not by value l=1, m = 2, h = 3
-        this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.recRate > b.recRate ? this.sorted : this.sorted*-1 );
-      },
-      sortByDate: function(el){
-        this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.period > b.period ? this.sorted : this.sorted*-1 );
-      },
       sortByStatus: function(){
         this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.actual > b.actual ? this.sorted : this.sorted*-1 );
+        return this.recommendationsArray.sort((a, b) => a.recommendations.actual > b.recommendations.actual ? this.sorted : this.sorted*-1 );
       }
   },
-  props: ['i18n', 'editMode', 'functions', 'tables', 'recommendations', 'tableElements']
+  props: ['i18n', 'editMode', 'functions', 'tables', 'sortByDate', 'sortByRate','recommendationsArray', 'tableElements']
 };
   
 </script>

@@ -44,11 +44,10 @@
                                 :functions='functions'
                                 :tables='tables'
                                 :userData='userData'
-                                :recommendations='recommendations' 
+                                :recommendationsArray='recommendationsArray' 
                                 :tableElements='tableElements'
                                 :sortByDate='sortByDate'
-                                :sortByRate='sortByRate'
-                                :sortByStatus='sortByStatus'>
+                                :sortByRate='sortByRate'>
     </router-view>
 
     <div>
@@ -83,7 +82,7 @@ export default{
         sorted: true,
         tables: apiData.table.tables,
         functions: apiData.table.functions,
-        recommendations: userData.recommendationsTable.tableElements,
+        recommendationsArray: userData.recommendationsTable.tableElements,
         tableElements: apiData.table.header.elements,
         header: apiData.table.header,
       };
@@ -135,15 +134,11 @@ export default{
     methods: {
       sortByRate: function(el){ //currently sorts middle/high by letter h l m, not by value l=1, m = 2, h = 3
         this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.recRate > b.recRate ? this.sorted : this.sorted*-1 );
+        return this.recommendationsArray.sort( (a, b) => a.recommendations.recRate > b.recommendations.recRate ? this.sorted : this.sorted*-1 );
       },
       sortByDate: function(el){
         this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.period > b.period ? this.sorted : this.sorted*-1 );
-      },
-      sortByStatus: function(){
-        this.sorted *=-1;
-        return this.recommendations.sort((a, b) => a.actual > b.actual ? this.sorted : this.sorted*-1 );
+        return this.recommendationsArray.sort( (a, b) => a.recommendations.period > b.recommendations.period ? this.sorted : this.sorted*-1 );
       }
     }
 };

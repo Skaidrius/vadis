@@ -60,7 +60,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "nota bene", 
@@ -77,7 +78,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "Cora bora", 
@@ -94,7 +96,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "a", 
@@ -111,7 +114,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "a", 
@@ -128,7 +132,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "c", 
@@ -145,7 +150,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "c", 
@@ -162,7 +168,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "c", 
@@ -179,7 +186,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }, {
                 "recommendations": {
                     "auditReport": "f", 
@@ -196,7 +204,8 @@
                 ],
                 "curation": [
                     { "person": "Ana Kraken", "duties": "IAC", "email": "ana@krak.en" }
-                ]
+                ],
+                "checked": false
             }]
     }
 }

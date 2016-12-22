@@ -240,6 +240,27 @@
 				"selectActual" : {
 				        "en": "Select as Atual",
           				"lt": "Į Aktualias"
+				},
+				"responsible" : {
+						"en": "Responsible staff:",
+						"lt": "Atsakingi darbuotojai:"
+				},
+				"curators": {
+						"en": "Curators: ",
+						"lt": "Kuruoja: "
+				},
+				"person": {
+						"en": "Staff",
+						"lt": "Darbuotojas"
+				},
+				"position": {
+						"en": "Position",
+						"lt": "Pareigos"
+						
+				},
+				"email": {
+						"en": "e-mail",
+						"lt": "el. paštas"
 				}
         }
 	}
