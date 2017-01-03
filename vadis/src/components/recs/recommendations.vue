@@ -146,3 +146,59 @@ module.exports = {
 };
 
 </script>
+
+<style>
+  
+  .table, td .table {
+    margin-bottom: 0;
+  }
+  
+table {
+  overflow: hidden
+}
+
+  .table tr>th, .table tr>td, .table .with-innertable, .table .expand{  
+  /*.table .no-padding, .table .with-innertable, .table .expand{*/
+    padding: 2px 0;
+  }
+
+  .check_box {
+        position: relative;
+    left: -2050px;
+  }
+  
+  .expand input[type=checkbox]:before { 
+    position: relative;
+    left: 2050px;
+    content: "\003E";
+    cursor: pointer;
+    font-weight: bold;
+    color: OliveDrab ;
+  }
+  
+  .expand input[type=checkbox]:checked:before {
+    content: "\2227";
+    font-weight: bold;
+    color: DarkCyan;
+}
+  
+  .email {
+    cursor: pointer;
+  }
+  
+  .responsibles {
+    background: rgba(100,255,100,.1);
+  }
+  .curation {
+    background: rgba(255,50,50,.1);
+  }
+  
+
+  /*.check_box:after { */
+  /*  position: relative;*/
+  /*  left: -2050px;*/
+  /*  content: "\25b4"; float: right; */
+  /*}*/
+  
+
+</style>
