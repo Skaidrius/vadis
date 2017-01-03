@@ -69,7 +69,7 @@
 <script>
 const apiData = require('../../assets/recommend-table-data.json');
 
-export default {
+module.exports =  {
   data(){
     return {
       header: apiData.header,

@@ -228,7 +228,7 @@ const apiData = require('../../assets/risk-table-data.json');
 
 import Modal from './../modal-component.vue';
 
-export default {
+module.exports =  {
   data(){
     return {
       table: apiData.table,

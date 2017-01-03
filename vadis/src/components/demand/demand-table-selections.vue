@@ -77,7 +77,7 @@
 <script>
 const apiData = require('../../assets/demand-table-data.json');
 
-export default {
+module.exports = {
   
   data(){
     return {

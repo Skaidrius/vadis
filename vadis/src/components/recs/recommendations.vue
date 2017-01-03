@@ -47,7 +47,8 @@
                                 :recommendationsArray='recommendationsArray' 
                                 :tableElements='tableElements'
                                 :sortByDate='sortByDate'
-                                :sortByRate='sortByRate'>
+                                :sortByRate='sortByRate'
+    >
     </router-view>
 
     <div>
@@ -60,9 +61,10 @@
 const apiData = require('../../assets/recommend-table-data.json');
 let userData = require('../../assets/default-data.json');
 
-export default{
+module.exports = {
     data(){
       return {
+        apiData: apiData,
         userData: userData,
         userInput: '',
         pageTitle:{
@@ -106,8 +108,8 @@ export default{
         const monthsLt = ["sausio", "vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
         const monthsEn = ["Januar", "Februar", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
-        if (thisMonth < 10) thisMonth = "0" + thisMonth;
-        if (thisDay < 10) thisDay = "0" + thisDay;
+        //if (thisMonth < 10) thisMonth = "0" + thisMonth;
+        //if (thisDay < 10) thisDay = "0" + thisDay;
         
         if (i18n == 'lt'){
           // lithuanian date format

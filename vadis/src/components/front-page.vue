@@ -11,7 +11,7 @@
 
 <script>
 
-    export default {
+    module.exports =  {
       data(){
         return {
           pageTitle: {

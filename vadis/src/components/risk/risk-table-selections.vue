@@ -86,7 +86,7 @@
 <script>
 const apiData = require('../../assets/risk-table-data.json');
 
-export default {
+module.exports =  {
   
   data(){
     return {

@@ -47,7 +47,7 @@
 const apiData = require('../../assets/demand-table-data.json');
 let userData = require('../../assets/default-data.json');
 
-    export default {
+   module.exports =  {
       data(){
         return {
           userData: userData,

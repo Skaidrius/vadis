@@ -281,7 +281,7 @@
 const apiData = require('../../assets/demand-table-data.json');
 import Modal from '../modal-component.vue';
 
-export default {
+module.exports = {
   data(){
     return {
       header: apiData.header,
