@@ -33,7 +33,7 @@
       <ul class="nav nav-pills text-center my-tabs row">
         <li class='col-xs-2 active' data-toggle="tab"><router-link to="/recommendations/actual">{{ tables.activeRec[ i18n ] }}</router-link></li>
         <li class='col-xs-2' data-toggle="tab"><router-link to="/recommendations/late">{{ tables.lateRec[ i18n ] }}</router-link></li>
-        <li class='col-xs-2' data-toggle="tab"><router-link to="/recommendations/implemented">{{ tables.impleRec[ i18n ] }}</router-link></li>
+        <li class='col-xs-2' data-toggle="tab"><router-link to="/recommendations/implemented">{{ tables.impledRec[ i18n ] }}</router-link></li>
         <li class='col-xs-2' data-toggle="tab"><router-link to="/recommendations/add">{{ functions.titles.addNew[ i18n ] }}</router-link></li>
         <li class='col-xs-2' data-toggle="tab"><router-link to="/recommendations/search">{{ functions.search[ i18n ] }}</router-link></li>
       </ul>

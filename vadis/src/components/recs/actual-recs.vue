@@ -89,7 +89,7 @@
         </table>
 
         <div class="panel-footer">
-          <!--button if adit mode and some are marked-->
+          <!--button if edit mode and some are marked-->
           <div class='form-inline text-right' > 
             <button class='form-control' v-on:click='toImplemented' v-show='marked > 0'>{{ functions.selectDone[ i18n ] }}</button>
           </div>
