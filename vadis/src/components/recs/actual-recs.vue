@@ -117,7 +117,7 @@ module.exports = {
     },
   },
   methods: {
-    
+    // move to implemented (changes actual to true or false)
     toImplemented: function () {
       this.actualRecommendations.map(function (e){
         if (e.marked) {
@@ -125,6 +125,7 @@ module.exports = {
         } else { e.marked = false; }
       });
     },
+    // checks whether any rec is marked
     getMarked: function () {
       let temp = 0;
       this.actualRecommendations.map(function (e) {
@@ -134,6 +135,7 @@ module.exports = {
       });
       this.marked = temp; 
     },
+    // checks whether any rec is checked 
     expandRec: function (data) {
       this.actualRecommendations.map( function (e) {
         if (e == data) {

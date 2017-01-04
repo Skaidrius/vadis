@@ -106,7 +106,7 @@ module.exports = {
         let tempDay;
         
         const monthsLt = ["sausio", "vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos", "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
-        const monthsEn = ["Januar", "Februar", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthsEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
         //if (thisMonth < 10) thisMonth = "0" + thisMonth;
         //if (thisDay < 10) thisDay = "0" + thisDay;
