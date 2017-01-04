@@ -17,14 +17,15 @@
             <tr>
               <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[ tableElements.length-1 ]'>
                 <span v-if='header == tableElements[ 4 ]'>
-                    <a @click='sortByRate()'>{{ header[ i18n ] }}</a>
+                  <a @click='sortByRate()'>{{ header[ i18n ] }}</a>
                 </span>
-                <span v-else-if='header == tableElements[6]'>
-                    <a @click='sortByDate()'>{{ header[ i18n ] }}</a>
+                <span v-else-if='header == tableElements[ 6 ]'>
+                  <a @click='sortByDate()'>{{ header[ i18n ] }}</a>
                 </span>
                 <span v-else>{{ header[ i18n ] }}</span>
                 </span>
               </th>
+              
               <th>{{ functions.mark[ i18n ] }}</th>
             </tr>
           </thead>
@@ -159,7 +160,7 @@ module.exports = {
       });
     }
   },
-  props: [ 'i18n', 'editMode', 'sortByDate', 'sortByRate', 'functions', 'sortByStatus', 'tables', 'recommendationsArray', 'tableElements' ]
+  props: [ 'i18n', 'editMode', 'sortByDate', 'sortByRate', 'sortByStatus', 'functions', 'tables', 'recommendationsArray', 'tableElements' ]
 };
 
 </script>
