@@ -16,7 +16,7 @@
           <thead>
             <tr>
               <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[ tableElements.length-1 ]'>
-                <span v-if='header == tableElements[4]'>
+                <span v-if='header == tableElements[ 4 ]'>
                     <a @click='sortByRate()'>{{ header[ i18n ] }}</a>
                 </span>
                 <span v-else-if='header == tableElements[6]'>
