@@ -7,8 +7,10 @@
                 :tables='tables'
                 :tableElements = 'tableElements'
                 :i18n = 'i18n' 
-                :editMode='editMode'
-                :title='tables.activeRec'
+                :editMode = 'editMode'
+                :title = 'tables.activeRec'
+                :sortByDate = 'sortByDate'
+                :sortByRate = 'sortByRate'
                 
                 :changeImplemented = 'toImplemented'
     >

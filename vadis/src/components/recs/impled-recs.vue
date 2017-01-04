@@ -9,6 +9,8 @@
                 :i18n = 'i18n' 
                 :editMode='editMode'
                 :title='tables.impledRec'
+                :sortByDate = 'sortByDate'
+                :sortByRate = 'sortByRate'
                 
                 :changeImplemented = 'fromImplemented'
     >

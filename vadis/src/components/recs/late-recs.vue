@@ -9,6 +9,8 @@
                 :i18n = 'i18n' 
                 :editMode='editMode'
                 :title='tables.lateRec'
+                :sortByDate = 'sortByDate'
+                :sortByRate = 'sortByRate'
                 
                 :changeImplemented = 'toImplemented'
     >
