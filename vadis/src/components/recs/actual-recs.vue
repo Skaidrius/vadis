@@ -8,52 +8,52 @@
       <div v-if='actualRecommendations' >
         
         <div class="panel-body">
-          <h3> {{ tables.activeRec[i18n] }} </h3>
+          <h3> {{ tables.activeRec[ i18n ] }} </h3>
         </div>
         
         <table class='table table-hover table-bordered text-center'>
           
           <thead>
             <tr>
-              <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[tableElements.length-1]'>
+              <th v-for='header in tableElements' :class='header.style' v-show='header!==tableElements[ tableElements.length-1 ]'>
                 <span v-if='header == tableElements[4]'>
-                    <a @click='sortByRate()'>{{ header[i18n] }}</a>
+                    <a @click='sortByRate()'>{{ header[ i18n ] }}</a>
                 </span>
                 <span v-else-if='header == tableElements[6]'>
-                    <a @click='sortByDate()'>{{ header[i18n] }}</a>
+                    <a @click='sortByDate()'>{{ header[ i18n ] }}</a>
                 </span>
-                <span v-else>{{ header[i18n] }}</span>
+                <span v-else>{{ header[ i18n ] }}</span>
                 </span>
               </th>
               <!--CHANGE TO 18n-->
-              <th>{{ functions.mark[i18n] }}</th>
+              <th>{{ functions.mark[ i18n ] }}</th>
             </tr>
           </thead>
           
-          <tbody v-for='(data, index) in actualRecommendations'>
+          <tbody v-for='( data, index ) in actualRecommendations'>
             <tr>
               <td class='no-padding'>{{ index+1 }}.</td>
-                <td v-for='(el, key) in data.recommendations' v-show='key!=="actual"' class='with-innertable'>
+                <td v-for='( el, key ) in data.recommendations' v-show='key!=="actual"' class='with-innertable'>
                   <!--SPLITTING CELL TO TEXT AND EXPAND symbol -->
                   <table class='table innertable'>
                     <tr class='row'>
                       <td class='col-xs-11 no-padding'>
                         <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
                         <span v-else-if='editMode && key=="implementInfo"'>
-                          <textarea v-model='data.recommendations[key]' :placeholder='data.recommendations[key]' class='form-control'></textarea>
+                          <textarea v-model='data.recommendations[ key ]' :placeholder='data.recommendations[ key ]' class='form-control'></textarea>
                         </span>
                         <span v-else>{{ el }}</span>
                       </td>
                       <!--input checkbox = arrow-->
                       <td class='col-xs-1 expand expand-symbol'>
-                        <input type='checkbox' class='check_box' v-on:click='expandRec(data)' v-model='data.checked'/>
+                        <input type='checkbox' class='check_box' v-on:click='expandRec( data )' v-model='data.checked'/>
                       </td>
                     </tr>
                   </table>
                 </td>
                 <!-- RECS mark as selected - -->
                 <td class='no-padding'>
-                  <input type='checkbox' v-model='actualRecommendations[index].marked' v-on:change='getMarked'/>
+                  <input type='checkbox' v-model='actualRecommendations[ index ].marked' v-on:change='getMarked'/>
                 </td>
             </tr>
 
@@ -75,13 +75,13 @@
         <div class="panel-footer">
           <!--button if adit mode and some are marked-->
           <div class='form-inline text-right' > 
-            <button class='form-control' v-on:click='toImplemented' v-show='marked > 0'>{{ functions.selectDone[i18n] }}</button>
+            <button class='form-control' v-on:click='toImplemented' v-show='marked > 0'>{{ functions.selectDone[ i18n ] }}</button>
           </div>
           
         </div>
       </div>
       
-      <div v-else class='panel-footer'>{{ functions.noRes[i18n] }}</div>
+      <div v-else class='panel-footer'>{{ functions.noRes[ i18n ] }}</div>
     
     </div>
 
@@ -89,11 +89,11 @@
 </template>
 
 <script>
-const apiData = require('../../assets/recommend-table-data.json');
+const apiData = require( '../../assets/recommend-table-data.json' );
 import ExpandRecsModule from './modules/expand-recs-module.vue';
 
 module.exports = {
-  data(){
+  data() {
     return {
       // apiData: apiData,
       header: apiData.header,
@@ -108,9 +108,9 @@ module.exports = {
     // get actual recommendations from recommendations
     actualRecommendations: function (){ 
       let actualRecs = [];
-      this.recommendationsArray.map(function(e){
-        if (e.recommendations.actual) {
-          actualRecs.push(e);
+      this.recommendationsArray.map( function(e){
+        if ( e.recommendations.actual ) {
+          actualRecs.push( e );
         }
       });
       return actualRecs;
@@ -119,8 +119,8 @@ module.exports = {
   methods: {
     // move to implemented (changes actual to true or false)
     toImplemented: function () {
-      this.actualRecommendations.map(function (e){
-        if (e.marked) {
+      this.actualRecommendations.map(function ( e ){
+        if ( e.marked ) {
             e.recommendations.actual = false;
         } else { e.marked = false; }
       });
@@ -128,23 +128,23 @@ module.exports = {
     // checks whether any rec is marked
     getMarked: function () {
       let temp = 0;
-      this.actualRecommendations.map(function (e) {
-        if (e.marked) {
+      this.actualRecommendations.map( function ( e ) {
+        if ( e.marked ) {
           temp++;
         }
       });
       this.marked = temp; 
     },
     // checks whether any rec is checked 
-    expandRec: function (data) {
-      this.actualRecommendations.map( function (e) {
-        if (e == data) {
+    expandRec: function ( data ) {
+      this.actualRecommendations.map( function ( e ) {
+        if ( e == data ) {
           e.checked = e.checked ? false : true;
         } else { e.checked = false; }
       });
     }
   },
-  props: ['i18n', 'editMode', 'sortByDate', 'sortByRate', 'functions', 'sortByStatus', 'tables', 'recommendationsArray', 'tableElements']
+  props: [ 'i18n', 'editMode', 'sortByDate', 'sortByRate', 'functions', 'sortByStatus', 'tables', 'recommendationsArray', 'tableElements' ]
 };
 
 </script>
