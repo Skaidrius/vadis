@@ -25,36 +25,51 @@
                 <span v-else>{{ header[ i18n ] }}</span>
                 </span>
               </th>
-              <!--CHANGE TO 18n-->
               <th>{{ functions.mark[ i18n ] }}</th>
             </tr>
           </thead>
           
           <tbody v-for='( data, index ) in actualRecommendations'>
             <tr>
-              <td class='no-padding'>{{ index+1 }}.</td>
-                <td v-for='( el, key ) in data.recommendations' v-show='key!=="actual"' class='with-innertable'>
-                  <!--SPLITTING CELL TO TEXT AND EXPAND symbol -->
-                  <table class='table innertable'>
-                    <tr class='row'>
-                      <td class='col-xs-11 no-padding'>
-                        <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
-                        <span v-else-if='editMode && key=="implementInfo"'>
-                          <textarea v-model='data.recommendations[ key ]' :placeholder='data.recommendations[ key ]' class='form-control'></textarea>
-                        </span>
-                        <span v-else>{{ el }}</span>
-                      </td>
-                      <!--input checkbox = arrow-->
-                      <td class='col-xs-1 expand expand-symbol'>
-                        <input type='checkbox' class='check_box' v-on:click='expandRec( data )' v-model='data.checked'/>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <!-- RECS mark as selected - -->
-                <td class='no-padding'>
-                  <input type='checkbox' v-model='actualRecommendations[ index ].marked' v-on:change='getMarked'/>
-                </td>
+              <td>{{ index+1 }}.</td>
+              <td v-for='( el, key ) in data.recommendations' v-show='key!=="actual"' class='with-innertable'>
+                <!--SPLIT CELL TO TEXT AND EXPAND symbol -->
+                <table class='table innertable'>
+                  <tr class='row'>
+                    <td class='col-xs-11'>
+                      <span v-if='key=="recRate"'>{{ functions.recRates[el-1][i18n] }}</span> <!-- to show low/med/high instead of 1,2,3 -->
+                      <span v-else-if='editMode && key=="implementInfo"'>
+                        <textarea v-model='data.recommendations[ key ]' :placeholder='data.recommendations[ key ]' class='form-control'></textarea>
+                      </span>
+                      <span v-else>{{ el }}</span>
+                    </td>
+                    <!--input checkbox = arrow-->
+                    <td class='col-xs-1 expand expand-symbol'>
+                      <input type='checkbox' class='check_box' v-on:click='expandRec( data )' v-model='data.checked'/>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <!-- RECS mark as selected - -->
+              <td>
+                <input type='checkbox' v-model='actualRecommendations[ index ].marked' v-on:change='getMarked'/>
+              </td>
+            </tr>
+            
+            <!--EXPAND INFO ABOUT IMPLEMENTATION ON MARK-->
+            <tr v-if='data.marked'>
+              <td></td>
+              <td colspan='8'>
+                <table class='table innertable'>
+                  <tr>
+                    <th class='text-center'>{{ functions.describeImplementation[ i18n ]}}</th>
+                  </tr>
+                  <tr>
+                    <td><textarea class='form-control' v-model='data.recommendations.implementInfo'></textarea></td>
+                  </tr>
+                </table>
+              </td>
+              
             </tr>
 
             <!--EXPAND RECOMMENDATIONS MODULE-->

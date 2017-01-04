@@ -249,6 +249,10 @@
 				        "en": "Select as Actual",
           				"lt": "Į Aktualias"
 				},
+				"describeImplementation": {
+						"en": "Information about Implementation",
+						"lt": "Informacija apie Įgyvendinimą"
+				},
 				"responsible" : {
 						"en": "Responsible Staff:",
 						"lt": "Atsakingi darbuotojai:"
